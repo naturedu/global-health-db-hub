@@ -21,3 +21,7 @@ Thumbs.db
 # 临时文件
 _c.js
 *.log
+
+# 本地工具（gh CLI 等），不入库
+.tools/
+gh.zip
