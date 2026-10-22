@@ -114,7 +114,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Health+and+Retirement+Study",
    "ackEn": "This research used data from Health and Retirement Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 HRS 健康与退休研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 HRS 健康与退休研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "hrs",
+    "hrs 健康与退休研究",
+    "健康与退休研究"
+   ]
   },
   {
    "name": "CHARLS 中国健康与养老追踪调查",
@@ -167,7 +172,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Health+and+Retirement+Longitudinal+Study",
    "ackEn": "This research uses data from the China Health and Retirement Longitudinal Study (CHARLS), conducted by Peking University, under data use approval [XXXXX].",
-   "ackCn": "本研究使用了北京大学中国健康与养老追踪调查（CHARLS）数据，数据使用批准号 [XXXXX]。"
+   "ackCn": "本研究使用了北京大学中国健康与养老追踪调查（CHARLS）数据，数据使用批准号 [XXXXX]。",
+   "alias": [
+    "charls",
+    "charls 中国健康与养老追踪调查",
+    "中国健康与养老追踪调查"
+   ]
   },
   {
    "name": "CLHLS 中国老年健康影响因素跟踪调查",
@@ -209,7 +219,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Chinese+Longitudinal+Healthy+Longevity+Survey",
    "ackEn": "This research used data from Chinese Longitudinal Healthy Longevity Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CLHLS 中国老年健康影响因素跟踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CLHLS 中国老年健康影响因素跟踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "clhls",
+    "clhls 中国老年健康影响因素跟踪调查",
+    "中国老年健康影响因素跟踪调查"
+   ]
   },
   {
    "name": "CFPS 中国家庭追踪调查",
@@ -254,7 +269,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Family+Panel+Studies",
    "ackEn": "This research used data from China Family Panel Studies. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CFPS 中国家庭追踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CFPS 中国家庭追踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cfps",
+    "cfps 中国家庭追踪调查",
+    "中国家庭追踪调查"
+   ]
   },
   {
    "name": "CLASS 中国老年社会追踪调查",
@@ -292,7 +312,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Longitudinal+Aging+Social+Survey",
    "ackEn": "This research used data from China Longitudinal Aging Social Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CLASS 中国老年社会追踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CLASS 中国老年社会追踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "class",
+    "class 中国老年社会追踪调查",
+    "中国老年社会追踪调查"
+   ]
   },
   {
    "name": "CGSS 中国综合社会调查",
@@ -328,7 +353,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Chinese+General+Social+Survey",
    "ackEn": "This research used data from Chinese General Social Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CGSS 中国综合社会调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CGSS 中国综合社会调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cgss",
+    "cgss 中国综合社会调查",
+    "中国综合社会调查"
+   ]
   },
   {
    "name": "CHNS 中国健康与营养调查",
@@ -369,7 +399,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Health+and+Nutrition+Survey",
    "ackEn": "This research used data from China Health and Nutrition Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CHNS 中国健康与营养调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CHNS 中国健康与营养调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "chns",
+    "chns 中国健康与营养调查",
+    "中国健康与营养调查"
+   ]
   },
   {
    "name": "KLoSA 韩国老龄化追踪研究",
@@ -407,7 +442,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Korean+Longitudinal+Study+of+Ageing",
    "ackEn": "This research used data from Korean Longitudinal Study of Ageing. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 KLoSA 韩国老龄化追踪研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 KLoSA 韩国老龄化追踪研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "klosa",
+    "klosa 韩国老龄化追踪研究",
+    "韩国老龄化追踪研究"
+   ]
   },
   {
    "name": "MHAS 墨西哥健康与老龄化研究",
@@ -446,7 +486,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Mexican+Health+and+Aging+Study",
    "ackEn": "This research used data from Mexican Health and Aging Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 MHAS 墨西哥健康与老龄化研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 MHAS 墨西哥健康与老龄化研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "mhas",
+    "mhas 墨西哥健康与老龄化研究",
+    "墨西哥健康与老龄化研究"
+   ]
   },
   {
    "name": "ELSA 英格兰老龄化追踪调查",
@@ -484,7 +529,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=English+Longitudinal+Study+of+Ageing",
    "ackEn": "This research used data from English Longitudinal Study of Ageing. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 ELSA 英格兰老龄化追踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 ELSA 英格兰老龄化追踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "elsa",
+    "elsa 英格兰老龄化追踪调查",
+    "英格兰老龄化追踪调查"
+   ]
   },
   {
    "name": "SHARE 欧洲健康、老龄与退休调查",
@@ -522,7 +572,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Survey+of+Health,+Ageing+and+Retirement+in+Europe",
    "ackEn": "This research used data from Survey of Health, Ageing and Retirement in Europe. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 SHARE 欧洲健康、老龄与退休调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 SHARE 欧洲健康、老龄与退休调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "share",
+    "share 欧洲健康、老龄与退休调查",
+    "欧洲健康、老龄与退休调查"
+   ]
   },
   {
    "name": "LASI 印度纵向老龄化调查",
@@ -559,7 +614,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Longitudinal+Aging+Study+in+India",
    "ackEn": "This research used data from Longitudinal Aging Study in India. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 LASI 印度纵向老龄化调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 LASI 印度纵向老龄化调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "lasi",
+    "lasi 印度纵向老龄化调查",
+    "印度纵向老龄化调查"
+   ]
   },
   {
    "name": "UK Biobank 英国生物样本库",
@@ -613,7 +673,13 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=UK+Biobank",
    "ackEn": "This research has been conducted using the UK Biobank Resource under Application Number [XXXXX].",
-   "ackCn": "本研究使用英国生物样本库（UK Biobank）资源开展，批准申请编号为 [XXXXX]。"
+   "ackCn": "本研究使用英国生物样本库（UK Biobank）资源开展，批准申请编号为 [XXXXX]。",
+   "alias": [
+    "biobank",
+    "uk",
+    "uk biobank 英国生物样本库",
+    "英国生物样本库"
+   ]
   },
   {
    "name": "CKB 中国慢性病前瞻性研究",
@@ -657,7 +723,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Kadoorie+Biobank",
    "ackEn": "This research used data from the China Kadoorie Biobank (CKB) under approved project / collaboration number [XXXXX].",
-   "ackCn": "本研究使用了中国慢性病前瞻性研究（CKB）数据，批准项目/合作编号 [XXXXX]。"
+   "ackCn": "本研究使用了中国慢性病前瞻性研究（CKB）数据，批准项目/合作编号 [XXXXX]。",
+   "alias": [
+    "ckb",
+    "ckb 中国慢性病前瞻性研究",
+    "中国慢性病前瞻性研究"
+   ]
   },
   {
    "name": "MCPS 墨西哥城前瞻性研究",
@@ -694,7 +765,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Mexico+City+Prospective+Study",
    "ackEn": "This research used data from Mexico City Prospective Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 MCPS 墨西哥城前瞻性研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 MCPS 墨西哥城前瞻性研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "mcps",
+    "mcps 墨西哥城前瞻性研究",
+    "墨西哥城前瞻性研究"
+   ]
   },
   {
    "name": "KoGES 韩国基因组流行病学研究",
@@ -731,7 +807,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Korean+Genome+Epidemiology+Study",
    "ackEn": "This research used data from Korean Genome Epidemiology Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 KoGES 韩国基因组流行病学研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 KoGES 韩国基因组流行病学研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "koges",
+    "koges 韩国基因组流行病学研究",
+    "韩国基因组流行病学研究"
+   ]
   },
   {
    "name": "All of Us 美国全民健康研究",
@@ -769,7 +850,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=All+of+Us+Research+Program",
    "ackEn": "This research used data from All of Us Research Program. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 All of Us 美国全民健康研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 All of Us 美国全民健康研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "all",
+    "all of us 美国全民健康研究",
+    "us",
+    "美国全民健康研究"
+   ]
   },
   {
    "name": "FinnGen 芬兰基因组计划",
@@ -805,7 +892,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=FinnGen",
    "ackEn": "This research used data from FinnGen. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 FinnGen 芬兰基因组计划 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 FinnGen 芬兰基因组计划 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "finngen",
+    "finngen 芬兰基因组计划",
+    "芬兰基因组计划"
+   ]
   },
   {
    "name": "BioBank Japan 日本生物样本库",
@@ -840,7 +932,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=BioBank+Japan",
    "ackEn": "This research used data from BioBank Japan. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 BioBank Japan 日本生物样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 BioBank Japan 日本生物样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "biobank",
+    "biobank japan 日本生物样本库",
+    "japan",
+    "日本生物样本库"
+   ]
   },
   {
    "name": "Million Veteran Program 百万退伍军人计划",
@@ -877,7 +975,14 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Million+Veteran+Program",
    "ackEn": "This research used data from Million Veteran Program. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 Million Veteran Program 百万退伍军人计划 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 Million Veteran Program 百万退伍军人计划 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "million",
+    "million veteran program 百万退伍军人计划",
+    "program",
+    "veteran",
+    "百万退伍军人计划"
+   ]
   },
   {
    "name": "Estonian Biobank 爱沙尼亚生物样本库",
@@ -912,7 +1017,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Estonian+Biobank",
    "ackEn": "This research used data from Estonian Biobank. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 Estonian Biobank 爱沙尼亚生物样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 Estonian Biobank 爱沙尼亚生物样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "biobank",
+    "estonian",
+    "estonian biobank 爱沙尼亚生物样本库",
+    "爱沙尼亚生物样本库"
+   ]
   },
   {
    "name": "开滦队列",
@@ -960,7 +1071,10 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Kailuan+Study",
    "ackEn": "This research used data from Kailuan Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 开滦队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 开滦队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "开滦队列"
+   ]
   },
   {
    "name": "同济东风队列",
@@ -1001,7 +1115,10 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Dongfeng-Tongji+Cohort+(DFTJ)",
    "ackEn": "This research used data from Dongfeng-Tongji Cohort (DFTJ). Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 同济东风队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 同济东风队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "同济东风队列"
+   ]
   },
   {
    "name": "PBICR 中国居民心理与行为调查",
@@ -1046,7 +1163,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Psychology+and+Behavior+Investigation+of+Chinese+Residents",
    "ackEn": "This research used data from Psychology and Behavior Investigation of Chinese Residents. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 PBICR 中国居民心理与行为调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 PBICR 中国居民心理与行为调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "pbicr",
+    "pbicr 中国居民心理与行为调查",
+    "中国居民心理与行为调查"
+   ]
   },
   {
    "name": "China-PAR 中国动脉粥样硬化性心血管病风险预测",
@@ -1083,7 +1205,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Atherosclerotic+Cardiovascular+Disease+Prediction",
    "ackEn": "This research used data from China Atherosclerotic Cardiovascular Disease Prediction. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 China-PAR 中国动脉粥样硬化性心血管病风险预测 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 China-PAR 中国动脉粥样硬化性心血管病风险预测 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "china",
+    "china-par 中国动脉粥样硬化性心血管病风险预测",
+    "par",
+    "中国动脉粥样硬化性心血管病风险预测"
+   ]
   },
   {
    "name": "China PEACE / 百万人群项目",
@@ -1119,7 +1247,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+PEACE+&+Million+Population+Project",
    "ackEn": "This research used data from China PEACE & Million Population Project. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 China PEACE / 百万人群项目 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 China PEACE / 百万人群项目 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "china",
+    "china peace / 百万人群项目",
+    "peace",
+    "百万人群项目"
+   ]
   },
   {
    "name": "CMEC 中国西南多民族队列",
@@ -1155,7 +1289,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Multi-Ethnic+Cohort",
    "ackEn": "This research used data from China Multi-Ethnic Cohort. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CMEC 中国西南多民族队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CMEC 中国西南多民族队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cmec",
+    "cmec 中国西南多民族队列",
+    "中国西南多民族队列"
+   ]
   },
   {
    "name": "泰州队列",
@@ -1191,7 +1330,10 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Taizhou+Cohort",
    "ackEn": "This research used data from Taizhou Cohort. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 泰州队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 泰州队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "泰州队列"
+   ]
   },
   {
    "name": "上海女性/男性健康研究 SWHS/SMHS",
@@ -1216,6 +1358,8 @@
     "中国",
     "女性",
     "男性",
+    "妇科",
+    "女性肿瘤",
     "膳食",
     "肿瘤",
     "队列",
@@ -1228,7 +1372,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Shanghai+Women's/Men's+Health+Studies",
    "ackEn": "This research used data from Shanghai Women's/Men's Health Studies. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 上海女性/男性健康研究 SWHS/SMHS 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 上海女性/男性健康研究 SWHS/SMHS 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "smhs",
+    "swhs",
+    "上海女性/男性健康研究 swhs/smhs",
+    "男性健康研究"
+   ]
   },
   {
    "name": "CNSR 中国国家卒中登记",
@@ -1262,6 +1412,10 @@
     "卒中",
     "脑血管",
     "神经",
+    "溶栓",
+    "取栓",
+    "复发",
+    "预后",
     "影像",
     "生物标志物",
     "登记",
@@ -1276,7 +1430,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+National+Stroke+Registry",
    "ackEn": "This research used data from China National Stroke Registry. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CNSR 中国国家卒中登记 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CNSR 中国国家卒中登记 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cnsr",
+    "cnsr 中国国家卒中登记",
+    "中国国家卒中登记"
+   ]
   },
   {
    "name": "C-STRIDE 中国慢性肾脏病队列",
@@ -1312,7 +1471,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Chronic+Kidney+Disease+Cohort",
    "ackEn": "This research used data from China Chronic Kidney Disease Cohort. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 C-STRIDE 中国慢性肾脏病队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 C-STRIDE 中国慢性肾脏病队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "c-stride 中国慢性肾脏病队列",
+    "stride",
+    "中国慢性肾脏病队列"
+   ]
   },
   {
    "name": "CK-NET 中国肾脏疾病网络",
@@ -1356,7 +1520,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Kidney+Disease+Network",
    "ackEn": "This research used data from China Kidney Disease Network. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CK-NET 中国肾脏疾病网络 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CK-NET 中国肾脏疾病网络 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "ck-net 中国肾脏疾病网络",
+    "net",
+    "中国肾脏疾病网络"
+   ]
   },
   {
    "name": "中国高血压调查 CHS",
@@ -1391,7 +1560,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Hypertension+Survey",
    "ackEn": "This research used data from China Hypertension Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 中国高血压调查 CHS 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 中国高血压调查 CHS 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "chs",
+    "中国高血压调查",
+    "中国高血压调查 chs"
+   ]
   },
   {
    "name": "NHANES 美国国家健康与营养检查调查",
@@ -1440,7 +1614,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Health+and+Nutrition+Examination+Survey",
    "ackEn": "Data from the National Health and Nutrition Examination Survey (NHANES), US Centers for Disease Control and Prevention / National Center for Health Statistics, were used in this study. NCHS does not endorse or assume responsibility for the analyses or interpretations presented here.",
-   "ackCn": "本研究使用了美国疾控中心国家卫生统计中心（CDC/NCHS）的 NHANES 数据；NCHS 不对本研究的分析与解读背书或担责。"
+   "ackCn": "本研究使用了美国疾控中心国家卫生统计中心（CDC/NCHS）的 NHANES 数据；NCHS 不对本研究的分析与解读背书或担责。",
+   "alias": [
+    "nhanes",
+    "nhanes 美国国家健康与营养检查调查",
+    "美国国家健康与营养检查调查"
+   ]
   },
   {
    "name": "KNHANES 韩国国民健康营养调查",
@@ -1477,7 +1656,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Korea+National+Health+and+Nutrition+Examination+Survey",
    "ackEn": "This research used data from Korea National Health and Nutrition Examination Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 KNHANES 韩国国民健康营养调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 KNHANES 韩国国民健康营养调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "knhanes",
+    "knhanes 韩国国民健康营养调查",
+    "韩国国民健康营养调查"
+   ]
   },
   {
    "name": "BRFSS 行为危险因素监测系统",
@@ -1513,7 +1697,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Behavioral+Risk+Factor+Surveillance+System",
    "ackEn": "This research used data from Behavioral Risk Factor Surveillance System. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 BRFSS 行为危险因素监测系统 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 BRFSS 行为危险因素监测系统 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "brfss",
+    "brfss 行为危险因素监测系统",
+    "行为危险因素监测系统"
+   ]
   },
   {
    "name": "NHIS 美国国民健康访问调查",
@@ -1549,7 +1738,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Health+Interview+Survey",
    "ackEn": "This research used data from National Health Interview Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 NHIS 美国国民健康访问调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 NHIS 美国国民健康访问调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "nhis",
+    "nhis 美国国民健康访问调查",
+    "美国国民健康访问调查"
+   ]
   },
   {
    "name": "中国慢性病及危险因素监测",
@@ -1584,7 +1778,10 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Chronic+Disease+and+Risk+Factor+Surveillance",
    "ackEn": "This research used data from China Chronic Disease and Risk Factor Surveillance. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 中国慢性病及危险因素监测 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 中国慢性病及危险因素监测 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "中国慢性病及危险因素监测"
+   ]
   },
   {
    "name": "香港医管局 CDARS",
@@ -1629,7 +1826,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Clinical+Data+Analysis+and+Reporting+System",
    "ackEn": "This research used data from Clinical Data Analysis and Reporting System. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 香港医管局 CDARS 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 香港医管局 CDARS 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cdars",
+    "香港医管局",
+    "香港医管局 cdars"
+   ]
   },
   {
    "name": "韩国 NHIS 国民健康保险",
@@ -1670,7 +1872,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Health+Insurance+Service",
    "ackEn": "This research used data from National Health Insurance Service. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 韩国 NHIS 国民健康保险 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 韩国 NHIS 国民健康保险 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "nhis",
+    "国民健康保险",
+    "韩国 nhis 国民健康保险"
+   ]
   },
   {
    "name": "韩国 HIRA 健康保险审查评价院",
@@ -1707,7 +1914,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Health+Insurance+Review+&+Assessment",
    "ackEn": "This research used data from Health Insurance Review & Assessment. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 韩国 HIRA 健康保险审查评价院 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 韩国 HIRA 健康保险审查评价院 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "hira",
+    "健康保险审查评价院",
+    "韩国 hira 健康保险审查评价院"
+   ]
   },
   {
    "name": "CPRD 英国基层医疗数据库",
@@ -1746,7 +1958,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Clinical+Practice+Research+Datalink",
    "ackEn": "This research used data from Clinical Practice Research Datalink. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CPRD 英国基层医疗数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CPRD 英国基层医疗数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cprd",
+    "cprd 英国基层医疗数据库",
+    "英国基层医疗数据库"
+   ]
   },
   {
    "name": "OpenSAFELY 英国全民健康记录分析平台",
@@ -1782,7 +1999,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=OpenSAFELY",
    "ackEn": "This research used data from OpenSAFELY. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 OpenSAFELY 英国全民健康记录分析平台 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 OpenSAFELY 英国全民健康记录分析平台 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "opensafely",
+    "opensafely 英国全民健康记录分析平台",
+    "英国全民健康记录分析平台"
+   ]
   },
   {
    "name": "QResearch 英国基层医疗数据库",
@@ -1818,7 +2040,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=QResearch",
    "ackEn": "This research used data from QResearch. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 QResearch 英国基层医疗数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 QResearch 英国基层医疗数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "qresearch",
+    "qresearch 英国基层医疗数据库",
+    "英国基层医疗数据库"
+   ]
   },
   {
    "name": "北欧登记体系",
@@ -1855,7 +2082,10 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Nordic+Registries+(Denmark/Sweden/Norway/Finland)",
    "ackEn": "This research used data from Nordic Registries (Denmark/Sweden/Norway/Finland). Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 北欧登记体系 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 北欧登记体系 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "北欧登记体系"
+   ]
   },
   {
    "name": "台湾 NHIRD 全民健康保险研究数据库",
@@ -1891,7 +2121,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Taiwan+National+Health+Insurance+Research+Database",
    "ackEn": "This research used data from Taiwan National Health Insurance Research Database. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 台湾 NHIRD 全民健康保险研究数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 台湾 NHIRD 全民健康保险研究数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "nhird",
+    "全民健康保险研究数据库",
+    "台湾 nhird 全民健康保险研究数据库"
+   ]
   },
   {
    "name": "日本 NDB / JMDC",
@@ -1927,7 +2162,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Japan+NDB+/+JMDC",
    "ackEn": "This research used data from Japan NDB / JMDC. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 日本 NDB / JMDC 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 日本 NDB / JMDC 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "jmdc",
+    "ndb",
+    "日本 ndb / jmdc"
+   ]
   },
   {
    "name": "TriNetX 全球联邦式研究网络",
@@ -1963,7 +2203,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=TriNetX",
    "ackEn": "This research used data from TriNetX. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 TriNetX 全球联邦式研究网络 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 TriNetX 全球联邦式研究网络 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "trinetx",
+    "trinetx 全球联邦式研究网络",
+    "全球联邦式研究网络"
+   ]
   },
   {
    "name": "MarketScan / Optum / IQVIA 美国商保数据",
@@ -2003,7 +2248,14 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Commercial+Claims+Data",
    "ackEn": "This research used data from Commercial Claims Data. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 MarketScan / Optum / IQVIA 美国商保数据 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 MarketScan / Optum / IQVIA 美国商保数据 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "iqvia",
+    "marketscan",
+    "marketscan / optum / iqvia 美国商保数据",
+    "optum",
+    "美国商保数据"
+   ]
   },
   {
    "name": "CMS Medicare/Medicaid (ResDAC)",
@@ -2039,7 +2291,14 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=US+CMS+Medicare/Medicaid",
    "ackEn": "This research used data from US CMS Medicare/Medicaid. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CMS Medicare/Medicaid (ResDAC) 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CMS Medicare/Medicaid (ResDAC) 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "(resdac)",
+    "cms",
+    "cms medicare/medicaid (resdac)",
+    "medicaid",
+    "medicare"
+   ]
   },
   {
    "name": "MIMIC-IV 重症监护数据库",
@@ -2089,7 +2348,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Medical+Information+Mart+for+Intensive+Care+IV",
    "ackEn": "This research used the MIMIC-IV database (version [X.X]), maintained by the MIT Laboratory for Computational Physiology and hosted on PhysioNet, accessed under approved credentialed access (certification number [XXXXX]).",
-   "ackCn": "本研究使用 MIMIC-IV 数据库（版本 [X.X]，由 MIT 实验计算生理学实验室维护、PhysioNet 托管），经凭证化访问批准后使用（证书编号 [XXXXX]）。"
+   "ackCn": "本研究使用 MIMIC-IV 数据库（版本 [X.X]，由 MIT 实验计算生理学实验室维护、PhysioNet 托管），经凭证化访问批准后使用（证书编号 [XXXXX]）。",
+   "alias": [
+    "mimic",
+    "mimic-iv 重症监护数据库",
+    "重症监护数据库"
+   ]
   },
   {
    "name": "eICU-CRD 重症数据库",
@@ -2126,7 +2390,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=eICU+Collaborative+Research+Database",
    "ackEn": "This research used data from eICU Collaborative Research Database. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 eICU-CRD 重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 eICU-CRD 重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "crd",
+    "eicu",
+    "eicu-crd 重症数据库",
+    "重症数据库"
+   ]
   },
   {
    "name": "AmsterdamUMCdb 重症数据库",
@@ -2168,7 +2438,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Amsterdam+University+Medical+Centers+DB",
    "ackEn": "This research used data from Amsterdam University Medical Centers DB. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 AmsterdamUMCdb 重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 AmsterdamUMCdb 重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "amsterdamumcdb",
+    "amsterdamumcdb 重症数据库",
+    "重症数据库"
+   ]
   },
   {
    "name": "HiRID 高分辨率重症数据库",
@@ -2204,7 +2479,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=High+Time+Resolution+ICU+Dataset",
    "ackEn": "This research used data from High Time Resolution ICU Dataset. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 HiRID 高分辨率重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 HiRID 高分辨率重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "hirid",
+    "hirid 高分辨率重症数据库",
+    "高分辨率重症数据库"
+   ]
   },
   {
    "name": "SICdb 萨尔茨堡重症数据库",
@@ -2251,7 +2531,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Salzburg+Intensive+Care+Database",
    "ackEn": "This research used data from Salzburg Intensive Care Database. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 SICdb 萨尔茨堡重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 SICdb 萨尔茨堡重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "sicdb",
+    "sicdb 萨尔茨堡重症数据库",
+    "萨尔茨堡重症数据库"
+   ]
   },
   {
    "name": "INSPIRE 韩国围手术期数据库",
@@ -2287,7 +2572,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=INTensive+care+Precision+and+REsearch",
    "ackEn": "This research used data from INTensive care Precision and REsearch. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 INSPIRE 韩国围手术期数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 INSPIRE 韩国围手术期数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "inspire",
+    "inspire 韩国围手术期数据库",
+    "韩国围手术期数据库"
+   ]
   },
   {
    "name": "PIC 浙江大学附属儿童医院重症数据库",
@@ -2324,7 +2614,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Pediatric+Intensive+Care+Database",
    "ackEn": "This research used data from Pediatric Intensive Care Database. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 PIC 浙江大学附属儿童医院重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 PIC 浙江大学附属儿童医院重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "pic",
+    "pic 浙江大学附属儿童医院重症数据库",
+    "浙江大学附属儿童医院重症数据库"
+   ]
   },
   {
    "name": "BioLINCC 美国心肺血研究所数据仓库",
@@ -2370,7 +2665,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Biologic+Specimen+and+Data+Repository",
    "ackEn": "This research used data from Biologic Specimen and Data Repository. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 BioLINCC 美国心肺血研究所数据仓库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 BioLINCC 美国心肺血研究所数据仓库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "biolincc",
+    "biolincc 美国心肺血研究所数据仓库",
+    "美国心肺血研究所数据仓库"
+   ]
   },
   {
    "name": "NIDDK-CR 美国糖尿病消化肾病研究所中央数据仓库",
@@ -2411,7 +2711,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=NIDDK+Central+Repository",
    "ackEn": "This research used data from NIDDK Central Repository. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 NIDDK-CR 美国糖尿病消化肾病研究所中央数据仓库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 NIDDK-CR 美国糖尿病消化肾病研究所中央数据仓库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "niddk",
+    "niddk-cr 美国糖尿病消化肾病研究所中央数据仓库",
+    "美国糖尿病消化肾病研究所中央数据仓库"
+   ]
   },
   {
    "name": "NIA AgingResearchBiobank 美国老龄研究样本库",
@@ -2448,7 +2753,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=NIA+Aging+Research+Biobank",
    "ackEn": "This research used data from NIA Aging Research Biobank. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 NIA AgingResearchBiobank 美国老龄研究样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 NIA AgingResearchBiobank 美国老龄研究样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "agingresearchbiobank",
+    "nia",
+    "nia agingresearchbiobank 美国老龄研究样本库",
+    "美国老龄研究样本库"
+   ]
   },
   {
    "name": "Vivli / YODA / CSDR 临床试验个体数据共享平台",
@@ -2492,7 +2803,14 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Clinical+Trial+Data+Sharing+Platforms",
    "ackEn": "This research used data from Clinical Trial Data Sharing Platforms. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 Vivli / YODA / CSDR 临床试验个体数据共享平台 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 Vivli / YODA / CSDR 临床试验个体数据共享平台 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "csdr",
+    "vivli",
+    "vivli / yoda / csdr 临床试验个体数据共享平台",
+    "yoda",
+    "临床试验个体数据共享平台"
+   ]
   },
   {
    "name": "dbGaP 基因型与表型数据库",
@@ -2529,7 +2847,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Database+of+Genotypes+and+Phenotypes",
    "ackEn": "Data used in this study were obtained from the database of Genotypes and Phenotypes (dbGaP) under accession [phsXXXXXX], with approved project number [XXXXX].",
-   "ackCn": "本研究数据来源于 dbGaP（基因型与表型数据库），数据集编号 [phsXXXXXX]，批准项目编号 [XXXXX]。"
+   "ackCn": "本研究数据来源于 dbGaP（基因型与表型数据库），数据集编号 [phsXXXXXX]，批准项目编号 [XXXXX]。",
+   "alias": [
+    "dbgap",
+    "dbgap 基因型与表型数据库",
+    "基因型与表型数据库"
+   ]
   },
   {
    "name": "Aging Biobank (ABB) 中国衰老生物样本库",
@@ -2565,7 +2888,14 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Aging+Biobank",
    "ackEn": "This research used data from Aging Biobank. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 Aging Biobank (ABB) 中国衰老生物样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 Aging Biobank (ABB) 中国衰老生物样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "(abb)",
+    "aging",
+    "aging biobank (abb) 中国衰老生物样本库",
+    "biobank",
+    "中国衰老生物样本库"
+   ]
   },
   {
    "name": "GEO 基因表达综合数据库",
@@ -2605,7 +2935,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Gene+Expression+Omnibus",
    "ackEn": "Publicly available datasets (GSE accession number [GSEXXXXX]) were obtained from the NCBI Gene Expression Omnibus (GEO).",
-   "ackCn": "本研究数据来源于 NCBI GEO 公共数据集（GSE 编号 [GSEXXXXX]）。"
+   "ackCn": "本研究数据来源于 NCBI GEO 公共数据集（GSE 编号 [GSEXXXXX]）。",
+   "alias": [
+    "geo",
+    "geo 基因表达综合数据库",
+    "基因表达综合数据库"
+   ]
   },
   {
    "name": "Dryad 通用数据仓储",
@@ -2641,7 +2976,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Dryad",
    "ackEn": "This research used data from Dryad. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 Dryad 通用数据仓储 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 Dryad 通用数据仓储 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "dryad",
+    "dryad 通用数据仓储",
+    "通用数据仓储"
+   ]
   },
   {
    "name": "SRA 序列读取归档",
@@ -2677,7 +3017,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Sequence+Read+Archive",
    "ackEn": "This research used data from Sequence Read Archive. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 SRA 序列读取归档 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 SRA 序列读取归档 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "sra",
+    "sra 序列读取归档",
+    "序列读取归档"
+   ]
   },
   {
    "name": "ArrayExpress / BioStudies",
@@ -2712,7 +3057,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=EMBL-EBI",
    "ackEn": "This research used data from EMBL-EBI. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 ArrayExpress / BioStudies 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 ArrayExpress / BioStudies 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "arrayexpress",
+    "arrayexpress / biostudies",
+    "biostudies"
+   ]
   },
   {
    "name": "GDC / TCGA / cBioPortal 癌症多组学",
@@ -2754,7 +3104,14 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Genomic+Data+Commons",
    "ackEn": "This research used data from Genomic Data Commons. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 GDC / TCGA / cBioPortal 癌症多组学 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 GDC / TCGA / cBioPortal 癌症多组学 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cbioportal",
+    "gdc",
+    "gdc / tcga / cbioportal 癌症多组学",
+    "tcga",
+    "癌症多组学"
+   ]
   },
   {
    "name": "Zenodo / figshare / Mendeley Data",
@@ -2797,7 +3154,14 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=General+Repositories",
    "ackEn": "This research used data from General Repositories. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 Zenodo / figshare / Mendeley Data 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 Zenodo / figshare / Mendeley Data 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "data",
+    "figshare",
+    "mendeley",
+    "zenodo",
+    "zenodo / figshare / mendeley data"
+   ]
   },
   {
    "name": "ICPSR / IPUMS 调查与微观数据仓储",
@@ -2838,7 +3202,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Survey+&+Microdata+Repositories",
    "ackEn": "This research used data from Survey & Microdata Repositories. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 ICPSR / IPUMS 调查与微观数据仓储 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 ICPSR / IPUMS 调查与微观数据仓储 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "icpsr",
+    "icpsr / ipums 调查与微观数据仓储",
+    "ipums",
+    "调查与微观数据仓储"
+   ]
   },
   {
    "name": "国家自然科学基金基础研究知识库",
@@ -2874,7 +3244,10 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=NSFC+Open+Repository",
    "ackEn": "This research used data from NSFC Open Repository. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 国家自然科学基金基础研究知识库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 国家自然科学基金基础研究知识库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "国家自然科学基金基础研究知识库"
+   ]
   },
   {
    "name": "NCMI 国家人口健康科学数据中心",
@@ -2910,7 +3283,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Population+Health+Data+Center",
    "ackEn": "This research used data from National Population Health Data Center. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 NCMI 国家人口健康科学数据中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 NCMI 国家人口健康科学数据中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "ncmi",
+    "ncmi 国家人口健康科学数据中心",
+    "国家人口健康科学数据中心"
+   ]
   },
   {
    "name": "NGDC 国家基因组科学数据中心",
@@ -2947,7 +3325,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Genomics+Data+Center",
    "ackEn": "This research used data from National Genomics Data Center. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 NGDC 国家基因组科学数据中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 NGDC 国家基因组科学数据中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "ngdc",
+    "ngdc 国家基因组科学数据中心",
+    "国家基因组科学数据中心"
+   ]
   },
   {
    "name": "ScienceDB 科学数据银行",
@@ -2982,7 +3365,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Science+Data+Bank",
    "ackEn": "This research used data from Science Data Bank. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 ScienceDB 科学数据银行 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 ScienceDB 科学数据银行 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "sciencedb",
+    "sciencedb 科学数据银行",
+    "科学数据银行"
+   ]
   },
   {
    "name": "NMDC 国家微生物科学数据中心",
@@ -3018,7 +3406,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Microbiology+Data+Center",
    "ackEn": "This research used data from National Microbiology Data Center. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 NMDC 国家微生物科学数据中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 NMDC 国家微生物科学数据中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "nmdc",
+    "nmdc 国家微生物科学数据中心",
+    "国家微生物科学数据中心"
+   ]
   },
   {
    "name": "国家/卫生健康统计年鉴",
@@ -3058,7 +3451,11 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Health+Statistics+Yearbook",
    "ackEn": "This research used data from China Health Statistics Yearbook. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 国家/卫生健康统计年鉴 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 国家/卫生健康统计年鉴 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "卫生健康统计年鉴",
+    "国家/卫生健康统计年鉴"
+   ]
   },
   {
    "name": "HCUP 美国医疗成本与利用项目",
@@ -3096,7 +3493,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Healthcare+Cost+and+Utilization+Project",
    "ackEn": "This research used data from Healthcare Cost and Utilization Project. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 HCUP 美国医疗成本与利用项目 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 HCUP 美国医疗成本与利用项目 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "hcup",
+    "hcup 美国医疗成本与利用项目",
+    "美国医疗成本与利用项目"
+   ]
   },
   {
    "name": "MEPS 美国医疗支出面板调查",
@@ -3133,7 +3535,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Medical+Expenditure+Panel+Survey",
    "ackEn": "This research used data from Medical Expenditure Panel Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 MEPS 美国医疗支出面板调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 MEPS 美国医疗支出面板调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "meps",
+    "meps 美国医疗支出面板调查",
+    "美国医疗支出面板调查"
+   ]
   },
   {
    "name": "GBD / GHDx 全球疾病负担",
@@ -3169,7 +3576,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Global+Burden+of+Disease",
    "ackEn": "This research used data from Global Burden of Disease. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 GBD / GHDx 全球疾病负担 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 GBD / GHDx 全球疾病负担 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "gbd",
+    "gbd / ghdx 全球疾病负担",
+    "ghdx",
+    "全球疾病负担"
+   ]
   },
   {
    "name": "WHO 全球卫生观察站 / 卫生支出 / OECD / 世界银行",
@@ -3214,7 +3627,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Global+Health+Indicators",
    "ackEn": "This research used data from Global Health Indicators. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 WHO 全球卫生观察站 / 卫生支出 / OECD / 世界银行 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 WHO 全球卫生观察站 / 卫生支出 / OECD / 世界银行 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "oecd",
+    "who",
+    "who 全球卫生观察站 / 卫生支出 / oecd / 世界银行",
+    "全球卫生观察站"
+   ]
   },
   {
    "name": "45 and Up Study 澳大利亚 45 岁以上人群队列",
@@ -3265,7 +3684,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=The+45+and+Up+Study",
    "ackEn": "This research used data from The 45 and Up Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 45 and Up Study 澳大利亚 45 岁以上人群队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 45 and Up Study 澳大利亚 45 岁以上人群队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "45 and up study 澳大利亚 45 岁以上人群队列",
+    "and",
+    "study",
+    "岁以上人群队列"
+   ]
   },
   {
    "name": "CUPL 慢性疾病伞式数据链接项目",
@@ -3307,7 +3732,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Chronic+Conditions+Umbrella+Program+Linkage",
    "ackEn": "This research used data from Chronic Conditions Umbrella Program Linkage. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CUPL 慢性疾病伞式数据链接项目 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CUPL 慢性疾病伞式数据链接项目 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cupl",
+    "cupl 慢性疾病伞式数据链接项目",
+    "慢性疾病伞式数据链接项目"
+   ]
   },
   {
    "name": "PLIDA 澳大利亚个人级整合数据资产（ABS DataLab）",
@@ -3352,7 +3782,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Person+Level+Integrated+Data+Asset",
    "ackEn": "This research used data from Person Level Integrated Data Asset. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 PLIDA 澳大利亚个人级整合数据资产（ABS DataLab） 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 PLIDA 澳大利亚个人级整合数据资产（ABS DataLab） 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "plida",
+    "plida 澳大利亚个人级整合数据资产（abs datalab）",
+    "澳大利亚个人级整合数据资产（abs"
+   ]
   },
   {
    "name": "MBS / PBS 澳大利亚医保诊疗与药品报销数据",
@@ -3392,7 +3827,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Medicare+Benefits+Schedule+/+Pharmaceutical+Benefits+Scheme",
    "ackEn": "This research used data from Medicare Benefits Schedule / Pharmaceutical Benefits Scheme. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 MBS / PBS 澳大利亚医保诊疗与药品报销数据 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 MBS / PBS 澳大利亚医保诊疗与药品报销数据 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "mbs",
+    "mbs / pbs 澳大利亚医保诊疗与药品报销数据",
+    "pbs",
+    "澳大利亚医保诊疗与药品报销数据"
+   ]
   },
   {
    "name": "AIHW 澳大利亚健康与福利研究院",
@@ -3430,7 +3871,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Australian+Institute+of+Health+and+Welfare",
    "ackEn": "This research used data from Australian Institute of Health and Welfare. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 AIHW 澳大利亚健康与福利研究院 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 AIHW 澳大利亚健康与福利研究院 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "aihw",
+    "aihw 澳大利亚健康与福利研究院",
+    "澳大利亚健康与福利研究院"
+   ]
   },
   {
    "name": "HILDA 澳大利亚家庭收入与劳动力动态调查",
@@ -3469,7 +3915,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Household,+Income+and+Labour+Dynamics+in+Australia",
    "ackEn": "This research used data from Household, Income and Labour Dynamics in Australia. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 HILDA 澳大利亚家庭收入与劳动力动态调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 HILDA 澳大利亚家庭收入与劳动力动态调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "hilda",
+    "hilda 澳大利亚家庭收入与劳动力动态调查",
+    "澳大利亚家庭收入与劳动力动态调查"
+   ]
   },
   {
    "name": "ALSWH 澳大利亚女性健康纵向研究",
@@ -3507,7 +3958,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Australian+Longitudinal+Study+on+Women's+Health",
    "ackEn": "This research used data from Australian Longitudinal Study on Women's Health. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 ALSWH 澳大利亚女性健康纵向研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 ALSWH 澳大利亚女性健康纵向研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "alswh",
+    "alswh 澳大利亚女性健康纵向研究",
+    "澳大利亚女性健康纵向研究"
+   ]
   },
   {
    "name": "Ten to Men 澳大利亚男性健康纵向研究",
@@ -3545,7 +4001,13 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Australian+Longitudinal+Study+on+Male+Health",
    "ackEn": "This research used data from Australian Longitudinal Study on Male Health. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 Ten to Men 澳大利亚男性健康纵向研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 Ten to Men 澳大利亚男性健康纵向研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "men",
+    "ten",
+    "ten to men 澳大利亚男性健康纵向研究",
+    "澳大利亚男性健康纵向研究"
+   ]
   },
   {
    "name": "北方生活方式队列",
@@ -3584,7 +4046,10 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Northern+China+Lifestyle+Cohort",
    "ackEn": "This research used data from Northern China Lifestyle Cohort. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 北方生活方式队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 北方生活方式队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "北方生活方式队列"
+   ]
   },
   {
    "name": "SEER 美国肿瘤登记",
@@ -3639,7 +4104,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Surveillance,+Epidemiology,+and+End+Results+Program",
    "ackEn": "This study used the SEER [22/18/17] registries database, released [Month Year], based on the [November Year] submission. The interpretation of these data is solely that of the authors and does not necessarily endorse the views of the SEER registries or the National Cancer Institute.",
-   "ackCn": "本研究使用 SEER（[22/18/17] 个登记处）数据库（[年份] 发布版，基于 [年份] [月份] 提交数据）。本文对数据的解读仅代表作者本人观点，不代表 SEER 登记处或美国国立癌症研究所的立场。"
+   "ackCn": "本研究使用 SEER（[22/18/17] 个登记处）数据库（[年份] 发布版，基于 [年份] [月份] 提交数据）。本文对数据的解读仅代表作者本人观点，不代表 SEER 登记处或美国国立癌症研究所的立场。",
+   "alias": [
+    "seer",
+    "seer 美国肿瘤登记",
+    "美国肿瘤登记"
+   ]
   },
   {
    "name": "中国肿瘤登记（NCCR 国家癌症中心）",
@@ -3689,7 +4159,11 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Central+Cancer+Registry+of+China",
    "ackEn": "The cancer registry data used in this study were provided by the National Central Cancer Registry of China (NCCR) / National Cancer Center, under data use agreement [XXXXX]. The authors thank the contributing population-based cancer registries.",
-   "ackCn": "本研究使用的肿瘤登记数据由国家癌症中心（NCCR）提供，数据使用协议编号 [XXXXX]。感谢各以人群为基础的肿瘤登记处（各登记点）的数据上报与质控工作。"
+   "ackCn": "本研究使用的肿瘤登记数据由国家癌症中心（NCCR）提供，数据使用协议编号 [XXXXX]。感谢各以人群为基础的肿瘤登记处（各登记点）的数据上报与质控工作。",
+   "alias": [
+    "中国肿瘤登记（nccr",
+    "中国肿瘤登记（nccr 国家癌症中心）"
+   ]
   },
   {
    "name": "CCC 中国队列共享平台",
@@ -3734,7 +4208,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Cohort+Consortium",
    "ackEn": "This research used data from China Cohort Consortium. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CCC 中国队列共享平台 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CCC 中国队列共享平台 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "ccc",
+    "ccc 中国队列共享平台",
+    "中国队列共享平台"
+   ]
   },
   {
    "name": "GBCS 广州生物库队列",
@@ -3780,7 +4259,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Guangzhou+Biobank+Cohort+Study",
    "ackEn": "This research used data from Guangzhou Biobank Cohort Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 GBCS 广州生物库队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 GBCS 广州生物库队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "gbcs",
+    "gbcs 广州生物库队列",
+    "广州生物库队列"
+   ]
   },
   {
    "name": "BIGCS 广州出生队列",
@@ -3830,7 +4314,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Born+in+Guangzhou+Cohort+Study",
    "ackEn": "This research used data from Born in Guangzhou Cohort Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 BIGCS 广州出生队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 BIGCS 广州出生队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "bigcs",
+    "bigcs 广州出生队列",
+    "广州出生队列"
+   ]
   },
   {
    "name": "CMHS 中国精神卫生调查",
@@ -3879,7 +4368,12 @@
    ],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Mental+Health+Survey",
    "ackEn": "This research used data from China Mental Health Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CMHS 中国精神卫生调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CMHS 中国精神卫生调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cmhs",
+    "cmhs 中国精神卫生调查",
+    "中国精神卫生调查"
+   ]
   },
   {
    "name": "NRDRS 国家罕见病注册系统",
@@ -3921,7 +4415,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Rare+Diseases+Registry+System+of+China",
    "ackEn": "This research used data from National Rare Diseases Registry System of China. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 NRDRS 国家罕见病注册系统 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 NRDRS 国家罕见病注册系统 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "nrdrs",
+    "nrdrs 国家罕见病注册系统",
+    "国家罕见病注册系统"
+   ]
   },
   {
    "name": "CNRDS 全国血液净化病例信息登记",
@@ -3963,7 +4462,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Chinese+National+Renal+Data+System",
    "ackEn": "This research used data from Chinese National Renal Data System. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CNRDS 全国血液净化病例信息登记 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CNRDS 全国血液净化病例信息登记 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "cnrds",
+    "cnrds 全国血液净化病例信息登记",
+    "全国血液净化病例信息登记"
+   ]
   },
   {
    "name": "ChiCTR 中国临床试验注册中心",
@@ -4004,7 +4508,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Chinese+Clinical+Trial+Registry",
    "ackEn": "This research used data from Chinese Clinical Trial Registry. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 ChiCTR 中国临床试验注册中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 ChiCTR 中国临床试验注册中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "chictr",
+    "chictr 中国临床试验注册中心",
+    "中国临床试验注册中心"
+   ]
   },
   {
    "name": "药物临床试验登记与信息公示平台（NMPA）",
@@ -4045,7 +4554,10 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Drug+Trials+Registry+and+Information+Publicity+Platform",
    "ackEn": "This research used data from China Drug Trials Registry and Information Publicity Platform. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 药物临床试验登记与信息公示平台（NMPA） 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 药物临床试验登记与信息公示平台（NMPA） 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "药物临床试验登记与信息公示平台（nmpa）"
+   ]
   },
   {
    "name": "CHFS 中国家庭金融调查",
@@ -4090,7 +4602,12 @@
    "papers": [],
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Household+Finance+Survey",
    "ackEn": "This research used data from China Household Finance Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
-   "ackCn": "本研究使用了 CHFS 中国家庭金融调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+   "ackCn": "本研究使用了 CHFS 中国家庭金融调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。",
+   "alias": [
+    "chfs",
+    "chfs 中国家庭金融调查",
+    "中国家庭金融调查"
+   ]
   }
  ]
 }

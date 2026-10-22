@@ -67,7 +67,7 @@ DISEASE = {
  "淋巴瘤": ["肿瘤", "癌症"], "白血病": ["肿瘤", "癌症"], "癌": ["肿瘤", "癌症"],
  "糖尿病": ["代谢", "糖尿病", "血糖"], "糖代谢": ["代谢", "糖尿病"],
  "高血压": ["血压", "高血压", "心血管"], "降压": ["血压", "高血压"],
- "卒中": ["卒中", "心血管"], "脑梗": ["卒中", "心血管"], "脑出血": ["卒中", "心血管"],
+ "卒中": ["卒中", "脑血管"], "脓毒症": ["脓毒症", "感染", "重症"], "感染性休克": ["脓毒症", "感染", "重症"], "脑梗": ["卒中", "脑血管"], "脑出血": ["卒中", "脑血管"],
  "心衰": ["心血管", "心衰"], "心力衰竭": ["心血管", "心衰"],
  "冠心病": ["心血管", "心血管"], "动脉粥样硬化": ["心血管", "ASCVD"],
  "肾功能": ["肾脏", "eGFR"], "肾衰": ["肾脏", "ESRD"], "透析": ["肾脏", "ESRD"],
@@ -150,9 +150,11 @@ def score(qtext, sel):
         why = []
         tags = list(dict.fromkeys(d.get("tags") or []))  # 去重，避免同一标签重复加权
         # 1) 关键词命中：库标签出现在问题里（或前两字命中，处理"前瞻性/前瞻"）
+        rare = 0.0
         for t in tags:
             if len(t) >= 2 and (t in q or t[:2] in q):
                 s += tag_weight(t)
+                rare += 1.0 / max(FREQ.get(t, 1), 1)   # 稀有标签优先（平局裁决用）
                 why.append(t)
         # 2) 该库确实拥有该变量（指标/内容字段命中）
         ind = (d.get("indicators", "") + " " + d.get("content", "")).lower()
@@ -166,9 +168,18 @@ def score(qtext, sel):
                 if any(kw in t or t in kw for t in tags):
                     s += 2
                     why.append(v)
+        # 4) 用户点名某个库：全名 +8，别名（英文缩写/中文片段）+6
+        _ql = qtext.lower()
+        if (d.get("name") or "").lower() in _ql:
+            s += 8
+            why.append("名称命中")
+        elif any(a and len(a) >= 3 and a in _ql for a in (d.get("alias") or [])):
+            s += 6
+            why.append("名称命中")
         if s > 0:
-            rows.append((s, d, list(dict.fromkeys(why))[:8]))
-    rows.sort(key=lambda x: -x[0])
+            rows.append((s, d, list(dict.fromkeys(why))[:8], rare))
+    # 平局裁决：稀有标签命中多者优先，再取名称短者（专库优先于系列库/总平台）
+    rows.sort(key=lambda x: (-x[0], -x[3], len(x[1]["name"])))
     return rows
 
 def fmt_db(d):
@@ -247,7 +258,7 @@ def main():
 
     top = rows[:a.top]
     if a.json:
-        print(json.dumps([{"score": s, "why": w, "db": d} for s, d, w in top],
+        print(json.dumps([{"score": s, "why": w, "db": d} for s, d, w, *_ in top],
                          ensure_ascii=False, indent=1))
         return 0
 
@@ -257,7 +268,7 @@ def main():
     print(fmt_db(locked))
     if len(top) > 1:
         print("## 备选数据库\n")
-        for s, d, w in top[1:]:
+        for s, d, w, *_ in top[1:]:
             u = d.get("urls", [{}])[0].get("url", "")
             print(f"- **{d['name']}**（{'★'*d['access']} {ACCESS.get(d['access'],'').lstrip('★ ')}）— "
                   f"{d.get('region','')} — 匹配：{'、'.join(w[:4])} — {u}")
