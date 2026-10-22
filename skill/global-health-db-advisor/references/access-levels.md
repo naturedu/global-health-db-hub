@@ -12,16 +12,17 @@
 **典型库**
 - NHANES（美国国家健康与营养调查）
 - GEO（基因表达综合数据库）
-- SEER（美国肿瘤登记，部分细节字段需签协议）
 - GBD / IHME 结果数据库
 - World Bank / WHO GHO
-- AIHW（澳大利亚卫生福利研究院数据表）
+- AIHW（澳大利亚健康与福利研究院数据表）
+- GDC / TCGA、SRA、ArrayExpress、Dryad、Zenodo
 
 **变量可得性**：变量级与个体级记录基本都可下载。
 
 **注意事项**
 - 许可各异：CC0、CC-BY、自定义条款。商用与非商用限制要看清。
-- SEER 的"Plus"字段、GEO 中带受控访问标记的 series（如 dbGaP-linked）不在本级。
+- **SEER 不属于本级**：公开的是汇总统计（Cancer Stat Facts / SEER*Stat 会话）；个案数据要提交研究摘要并签 RDA，属 ★★★。
+- GEO 中带受控访问标记的 series（如 dbGaP-linked）、SEER 的基因数据不在本级。
 - 发表时仍须引用数据来源，且不能声称"数据由作者收集"。
 
 **建议路径**：先查 codebook / Data Dictionary 确认变量名与年份 → 下载 SAS transport / CSV → 用调查设计变量（如 NHANES 的 SDMVPSU、SDMVSTRA、WTMEC2YR）做加权。
@@ -64,6 +65,7 @@
 - MIMIC-IV / MIMIC-CXR（需 CITI 培训 + PhysioNet 认证）
 - All of Us Research Program（需 Researcher Workbench 认证）
 - eICU-CRD、PIC 数据库（部分）
+- SEER 美国肿瘤登记（个案数据：提交研究摘要 + 签 RDA，免费）
 
 **变量可得性**：可拿到变量级数据，但**按获批字段范围**提供；影像/组学原始文件常需额外申请。
 
@@ -116,6 +118,7 @@
 - 中国大型人群队列的**原始个体数据**（多数只放行汇总结果或派生变量）
 - 医院院内数据（HIS/EMR/影像 PACS）
 - 香港医管局临床数据
+- 中国肿瘤登记（NCCR）个体级个案数据
 - 企业/保险 proprietary 数据
 
 **变量可得性**：**通常不可**。可谈的是"由持有方在你的分析计划下跑模型，返回结果"。

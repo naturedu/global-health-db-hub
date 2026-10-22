@@ -1133,6 +1133,37 @@ D.append(e("北方生活方式队列", "Northern China Lifestyle Cohort", "china
     paradigm="生活方式-慢病：以膳食/运动/吸烟饮酒等生活方式暴露为核心，做慢病风险与交互分析；需联系团队获取。",
     qr=None))
 
+# 补充条目：SEER 美国肿瘤登记（肿瘤方向最常用的公开登记数据）
+D.append(e("SEER 美国肿瘤登记", "Surveillance, Epidemiology, and End Results Program", "rwd", 3,
+    [{"label":"官网","url":"https://seer.cancer.gov"},
+     {"label":"申请入口（SEER*Request）","url":"https://seerdataaccess.cancer.gov"},
+     {"label":"SEER-Medicare 链接数据","url":"https://healthcaredelivery.cancer.gov/seermedicare/"},
+     {"label":"SEER*Stat 软件","url":"https://seer.cancer.gov/seerstat/"}],
+    region="美国（部分登记处，覆盖约 48% 人口）", scale="约 1300 万+ 肿瘤病例", timeSpan="1975 至今",
+    host="美国国立癌症研究所（NCI）DCCPS",
+    content="基于人群的肿瘤登记：发病（部位、组织学、AJCC 分期、初治方案）、生存随访（生存时间与状态、死因）、人口学与社会经济属性；可与 Medicare 理赔、人口普查属性链接（SEER-Medicare）得到治疗与费用信息。",
+    intro="肿瘤方向最主流的公开登记数据：不需自建队列即可做发病率趋势、分期-生存、治疗模式与健康差异研究；SEER*Stat 提供现成的发病率/生存率计算，出图出表极快。局限是只记录初治、无复发与后续治疗，也没有实验室指标。",
+    usage="在 SEER*Request 提交研究摘要与数据使用协议（RDA），由 PI（一般要求 faculty 级）发起、机构签署，免费；审核约 2-6 周。SEER-Medicare 另需 CMS 的数据使用协议。",
+    notes="①只记录首次治疗，复发/后续治疗缺失，不能做疗效比较；②无实验室与影像原始数据；③分期版本跨年份不一致（AJCC 3/6/7/8 混用）需谨慎合并；④SEER-Medicare 仅覆盖 65 岁以上医保人群，存在选择偏倚；⑤小样本亚组（罕见瘤种×县级）易被抑制。",
+    tags=["美国","肿瘤","癌症登记","登记","随访","真实世界","生存分析","公开-协议","慢病"],
+    paradigm="肿瘤登记范式：定义瘤种/分期队列 → 计算年龄标化发病率与 APC 趋势 → Kaplan-Meier 与 Cox 做分期-治疗-生存 → 倾向评分或 SEER-Medicare 链接校正治疗选择 → 按种族/社会经济地位做差异分析。",
+    qr="monitor"))
+
+# 补充条目：中国肿瘤登记（国家癌症中心）
+D.append(e("中国肿瘤登记（NCCR 国家癌症中心）", "National Central Cancer Registry of China", "rwd", 5,
+    [{"label":"国家癌症中心","url":"https://www.chinacdc.cn"},
+     {"label":"《中国肿瘤登记年报》检索","url":"https://www.cnki.net"},
+     {"label":"PubMed 检索 China cancer registry","url":"https://pubmed.ncbi.nlm.nih.gov/?term=China+cancer+registry+incidence+mortality"}],
+    region="中国（登记处覆盖全国约四成人口）", scale="覆盖人口数亿级（逐年扩大）", timeSpan="1959 起，2008 年后规范化",
+    host="国家癌症中心 / 中国医学科学院肿瘤医院",
+    content="登记处上报的肿瘤发病与死亡个案（部位、组织学、分期部分可得）、随访生存（部分登记处）、地区与年龄别率；《中国肿瘤登记年报》发布汇总发病与死亡负担。",
+    intro="中国肿瘤负担研究的官方口径来源：做中国癌谱、城乡差异、筛查效果评估必引。汇总数据（年报）可公开获取，个体级登记数据不开放下载，需要与国家癌症中心/地方登记处合作。",
+    usage="年报与汇总统计可通过出版物/官网获取；个体级数据需向国家癌症中心或地方肿瘤登记处提交研究方案，签署合作协议并通常涉及共同署名，周期数月。",
+    notes="①数据质量地区差异大（登记处成熟度不一），需报告质控指标（MV%、DCO%）；②分期与治疗字段缺失较多；③个体数据不开放，声称“下载即用”是错的；④跨年比较注意 ICD-O 版本与人口标化标准（中国标化 vs 世界标化）。",
+    tags=["中国","肿瘤","癌症登记","登记","死亡登记","监测","国家级","合作","慢病"],
+    paradigm="中国癌谱范式：选取质控合格登记处 → 计算中国标化/世界标化发病与死亡率 → Joinpoint/APC 趋势 → 年龄-时期-队列分解 → 与 GBD 或年报口径交叉验证。",
+    qr="monitor"))
+
 # PBICR 补充更详实的检索入口
 for d in D:
     if d["name"].startswith("PBICR"):
@@ -1146,6 +1177,8 @@ for d in D:
 
 # 经典指标（主要/经典变量）——依据 PDF 明确记载整理，未记载者留空由页面提示查 codebook
 IND = {
+ "SEER 美国肿瘤登记":"原发部位与组织学（ICD-O-3）、AJCC 分期（T/N/M/总期）、诊断时年龄与性别、种族/族裔、初治方案（手术/放疗/化疗，仅首程）、生存时间与生存状态、死因、随访月数、登记处与县属性；SEER-Medicare 另含理赔、处方与费用",
+ "中国肿瘤登记（NCCR 国家癌症中心）":"发病与死亡个案（部位、组织学、诊断日期、年龄性别）、部分登记处的分期与随访生存、地区别与年龄别发病率/死亡率、中国标化率与世界标化率；年报另含 5 年生存率抽查结果",
  "HRS 健康与退休研究":"健康与功能、认知、就业与退休、收入财富、家庭代际支持、医疗支出与保险；RAND HRS 纵向文件；生物标志物（干血斑/唾液，2006 起隔轮采集）",
  "CHARLS 中国健康与养老追踪调查":"血肌酐、胱抑素C、尿素氮、尿酸、糖化血红蛋白、血脂、CRP、实测血压（可算 eGFR）；认知与抑郁量表、医疗服务利用与支出、养老保险",
  "CLHLS 中国老年健康影响因素跟踪调查":"日常生活活动能力(ADL/IADL)、认知、心理健康、临终照护回顾问卷、死亡随访；超高龄与百岁老人过采样",
@@ -1183,6 +1216,8 @@ IND = {
 
 # 代表性 / 里程碑文献（均建议以官网 Publications 页核对）
 PAPERS = {
+ "SEER 美国肿瘤登记":["National Cancer Institute. SEER Cancer Statistics Review（历年版本，官网可下载）","Duggan MA, et al. The Surveillance, Epidemiology, and End Results (SEER) Program and Pathology: Toward Strengthening the Critical Relationship. Am J Surg Pathol. 2016（SEER 数据与病理字段说明）","建议 PubMed 检索 “SEER database” 核对目标瘤种的最新研究"],
+ "中国肿瘤登记（NCCR 国家癌症中心）":["国家癌症中心.《中国肿瘤登记年报》（年度出版物，引用时注明年份与登记处覆盖人口）","Zheng RS, et al. Cancer incidence and mortality in China（年度统计论文，发表于 Journal of the National Cancer Center）"],
  "BioLINCC 美国心肺血研究所数据仓库":["SPRINT 强化降压试验（NEJM 2015，收缩压目标 120 vs 140，含完整肾脏结局与 eGFR 序列）","ALLHAT 四类降压药头对头试验（JAMA 2002，4 万余人，含终末期肾病结局）","AASK 非裔高血压性肾硬化试验（JAMA 2002）"],
  "UK Biobank 英国生物样本库":["Sudlow C, et al. UK Biobank: An Open Access Resource for Identifying the Causes of Disease. PLoS Med. 2015（队列描述）","建议同步查阅官网 Publications 页按年份检索最新成果"],
  "CHARLS 中国健康与养老追踪调查":["Zhao Y, et al. Cohort profile: the China Health and Retirement Longitudinal Study (CHARLS). Int J Epidemiol. 2014","建议以 CHARLS 官网与 PubMed 检索 “CHARLS” 核对最新论文"],
@@ -1203,6 +1238,18 @@ for d in D:
 
 # 论文致谢 / 数据可用性声明模板（[XXXXX] 为批准/项目编号占位）
 ACK_SPECIAL = {
+ "SEER 美国肿瘤登记":(
+   "This study used the SEER [22/18/17] registries database, released [Month Year], based on the "
+   "[November Year] submission. The interpretation of these data is solely that of the authors and "
+   "does not necessarily endorse the views of the SEER registries or the National Cancer Institute.",
+   "本研究使用 SEER（[22/18/17] 个登记处）数据库（[年份] 发布版，基于 [年份] [月份] 提交数据）。"
+   "本文对数据的解读仅代表作者本人观点，不代表 SEER 登记处或美国国立癌症研究所的立场。"),
+ "中国肿瘤登记（NCCR 国家癌症中心）":(
+   "The cancer registry data used in this study were provided by the National Central Cancer Registry "
+   "of China (NCCR) / National Cancer Center, under data use agreement [XXXXX]. The authors thank the "
+   "contributing population-based cancer registries.",
+   "本研究使用的肿瘤登记数据由国家癌症中心（NCCR）提供，数据使用协议编号 [XXXXX]。"
+   "感谢各以人群为基础的肿瘤登记处（各登记点）的数据上报与质控工作。"),
  "UK Biobank 英国生物样本库":(
    "This research has been conducted using the UK Biobank Resource under Application Number [XXXXX].",
    "本研究使用英国生物样本库（UK Biobank）资源开展，批准申请编号为 [XXXXX]。"),

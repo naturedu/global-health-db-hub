@@ -1,8 +1,8 @@
 {
  "meta": {
   "name": "全球健康数据库整合网页",
-  "count": 89,
-  "source": "用户提供 PDF + 联网核实的澳洲条目"
+  "count": 91,
+  "source": "用户提供 PDF《医学与健康研究公共数据库汇总》(29 页) 全量解析 + 澳洲/香港等条目联网核实"
  },
  "access": {
   "1": "★ 完全公开，直接下载",
@@ -3543,6 +3543,111 @@
    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Northern+China+Lifestyle+Cohort",
    "ackEn": "This research used data from Northern China Lifestyle Cohort. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
    "ackCn": "本研究使用了 北方生活方式队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "SEER 美国肿瘤登记",
+   "en": "Surveillance, Epidemiology, and End Results Program",
+   "cat": "rwd",
+   "access": 3,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://seer.cancer.gov"
+    },
+    {
+     "label": "申请入口（SEER*Request）",
+     "url": "https://seerdataaccess.cancer.gov"
+    },
+    {
+     "label": "SEER-Medicare 链接数据",
+     "url": "https://healthcaredelivery.cancer.gov/seermedicare/"
+    },
+    {
+     "label": "SEER*Stat 软件",
+     "url": "https://seer.cancer.gov/seerstat/"
+    }
+   ],
+   "region": "美国（部分登记处，覆盖约 48% 人口）",
+   "scale": "约 1300 万+ 肿瘤病例",
+   "timeSpan": "1975 至今",
+   "host": "美国国立癌症研究所（NCI）DCCPS",
+   "content": "基于人群的肿瘤登记：发病（部位、组织学、AJCC 分期、初治方案）、生存随访（生存时间与状态、死因）、人口学与社会经济属性；可与 Medicare 理赔、人口普查属性链接（SEER-Medicare）得到治疗与费用信息。",
+   "intro": "肿瘤方向最主流的公开登记数据：不需自建队列即可做发病率趋势、分期-生存、治疗模式与健康差异研究；SEER*Stat 提供现成的发病率/生存率计算，出图出表极快。局限是只记录初治、无复发与后续治疗，也没有实验室指标。",
+   "usage": "在 SEER*Request 提交研究摘要与数据使用协议（RDA），由 PI（一般要求 faculty 级）发起、机构签署，免费；审核约 2-6 周。SEER-Medicare 另需 CMS 的数据使用协议。",
+   "notes": "①只记录首次治疗，复发/后续治疗缺失，不能做疗效比较；②无实验室与影像原始数据；③分期版本跨年份不一致（AJCC 3/6/7/8 混用）需谨慎合并；④SEER-Medicare 仅覆盖 65 岁以上医保人群，存在选择偏倚；⑤小样本亚组（罕见瘤种×县级）易被抑制。",
+   "tags": [
+    "美国",
+    "肿瘤",
+    "癌症登记",
+    "登记",
+    "随访",
+    "真实世界",
+    "生存分析",
+    "公开-协议",
+    "慢病"
+   ],
+   "paradigm": "肿瘤登记范式：定义瘤种/分期队列 → 计算年龄标化发病率与 APC 趋势 → Kaplan-Meier 与 Cox 做分期-治疗-生存 → 倾向评分或 SEER-Medicare 链接校正治疗选择 → 按种族/社会经济地位做差异分析。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "原发部位与组织学（ICD-O-3）、AJCC 分期（T/N/M/总期）、诊断时年龄与性别、种族/族裔、初治方案（手术/放疗/化疗，仅首程）、生存时间与生存状态、死因、随访月数、登记处与县属性；SEER-Medicare 另含理赔、处方与费用",
+   "papers": [
+    "National Cancer Institute. SEER Cancer Statistics Review（历年版本，官网可下载）",
+    "Duggan MA, et al. The Surveillance, Epidemiology, and End Results (SEER) Program and Pathology: Toward Strengthening the Critical Relationship. Am J Surg Pathol. 2016（SEER 数据与病理字段说明）",
+    "建议 PubMed 检索 “SEER database” 核对目标瘤种的最新研究"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Surveillance,+Epidemiology,+and+End+Results+Program",
+   "ackEn": "This study used the SEER [22/18/17] registries database, released [Month Year], based on the [November Year] submission. The interpretation of these data is solely that of the authors and does not necessarily endorse the views of the SEER registries or the National Cancer Institute.",
+   "ackCn": "本研究使用 SEER（[22/18/17] 个登记处）数据库（[年份] 发布版，基于 [年份] [月份] 提交数据）。本文对数据的解读仅代表作者本人观点，不代表 SEER 登记处或美国国立癌症研究所的立场。"
+  },
+  {
+   "name": "中国肿瘤登记（NCCR 国家癌症中心）",
+   "en": "National Central Cancer Registry of China",
+   "cat": "rwd",
+   "access": 5,
+   "urls": [
+    {
+     "label": "国家癌症中心",
+     "url": "https://www.chinacdc.cn"
+    },
+    {
+     "label": "《中国肿瘤登记年报》检索",
+     "url": "https://www.cnki.net"
+    },
+    {
+     "label": "PubMed 检索 China cancer registry",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/?term=China+cancer+registry+incidence+mortality"
+    }
+   ],
+   "region": "中国（登记处覆盖全国约四成人口）",
+   "scale": "覆盖人口数亿级（逐年扩大）",
+   "timeSpan": "1959 起，2008 年后规范化",
+   "host": "国家癌症中心 / 中国医学科学院肿瘤医院",
+   "content": "登记处上报的肿瘤发病与死亡个案（部位、组织学、分期部分可得）、随访生存（部分登记处）、地区与年龄别率；《中国肿瘤登记年报》发布汇总发病与死亡负担。",
+   "intro": "中国肿瘤负担研究的官方口径来源：做中国癌谱、城乡差异、筛查效果评估必引。汇总数据（年报）可公开获取，个体级登记数据不开放下载，需要与国家癌症中心/地方登记处合作。",
+   "usage": "年报与汇总统计可通过出版物/官网获取；个体级数据需向国家癌症中心或地方肿瘤登记处提交研究方案，签署合作协议并通常涉及共同署名，周期数月。",
+   "notes": "①数据质量地区差异大（登记处成熟度不一），需报告质控指标（MV%、DCO%）；②分期与治疗字段缺失较多；③个体数据不开放，声称“下载即用”是错的；④跨年比较注意 ICD-O 版本与人口标化标准（中国标化 vs 世界标化）。",
+   "tags": [
+    "中国",
+    "肿瘤",
+    "癌症登记",
+    "登记",
+    "死亡登记",
+    "监测",
+    "国家级",
+    "合作",
+    "慢病"
+   ],
+   "paradigm": "中国癌谱范式：选取质控合格登记处 → 计算中国标化/世界标化发病与死亡率 → Joinpoint/APC 趋势 → 年龄-时期-队列分解 → 与 GBD 或年报口径交叉验证。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "发病与死亡个案（部位、组织学、诊断日期、年龄性别）、部分登记处的分期与随访生存、地区别与年龄别发病率/死亡率、中国标化率与世界标化率；年报另含 5 年生存率抽查结果",
+   "papers": [
+    "国家癌症中心.《中国肿瘤登记年报》（年度出版物，引用时注明年份与登记处覆盖人口）",
+    "Zheng RS, et al. Cancer incidence and mortality in China（年度统计论文，发表于 Journal of the National Cancer Center）"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Central+Cancer+Registry+of+China",
+   "ackEn": "The cancer registry data used in this study were provided by the National Central Cancer Registry of China (NCCR) / National Cancer Center, under data use agreement [XXXXX]. The authors thank the contributing population-based cancer registries.",
+   "ackCn": "本研究使用的肿瘤登记数据由国家癌症中心（NCCR）提供，数据使用协议编号 [XXXXX]。感谢各以人群为基础的肿瘤登记处（各登记点）的数据上报与质控工作。"
   }
  ]
 }

@@ -1,7 +1,7 @@
 # 全球健康数据库整合网页 · Global Health Database Integration Platform
 
 > 面向医学科研的**公共数据库检索、分类、申请导航与研究匹配**平台（内测版 Beta）。
-> 收录 **89 个**全球健康与医学研究公共数据库，覆盖老龄追踪、生物样本库、中国本土队列、医保与电子病历（真实世界）、澳大利亚与大洋洲、重症 ICU、临床试验数据二次利用、组学仓储、卫生经济与卫生服务管理。
+> 收录 **91 个**全球健康与医学研究公共数据库，覆盖老龄追踪、生物样本库、中国本土队列、医保与电子病历（真实世界）、澳大利亚与大洋洲、重症 ICU、临床试验数据二次利用、组学仓储、卫生经济与卫生服务管理。
 
 - 🌐 在线访问（推荐，稳定直链）：**<https://naturedu.github.io/global-health-db-hub/>**
 - 🌐 备用（WorkBuddy 托管）：<https://global-health-db-hub.app.workbuddy.host/?sharecode=OPMUXAOLWT>
@@ -45,7 +45,7 @@
 ├── skill/
 │   └── global-health-db-advisor/   # 可移植 Skill（Claude Code / WorkBuddy / GPT）
 │       ├── SKILL.md                # 技能定义与工作流
-│       ├── data/databases.json     # 89 库结构化数据（单一数据源）
+│       ├── data/databases.json     # 91 库结构化数据（单一数据源）
 │       ├── scripts/advise.py       # 科学问题 → 锁定库 + 申请指南
 │       ├── scripts/varsearch.py    # 变量 → 反查哪些库收录
 │       └── references/             # 开放度分级 / 引用致谢 / 研究范式
@@ -61,7 +61,7 @@
 ```bash
 # 1) 生成/更新站点
 python build_site.py
-# 输出：WROTE .../index.html entries=89 ...
+# 输出：WROTE .../index.html entries=91 ...
 
 # 2) 直接打开
 #   Windows: 双击 index.html
@@ -165,7 +165,7 @@ Contact: dusixian16@163.com.
 
 ```
 SKILL.md                  # 技能定义（frontmatter: name + description）+ 工作流 + 安装说明
-data/databases.json       # 89 库结构化数据（与网页同源）
+data/databases.json       # 91 库结构化数据（与网页同源）
 scripts/advise.py         # 选库 + 申请指南
 scripts/varsearch.py      # 变量反查
 references/access-levels.md   # 5 级开放度与申请流程详解
@@ -217,7 +217,7 @@ cp -r skill/global-health-db-advisor ~/.workbuddy/skills/
 
 ## 十、路线图
 
-- [x] 89 个库的结构化条目（介绍/申请/指标/文献/致谢）
+- [x] 91 个库的结构化条目（介绍/申请/指标/文献/致谢）
 - [x] 研究匹配查询器 + 通用研究范式模板
 - [x] 变量查询（元数据级）+ 变量申请情况
 - [x] 内测注册门（姓名/机构/邮箱/验证码）
