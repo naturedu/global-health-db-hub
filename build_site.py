@@ -1,0 +1,2360 @@
+# -*- coding: utf-8 -*-
+"""生成医学与健康研究公共数据库汇总网站 (index.html)。
+数据来源：用户提供的 PDF《医学与健康研究公共数据库汇总》(29 页)。
+站点含：开放度分级图例、总览速查表、12 大类分类卡片、实战阶梯、
+以及「研究匹配查询器」（输入科学问题 -> 锁定数据库 + 研究范式）。
+"""
+import json, os
+
+# ---------------------------------------------------------------------------
+# 分类（对应 PDF 第 2-12 章）
+# ---------------------------------------------------------------------------
+CATS = [
+    ("aging",        "老龄化追踪调查（HRS 家族）"),
+    ("social",       "中国社会科学类面板"),
+    ("biobank",      "大型生物样本库"),
+    ("china_cohort", "中国本土大型人群队列"),
+    ("monitor",      "国家健康监测与横断面调查"),
+    ("rwd",          "医保行政数据与电子病历（真实世界）"),
+    ("oceania",      "澳大利亚与大洋洲数据源"),
+    ("icu",          "重症与临床电子病历数据库"),
+    ("trial",        "临床试验与经典队列数据二次利用"),
+    ("omics",        "衰老资源、组学数据与通用仓储"),
+    ("cn_platform",  "中国国家级科学数据平台与知识库"),
+    ("healthecon",   "卫生经济与卫生服务管理数据源"),
+]
+
+ACCESS = {
+    1: "★ 完全公开，直接下载",
+    2: "★★ 注册后下载",
+    3: "★★★ 培训/签署协议后下载",
+    4: "★★★★ 正式申请并付费",
+    5: "★★★★★ 必须本地合作（常含共同署名）",
+}
+
+# 速查表分组（PDF 第 1 章）
+QR = {
+    "survey":   "1.1 老龄追踪与社会调查",
+    "biobank":  "1.2 生物样本库与大型队列",
+    "monitor":  "1.3 监测 / 医保 / 电子病历 / 登记",
+    "trial":    "1.4 试验二次利用 / 组学 / 仓储",
+}
+
+def e(name, en, cat, access, urls, region="", scale="", timeSpan="",
+      host="", content="", intro="", usage="", notes="", tags=None,
+      paradigm="", qr=None, lite=False):
+    return dict(name=name, en=en, cat=cat, access=access, urls=urls,
+                region=region, scale=scale, timeSpan=timeSpan, host=host,
+                content=content, intro=intro, usage=usage, notes=notes,
+                tags=tags or [], paradigm=paradigm, qr=qr, lite=lite)
+
+D = []  # 数据库列表
+
+# ============================ 第二章 老龄化追踪 ============================
+D.append(e("HRS 健康与退休研究", "Health and Retirement Study", "aging", 2,
+    [{"label":"官网","url":"https://hrs.isr.umich.edu"},{"label":"调和数据 Gateway","url":"https://g2aging.org"}],
+    region="美国", scale="约 2 万", timeSpan="1992 至今",
+    host="密歇根大学社会研究所；美国国立老龄研究所(NIA)与社保署资助",
+    content="50 岁及以上，每 2 年一轮，队列更替设计持续补充年轻队列。健康、认知、就业退休、收入财富、代际支持、医疗支出与保险。",
+    intro="老龄追踪研究的标杆。做国际比较不要自己逐库对变量，直接用 Gateway to Global Aging Data 的统一编码调和版（Harmonized HRS/CHARLS/ELSA/SHARE/MHAS/KLoSA/LASI），可省 2-3 周清洗。RAND HRS Longitudinal File 是清洗好的纵向文件，强烈建议优先用它而非原始文件；HCAP 为认知深度评估；2006 起隔轮采干血斑/唾液；遗传数据需经 dbGaP 另申。",
+    usage="注册后即可下载公开文件，免费；受限数据（详细地理、社保/医保链接）需签协议并说明数据安全环境。",
+    notes="变量命名每轮前缀不同，不用 RAND 版本会非常痛苦。",
+    tags=["老龄","认知","痴呆","失能","养老","退休","收入","财富","代际","美国","队列","前瞻性","问卷","随访"],
+    paradigm="跨国/纵向老龄比较：用 g2aging 调和数据集统一变量→选取暴露(如认知/功能)与结局→多层/纵向模型；遗传相关变量走 dbGaP。",
+    qr="survey"))
+
+D.append(e("CHARLS 中国健康与养老追踪调查", "China Health and Retirement Longitudinal Study", "aging", 2,
+    [{"label":"官网","url":"http://charls.pku.edu.cn"},{"label":"数据平台","url":"https://opendata.pku.edu.cn"}],
+    region="中国", scale="约 1.7 万", timeSpan="2011 至今",
+    host="北京大学国家发展研究院、中国社会科学调查中心",
+    content="45 岁及以上，覆盖 150 县区/450 村居。人口学、健康功能、认知抑郁、医疗服务利用与支出、养老保险、收入消费、家庭结构。",
+    intro="对中国肾脏与心血管方向极重要：2011 与 2015 两轮采静脉血，含血肌酐、胱抑素 C、尿素氮、尿酸、糖化血红蛋白、血脂、CRP，可算 eGFR（肌酐法/胱抑素C法/联合）且血压为实测值。中英文文档齐全。",
+    usage="注册并填写用途后即可下载，免费。",
+    notes="血样仅两轮，纵向 eGFR 斜率只有两个时间点，勿硬做轨迹模型；两轮检测批次/实验室有差异，跨轮比较建议校准；自报「医生告知患肾病」漏报率高，单靠自报定义 CKD 会严重低估。",
+    tags=["老龄","中国","认知","抑郁","养老","医保","医疗支出","肾脏","eGFR","肌酐","血压","队列","前瞻性","问卷","体检","生化"],
+    paradigm="中国中老年：用实测血压+静脉血生化构建暴露→肾病/心血管结局→Cox/轨迹模型；血样仅两轮，纵向分析注意时间点限制。",
+    qr="survey"))
+
+D.append(e("CLHLS 中国老年健康影响因素跟踪调查", "Chinese Longitudinal Healthy Longevity Survey", "aging", 2,
+    [{"label":"数据平台","url":"https://opendata.pku.edu.cn"}],
+    region="中国", scale="累计数万", timeSpan="1998 至今",
+    host="北京大学健康老龄与发展研究中心（曾毅团队）",
+    content="覆盖 23 省，约八轮。日常生活能力、认知、社会经济与照料、心理健康、临终照护回顾。",
+    intro="不可替代之处是超高龄过采样：80 岁以上乃至百岁老人样本量全球稀缺，研究长寿、失能轨迹与临终照护必用。部分长寿地区采过血样（指标覆盖面与轮次以官网说明书为准）。",
+    usage="注册申请后下载，免费。",
+    notes="高龄组代理回答比例高，认知/自评健康类变量要单独处理；死亡随访是强项，但注意失访与死亡的竞争风险。",
+    tags=["老龄","长寿","失能","百岁","临终照护","认知","中国","队列","前瞻性","问卷"],
+    paradigm="长寿/失能轨迹：以超高龄过采样人群做生存与功能下降分析；注意代理回答偏倚与竞争风险。",
+    qr="survey"))
+
+D.append(e("CFPS 中国家庭追踪调查", "China Family Panel Studies", "social", 2,
+    [{"label":"官网","url":"http://www.isss.pku.edu.cn/cfps/"},{"label":"数据平台","url":"https://opendata.pku.edu.cn"}],
+    region="中国", scale="约 1.5 万户", timeSpan="2010 至今",
+    host="北京大学中国社会科学调查中心",
+    content="25 省市区，两年一轮。家庭/成人/少儿/社区四层问卷可匹配（最强之处）。",
+    intro="健康相关含自评健康、慢病自报、医疗支出、医保类型、CES-D、部分轮次身高体重血压。典型用法：医保改革双重差分、家庭照料与老年健康、灾难性卫生支出。健康变量以自报为主，但社会经济/家庭结构/政策暴露是医学库没有的。",
+    usage="注册后下载，免费。",
+    notes="健康测量以自报为主，客观指标有限。",
+    tags=["中国","家庭","社会","医疗支出","医保","灾难性卫生支出","抑郁","CES-D","队列","重复横断面","问卷"],
+    paradigm="卫生政策评估：用四层匹配数据做 DID/断点回归评估医保或政策冲击对医疗利用与支出的影响。",
+    qr="survey"))
+
+D.append(e("CLASS 中国老年社会追踪调查", "China Longitudinal Aging Social Survey", "social", 2,
+    [{"label":"CNSDA 入口","url":"http://www.cnsda.org"}],
+    region="中国", scale="约 1.1 万", timeSpan="2014 至今",
+    host="中国人民大学中国调查与数据中心",
+    content="60 岁及以上，两年一轮。老年社会照料、养老服务需求、社区养老资源、代际支持。",
+    intro="比 CHARLS 更聚焦老年社会照料与服务利用，变量粒度更细，是最贴合卫生管理方向、却最易被忽略的一个库。",
+    usage="注册申请后下载，免费。",
+    notes="健康指标以自报为主。",
+    tags=["老龄","养老","社会服务","代际","中国","队列","重复横断面","问卷"],
+    paradigm="老年服务体系研究：用服务利用/需求变量评估社区养老资源与照料供给差距。",
+    qr="survey"))
+
+D.append(e("CGSS 中国综合社会调查", "Chinese General Social Survey", "social", 2,
+    [{"label":"CNSDA 入口","url":"http://www.cnsda.org"}],
+    region="中国", scale="每轮上万", timeSpan="2003 至今",
+    host="中国人民大学中国调查与数据中心",
+    content="中国最早全国性综合社会调查。价值观、社会公平感、阶层认同等独一份。",
+    intro="健康模块不深，但就医体验、医患信任、健康公平感知等变量很合适。",
+    usage="注册申请后下载，免费。",
+    notes="健康客观指标有限。",
+    tags=["中国","社会","公平","医患信任","问卷","横断面"],
+    paradigm="健康公平/就医体验：用社会态度变量分析健康公平感知与医患信任。",
+    qr="survey"))
+
+D.append(e("CHNS 中国健康与营养调查", "China Health and Nutrition Survey", "social", 2,
+    [{"label":"官网","url":"https://www.cpc.unc.edu/projects/china"}],
+    region="中国", scale="约 10 轮/12 省市", timeSpan="1989-2015",
+    host="北卡大学人口中心与中国疾控中心营养与健康所",
+    content="连续 3 天 24 小时膳食回顾 + 家庭食物称重盘存；多轮测血压、身高体重腰围；2009 一轮采空腹血样查多项生化。",
+    intro="营养流行病学在中国几乎无替代。2015 后基本停更，做近年趋势不合适；做 1990-2015 膳食转型、城镇化与代谢病是绝配。",
+    usage="注册申请后下载，免费。",
+    notes="非概率抽样；2015 后停更。",
+    tags=["中国","营养","膳食","代谢","肥胖","血压","生化","队列","重复横断面","问卷","体检"],
+    paradigm="营养-代谢病：用 3 天膳食回顾+称重构建饮食暴露→代谢/心血管结局；注意非概率抽样与停更时间。",
+    qr="survey"))
+
+D.append(e("KLoSA 韩国老龄化追踪研究", "Korean Longitudinal Study of Ageing", "aging", 2,
+    [{"label":"官网（待核）","url":"https://survey.keis.or.kr"}],
+    region="韩国", scale="约 1 万", timeSpan="2006 至今",
+    host="韩国雇佣情报院",
+    content="45 岁及以上（济州岛除外），每 2 年一轮。偏就业、退休、收入保障。",
+    intro="主办方为劳动就业口，健康变量以自报为主，生物样本非常有限。界面以韩文为主，英文文件另设下载区（入口待核）。",
+    usage="注册申请，免费。",
+    notes="拼写是 KLoSA 不是 KOLSA；健康客观指标少。",
+    tags=["老龄","韩国","就业","退休","收入","问卷","队列","前瞻性"],
+    paradigm="韩国社会经济与老龄化：做就业/退休对健康影响；慢病生物学用 KoGES、卫生服务用 NHIS。",
+    qr="survey"))
+
+D.append(e("MHAS 墨西哥健康与老龄化研究", "Mexican Health and Aging Study", "aging", 2,
+    [{"label":"官网","url":"https://www.mhasweb.org"}],
+    region="墨西哥", scale="约 1.5 万", timeSpan="2001 至今",
+    host="德州大学医学部与墨西哥国家统计地理局",
+    content="50 岁及以上；含大量美墨移民史变量、Mex-Cog 认知专项；部分轮次采干血斑与人体测量。",
+    intro="拉美唯一大型全国代表性老龄面板，跨种族/跨发展阶段比较的关键一环；移民与健康研究的独门数据。英西双语文档。",
+    usage="注册后即可下载，免费。",
+    notes="",
+    tags=["老龄","墨西哥","移民","认知","拉美","队列","前瞻性","问卷","体检"],
+    paradigm="移民与健康/拉美老龄：用移民史变量+认知专项做跨发展阶段的比较研究。",
+    qr="survey"))
+
+D.append(e("ELSA 英格兰老龄化追踪调查", "English Longitudinal Study of Ageing", "aging", 2,
+    [{"label":"官网","url":"https://www.elsa-project.ac.uk"}],
+    region="英格兰", scale="数万", timeSpan="1998 至今",
+    host="英国（与 HRS 高度对标）",
+    content="含客观体检，与 HRS 设计对标。",
+    intro="做欧洲/英美老龄比较的默认选择之一；可用 g2aging 调和数据集统一变量。",
+    usage="注册后下载，免费。",
+    notes="",
+    tags=["老龄","英国","欧洲","认知","体检","队列","前瞻性","问卷"],
+    paradigm="英美老龄比较：经 g2aging 调和变量与 HRS/SHARE 做跨国纵向比较。",
+    qr="survey"))
+
+D.append(e("SHARE 欧洲健康、老龄与退休调查", "Survey of Health, Ageing and Retirement in Europe", "aging", 2,
+    [{"label":"官网","url":"https://share-eric.eu"}],
+    region="欧洲 28 国", scale="数万至 7 万", timeSpan="2004 至今",
+    host="欧洲多国联合",
+    content="跨国样本量最大的老龄面板，做欧洲比较的默认选择。",
+    intro="覆盖 28 国，变量经统一编码，适合跨国政策与健康不平等研究。",
+    usage="注册后下载，免费。",
+    notes="",
+    tags=["老龄","欧洲","跨国","退休","健康不平等","队列","前瞻性","问卷"],
+    paradigm="欧洲健康不平等：多国面板做跨国比较与政策评估。",
+    qr="survey"))
+
+D.append(e("LASI 印度纵向老龄化调查", "Longitudinal Aging Study in India", "aging", 2,
+    [{"label":"官网","url":"https://www.lasi-india.org"}],
+    region="印度", scale="7 万以上", timeSpan="2017 至今",
+    host="印度（与 HRS 家族对标）",
+    content="规模惊人的全国老龄面板。",
+    intro="可经 g2aging 调和数据集与 HRS 家族统一变量做发展中国家老龄比较。",
+    usage="注册后下载，免费。",
+    notes="",
+    tags=["老龄","印度","发展中国家","队列","前瞻性","问卷","体检"],
+    paradigm="发展中大国老龄：大规模面板做健康转型与老龄化负担研究。",
+    qr="survey"))
+
+# ============================ 第四章 生物样本库 ============================
+D.append(e("UK Biobank 英国生物样本库", "UK Biobank", "biobank", 4,
+    [{"label":"官网","url":"https://www.ukbiobank.ac.uk"},{"label":"变量浏览 Showcase","url":"https://biobank.ndph.ox.ac.uk/showcase/"},{"label":"申请系统 AMS","url":"https://ams.ukbiobank.ac.uk"}],
+    region="英国", scale="约 50 万", timeSpan="2006-2010 招募",
+    host="英国（22 个评估中心）",
+    content="基线问卷、体格测量、生化 30 余项（肌酐/胱抑素C/尿白蛋白肌酐比）、全基因组分型、WGS、蛋白组(Olink)、代谢组、多模态影像(脑心腹DXA)、加速度计、与 NHS 住院/癌登/死亡链接。",
+    intro="需正式申请并付费。先在 Showcase 免账号浏览全部变量与分布；注册 AMS 提交约 2000 字研究计划+机构 PI 与合作者；审批后按字段范围付费；分析已迁至 DNAnexus 的 UKB-RAP 云平台，另有计算与存储费；结果需回传。",
+    usage="正式申请+付费；周期 1-6 个月；云计算预算需提前算清。",
+    notes="健康志愿者偏倚显著（应答率约 5%），绝对风险不可外推总人群，相对关联通常有效——讨论必写；组学项目易超支。",
+    tags=["英国","一般人群","基因","多组学","影像","蛋白组","代谢组","队列","前瞻性","体检","生化","死亡登记","真实世界"],
+    paradigm="大型前瞻队列：先用 Showcase 确定变量→AMS 提交计划→UKB-RAP 云上分析；注意志愿者偏倚与云成本。",
+    qr="biobank"))
+
+D.append(e("CKB 中国慢性病前瞻性研究", "China Kadoorie Biobank", "biobank", 4,
+    [{"label":"官网","url":"https://www.ckbiobank.org"}],
+    region="中国 10 地区", scale="约 51 万", timeSpan="2004-2008 基线",
+    host="牛津大学临床试验服务部、中国医学科学院、北京大学",
+    content="5 城市 5 农村，每约 5 年重复调查；与疾控监测/医保理赔/死因登记链接，随访完整度国内顶尖；基因分型约 10 万，另有测序/代谢/蛋白子集。",
+    intro="分层开放：Open Access 层汇总数据与部分个体数据较快获取；深度数据需正式申请，常需与 CKB 团队合作署名。中国人群、样本量与 UKB 同量级且有医保理赔随访，做中国人高血压至心肾结局前瞻性证据最硬。",
+    usage="分层开放；深度数据正式申请+合作署名，周期 1-6 个月。",
+    notes="深度层门槛高，优先考虑 Open Access 与团队合",
+    tags=["中国","一般人群","心血管","肾脏","高血压","队列","前瞻性","随访","医保","基因","真实世界"],
+    paradigm="中国人群心肾结局：Open Access 先验证→深度数据走合作申请；利用医保/死因链接做结局确认。",
+    qr="biobank"))
+
+D.append(e("MCPS 墨西哥城前瞻性研究", "Mexico City Prospective Study", "biobank", 5,
+    [{"label":"牛津 CTSU（入口待核）","url":"https://www.ctsu.ox.ac.uk"}],
+    region="墨西哥", scale="约 15 万", timeSpan="长期随访",
+    host="牛津大学临床试验服务部（与 CKB 同方法学谱系）",
+    content="规模大、随访长、有基因组数据。",
+    intro="做墨西哥人群生物标志物与死亡结局比 MHAS 更合适；申请入口待核，建议从牛津 CTSU 官网查。",
+    usage="具体申请入口待核，建议从牛津 CTSU 官网查找。",
+    notes="入口待核",
+    tags=["墨西哥","一般人群","基因","队列","前瞻性","随访","死亡登记"],
+    paradigm="拉美人群队列：生物标志物→死亡/慢病结局；入口从牛津 CTSU 查找。",
+    qr="biobank"))
+
+D.append(e("KoGES 韩国基因组流行病学研究", "Korean Genome Epidemiology Study", "biobank", 4,
+    [{"label":"韩国国立保健研究院（入口待核）","url":"https://www.kdca.go.kr"}],
+    region="韩国", scale="20 余万", timeSpan="2001 至今",
+    host="韩国国立保健研究院",
+    content="城市/农村/Ansan-Ansung 等多个子队列，有基因组与长期随访。",
+    intro="做慢病生物学用 KoGES；做社会经济与老龄化用 KLoSA；做卫生服务与药物流行病学用 NHIS——三者定位不同，勿混用。",
+    usage="申请入口与英文页待核，建议从韩国国立保健研究院官网进入。",
+    notes="入口待核",
+    tags=["韩国","一般人群","基因","队列","前瞻性","慢病","体检"],
+    paradigm="韩国慢病遗传学：基因-环境交互；入口从韩国国立保健研究院进入。",
+    qr="biobank"))
+
+D.append(e("All of Us 美国全民健康研究", "All of Us Research Program", "biobank", 4,
+    [{"label":"官网","url":"https://allofus.nih.gov"}],
+    region="美国", scale="目标百万", timeSpan="进行中",
+    host="美国 NIH",
+    content="强调少数族裔代表性，含电子病历与可穿戴数据。",
+    intro="代表性导向的生物样本库，适合健康公平与多族裔研究。",
+    usage="正式申请并付费/审批。",
+    notes="",
+    tags=["美国","一般人群","基因","多组学","电子病历","可穿戴","真实世界","队列"],
+    paradigm="多族裔健康公平：利用少数族裔代表性样本做精准医学与差异研究。",
+    qr="biobank"))
+
+D.append(e("FinnGen 芬兰基因组计划", "FinnGen", "biobank", 4,
+    [{"label":"官网","url":"https://www.finngen.fi"}],
+    region="芬兰", scale="50 万以上", timeSpan="进行中",
+    host="芬兰（基因+全国登记链接）",
+    content="基因加全国登记链接，GWAS 汇总统计公开。",
+    intro="GWAS 汇总统计公开便于荟萃，个体级需申请。",
+    usage="汇总统计公开；个体数据正式申请。",
+    notes="",
+    tags=["芬兰","基因","GWAS","登记","队列","真实世界"],
+    paradigm="遗传流行病学：公开 GWAS 汇总统计做荟萃；个体数据走申请。",
+    qr="biobank"))
+
+D.append(e("BioBank Japan 日本生物样本库", "BioBank Japan", "biobank", 4,
+    [{"label":"官网","url":"https://biobankjp.org"}],
+    region="日本", scale="约 27 万", timeSpan="进行中",
+    host="日本",
+    content="东亚人群 GWAS 的重要来源。",
+    intro="东亚人群遗传研究关键资源。",
+    usage="正式申请。",
+    notes="",
+    tags=["日本","东亚","基因","GWAS","队列"],
+    paradigm="东亚遗传：与东亚其他队列联合做 GWAS 与疾病关联。",
+    qr="biobank"))
+
+D.append(e("Million Veteran Program 百万退伍军人计划", "Million Veteran Program", "biobank", 4,
+    [{"label":"官网","url":"https://www.research.va.gov/mvp"}],
+    region="美国", scale="百万级", timeSpan="进行中",
+    host="美国退伍军人事务部（男性为主）",
+    content="退伍军人队列，含基因与电子病历。",
+    intro="男性为主的大样本，适合男性健康与药物基因组。",
+    usage="正式申请（需美方合作）。",
+    notes="男性为主，性别外推差。",
+    tags=["美国","男性","退伍军人","基因","电子病历","队列","真实世界"],
+    paradigm="男性/退伍军人健康：基因-电子病历关联；注意男性偏倚。",
+    qr="biobank"))
+
+D.append(e("Estonian Biobank 爱沙尼亚生物样本库", "Estonian Biobank", "biobank", 4,
+    [{"label":"官网","url":"https://genomics.ut.ee/en/biobank"}],
+    region="爱沙尼亚", scale="约 20 万", timeSpan="进行中",
+    host="爱沙尼亚（覆盖全国约 20% 成人）",
+    content="全国代表性遗传队列。",
+    intro="高覆盖率的全国样本，适合基因型-表型研究。",
+    usage="正式申请。",
+    notes="",
+    tags=["爱沙尼亚","欧洲","基因","队列","真实世界"],
+    paradigm="国家级遗传队列：高覆盖率样本做精准医学。",
+    qr="biobank"))
+
+# ============================ 第五章 中国本土队列 ============================
+D.append(e("开滦队列", "Kailuan Study", "china_cohort", 5,
+    [{"label":"团队论文方法学","url":"https://www.kailuanhospital.com"}],
+    region="河北唐山", scale="101,510", timeSpan="2006 至今",
+    host="开滦总医院及开滦集团 11 家医院（吴寿岭团队）",
+    content="在职与离退休职工；每 2 年统一体检（血压/身高体重腰围/空腹血糖/血脂/肌酐/尿酸/hsCRP/肝肾/血尿常规/心电图），亚组含颈动脉超声、baPWV/ABI、脑核磁、认知、睡眠、眼底；结局经医保+死因+主动随访三重确认，终点委员会裁定。已在中国临床试验注册中心注册。",
+    intro="方法学上极值钱：因每 2 年全套复测，可做累积暴露（血压/血糖/炎症负荷）、访视间变异性（SD/CV/独立于均值变异）、轨迹分析（潜类别增长模型）、时依协变量 Cox。与 24h 动态血压（短期变异）、累积负荷（暴露总量）是不同构念，讲清三层本身就是有分量的讨论。",
+    usage="不公开下载。合作制，联系开滦总医院团队，常含共同署名；国内心血管会议是建立联系的渠道。",
+    notes="男性约八成，性别外推差；单一企业/地域，社会经济同质；健康工人效应；早期轮次部分指标方法变更需校准。",
+    tags=["中国","职业","职工","心血管","肾脏","CKD","血压","累积暴露","轨迹","队列","前瞻性","体检","生化","随访","合作"],
+    paradigm="重复测量队列：累积暴露/访视间变异性/轨迹/LT-Cox；结局用医保+死因三重确认。男性职工偏倚需说明。",
+    qr="biobank"))
+
+D.append(e("同济东风队列", "Dongfeng-Tongji Cohort (DFTJ)", "china_cohort", 5,
+    [{"label":"华中科大公卫学院","url":"https://en.tjmu.edu.cn"}],
+    region="湖北十堰", scale="27,009→约 3.8 万", timeSpan="2008 至今",
+    host="华中科技大学同济医学院公卫学院与东风汽车公司（邬堂春团队）",
+    content="东风汽车退休职工；详尽职业暴露史（粉尘/噪声/金属/化学品）、生活方式、疾病用药；血压/人体测量/心电图，亚组颈动脉超声/肺功能；空腹血与 DNA 库，已有基因分型；与东风职工医保链接+死因登记。",
+    intro="职业暴露+基因组+医保结局三合一，做基因-环境交互、职业暴露与心血管代谢结局国内几乎无对手。对同济系统内研究者门槛最低、契合度最高；人群为退休职工，年龄偏大、高血压患病率高，适合与院内电子病历队列对照。",
+    usage="校内与机构间合作制，联系公卫学院相关团队。",
+    notes="单一企业/城市、退休为主，年轻与非职业人群缺失。",
+    tags=["中国","职业","暴露","基因","心血管","代谢","医保","队列","前瞻性","合作","环境"],
+    paradigm="职业-基因交互：职业暴露史+基因分型+医保结局；适合院内跨机构合作。",
+    qr="biobank"))
+
+D.append(e("PBICR 中国居民心理与行为调查", "Psychology and Behavior Investigation of Chinese Residents", "china_cohort", 4,
+    [{"label":"近期论文数据声明","url":"https://www.cnsda.org"}],
+    region="中国 31 省", scale="单轮 2-3 万", timeSpan="2021 至今",
+    host="国内多高校与研究机构联合（具体牵头待核）",
+    content="全国性重复横断面，量表密度极高：PHQ-9、GAD-7、PSS、UCLA 孤独、PSQI、HPLP-II、FHS-SF、健康素养/eHEALS、EQ-5D、社会支持/资本/医患信任、就医行为。",
+    intro="变量组合自由度极高，一个数据集可支撑几十个选题；对卫生管理、健康行为、健康心理方向极友好、出稿快。",
+    usage="通过项目组申请，提交研究方案，通常采用合作署名（具体流程待核）。",
+    notes="横断面为主、因果弱；全自报无客观体检生化，做慢病结局不行；同源方差/共同方法偏倚突出；配额抽样非概率，勿称全国代表性；产出同质化、撞题概率大。",
+    tags=["中国","心理","抑郁","焦虑","睡眠","行为","健康素养","横断面","量表","合作","社会"],
+    paradigm="健康心理/行为：高密度量表做关联+中介调节；强调横断面局限与同源方差，勿做因果。",
+    qr="biobank"))
+
+D.append(e("China-PAR 中国动脉粥样硬化性心血管病风险预测", "China Atherosclerotic Cardiovascular Disease Prediction", "china_cohort", 5,
+    [{"label":"在线计算器","url":"https://www.cvdrisk.com.cn"}],
+    region="中国多队列", scale="约 12.7 万", timeSpan="随访十余年",
+    host="中国医学科学院阜外医院（顾东风团队）",
+    content="整合 China-MUCA、InterASIA、CIMIC 等多队列；产出 China-PAR 10 年及终生 ASCVD 风险模型，已写入指南。",
+    intro="原始数据不公开，但模型方程与在线计算器公开。做预测模型必须研究其建模策略（少而易获取变量）、报告规范（校准曲线/决策曲线/NRI/IDI）、转化路径（论文→指南）。",
+    usage="原始数据不公开；模型与计算器公开。",
+    notes="",
+    tags=["中国","心血管","ASCVD","预测模型","风险","队列","合作"],
+    paradigm="预测模型范式：少变量建模→校准/决策曲线/NRI/IDI→转化入指南；原始数据走合作。",
+    qr="biobank"))
+
+D.append(e("China PEACE / 百万人群项目", "China PEACE & Million Population Project", "china_cohort", 5,
+    [{"label":"阜外医院","url":"https://www.fuwai.com"}],
+    region="中国 31 省", scale="百万人群项目；住院病历抽样全国代表", timeSpan="进行中",
+    host="中国医学科学院阜外医院（蒋立新团队）",
+    content="百万人群：35-75 岁社区心血管高危筛查干预；回顾性：全国代表性住院病历两阶段随机抽样（急性心梗/心衰等）。",
+    intro="中国极少数有严格抽样框架的全国性医疗质量评价研究，做医疗质量、区域差异、指南依从性的设计逻辑是国内标杆。",
+    usage="合作制。",
+    notes="",
+    tags=["中国","心血管","医疗质量","卫生服务","抽样","合作"],
+    paradigm="医疗质量评价：严格抽样框架的病历抽样→区域差异/指南依从性分析。",
+    qr="biobank"))
+
+D.append(e("CMEC 中国西南多民族队列", "China Multi-Ethnic Cohort", "china_cohort", 5,
+    [{"label":"四川大学华西公卫","url":"https://wcsph.scu.edu.cn"}],
+    region="云贵川渝藏", scale="近 10 万", timeSpan="2018 前后至今",
+    host="四川大学华西公共卫生学院",
+    content="覆盖藏、彝、苗、白、侗等民族，做民族健康差异与高原环境健康的唯一大型资源。",
+    intro="民族健康差异与高原环境研究的独家大型队列。",
+    usage="合作制。",
+    notes="",
+    tags=["中国","民族","高原","队列","合作","环境"],
+    paradigm="民族/高原健康：多民族队列做健康差异与环境暴露。",
+    qr="biobank"))
+
+D.append(e("泰州队列", "Taizhou Cohort", "china_cohort", 5,
+    [{"label":"复旦大学","url":"https://sph.fudan.edu.cn"}],
+    region="江苏泰州", scale="十万量级（待核）", timeSpan="进行中",
+    host="复旦大学",
+    content="生物样本库完善，肿瘤与代谢方向。",
+    intro="华东地区完善的生物样本队列。",
+    usage="合作制。",
+    notes="",
+    tags=["中国","肿瘤","代谢","生物样本","队列","合作"],
+    paradigm="肿瘤/代谢队列：完善样本库支撑生物标志物发现。",
+    qr="biobank"))
+
+D.append(e("上海女性/男性健康研究 SWHS/SMHS", "Shanghai Women's/Men's Health Studies", "china_cohort", 5,
+    [{"label":"范德堡大学","url":"https://www.vanderbilt.edu"}],
+    region="上海", scale="女 74,942 / 男 61,480", timeSpan="长期随访",
+    host="上海市疾控与范德堡大学",
+    content="膳食与肿瘤，随访极长；男女配对设计。",
+    intro="东亚女性/男性大型队列，膳食-肿瘤经典。",
+    usage="合作制。",
+    notes="",
+    tags=["中国","女性","男性","膳食","肿瘤","队列","合作"],
+    paradigm="膳食-肿瘤：长随访配对队列做营养与肿瘤关联。",
+    qr="biobank"))
+
+D.append(e("CNSR 中国国家卒中登记", "China National Stroke Registry", "china_cohort", 5,
+    [{"label":"北京天坛医院","url":"https://www.tr hospital.com"}],
+    region="中国", scale="I 期约 2.2 万 / III 期约 1.5 万", timeSpan="进行中",
+    host="北京天坛医院王拥军团队",
+    content="III 期含生物标志物与影像，卒中方向国内最强。",
+    intro="卒中登记研究标杆。",
+    usage="合作制。",
+    notes="",
+    tags=["中国","卒中","神经","影像","生物标志物","登记","合作"],
+    paradigm="卒中结局：登记数据+影像/生物标志物做预后与质量改进。",
+    qr="biobank"))
+
+D.append(e("C-STRIDE 中国慢性肾脏病队列", "China Chronic Kidney Disease Cohort", "china_cohort", 5,
+    [{"label":"北大一院","url":"https://www.pkufh.com"}],
+    region="中国", scale="数千例 CKD 患者", timeSpan="前瞻性",
+    host="北京大学第一医院",
+    content="中国最重要的 CKD 进展前瞻队列。",
+    intro="CKD 进展研究的国内核心队列。",
+    usage="合作制。",
+    notes="",
+    tags=["中国","肾脏","CKD","进展","队列","合作"],
+    paradigm="CKD 进展：eGFR 斜率/蛋白尿结局的前瞻随访。",
+    qr="biobank"))
+
+D.append(e("CK-NET 中国肾脏疾病网络", "China Kidney Disease Network", "china_cohort", 5,
+    [{"label":"北大一院","url":"https://www.pkufh.com"}],
+    region="中国", scale="全国医保与住院数据", timeSpan="年度",
+    host="北京大学第一医院",
+    content="全国医保与住院数据，年度报告可直接作为论文中国背景引用源。",
+    intro="中国肾脏疾病负担与医疗利用的权威数据网络。",
+    usage="合作/报告引用。",
+    notes="",
+    tags=["中国","肾脏","医保","住院","卫生服务","合作"],
+    paradigm="肾脏疾病负担：全国医保/住院数据做利用与质量分析，年度报告可引用。",
+    qr="biobank"))
+
+D.append(e("中国高血压调查 CHS", "China Hypertension Survey", "china_cohort", 5,
+    [{"label":"阜外医院","url":"https://www.fuwai.com"}],
+    region="中国", scale="大规模筛查", timeSpan="进行中",
+    host="中国医学科学院阜外医院",
+    content="中国高血压患病率、知晓率、治疗率、控制率的权威来源。",
+    intro="高血压流行病学权威调查。",
+    usage="合作/报告引用。",
+    notes="",
+    tags=["中国","高血压","流行病学","筛查","合作"],
+    paradigm="高血压流行病学：患病率/知晓/治疗/控制率的描述与趋势。",
+    qr="biobank"))
+
+# ============================ 第六章 监测横断面 ============================
+D.append(e("NHANES 美国国家健康与营养检查调查", "National Health and Nutrition Examination Survey", "monitor", 1,
+    [{"label":"官网","url":"https://wwwn.cdc.gov/nchs/nhanes/"},{"label":"死亡链接文件","url":"https://www.cdc.gov/nchs/data-linkage/mortality-public.htm"}],
+    region="美国", scale="每年约 5 千", timeSpan="1999 至今",
+    host="美国 CDC 国家卫生统计中心",
+    content="连续调查每 2 年一周期，复杂多阶段抽样提供权重；问卷+体检+实验室三位一体，与国家死亡索引链接的公开死亡随访免费。",
+    intro="科研入门第一库：质控极严。肾脏方向可用标准化血肌酐、部分周期胱抑素 C、尿白蛋白肌酐比、多次标准化血压、降压药处方。横断面数据可经死亡链接变前瞻性队列。",
+    usage="完全公开，零申请零费用直接下载；高度受限变量需赴 NCHS 研究数据中心现场使用。",
+    notes="2017-2020 因疫情中断，官方发布合并文件必须用专门疫情前权重，不能沿用旧合并算法；真正的瓶颈是选题新颖性。",
+    tags=["美国","一般人群","体检","生化","肌酐","eGFR","血压","营养","死亡登记","横断面","随访","公开"],
+    paradigm="横断面→前瞻：用权重做复杂抽样估计；链接死亡文件把横断面转队列；注意周期权重。",
+    qr="monitor"))
+
+D.append(e("KNHANES 韩国国民健康营养调查", "Korea National Health and Nutrition Examination Survey", "monitor", 1,
+    [{"label":"官网（待核）","url":"https://knhanes.kdca.go.kr"}],
+    region="韩国", scale="全国样本", timeSpan="进行中",
+    host="韩国 CDC",
+    content="韩国版 NHANES，设计对标，公开下载，界面以韩文为主。",
+    intro="韩国国家级体检+营养监测，适合跨国与 NHANES 对标。",
+    usage="公开下载（韩文界面）。",
+    notes="入口待核；韩文界面。",
+    tags=["韩国","一般人群","体检","营养","生化","横断面","公开"],
+    paradigm="韩国健康营养：对标 NHANES 做跨国比较与趋势。",
+    qr="monitor"))
+
+D.append(e("BRFSS 行为危险因素监测系统", "Behavioral Risk Factor Surveillance System", "monitor", 1,
+    [{"label":"官网","url":"https://www.cdc.gov/brfss"}],
+    region="美国", scale="每年数十万", timeSpan="1984 至今",
+    host="美国 CDC",
+    content="全球最大电话健康调查，具州级代表性。",
+    intro="州级行为危险因素监测，适合健康行为与健康公平州际比较。",
+    usage="完全公开下载。",
+    notes="",
+    tags=["美国","行为","健康公平","横断面","公开","问卷"],
+    paradigm="健康行为州际比较：州代表样本做行为危险因素与政策评估。",
+    qr="monitor"))
+
+D.append(e("NHIS 美国国民健康访问调查", "National Health Interview Survey", "monitor", 1,
+    [{"label":"官网","url":"https://www.cdc.gov/nchs/nhis/"}],
+    region="美国", scale="大样本", timeSpan="进行中",
+    host="美国 CDC",
+    content="与 NHANES 互补，无体检但样本量大得多。",
+    intro="大样本健康访谈，适合服务利用与保险研究。",
+    usage="完全公开下载。",
+    notes="",
+    tags=["美国","服务利用","保险","横断面","公开","问卷"],
+    paradigm="服务利用/保险：大样本访谈做医疗利用与覆盖分析。",
+    qr="monitor"))
+
+D.append(e("中国慢性病及危险因素监测", "China Chronic Disease and Risk Factor Surveillance", "monitor", 5,
+    [{"label":"中国疾控慢病中心","url":"https://www.chinacdc.cn"}],
+    region="中国", scale="代表性最好", timeSpan="进行中",
+    host="中国疾控中心慢病中心",
+    content="中国代表性最好的慢病监测数据。",
+    intro="中国慢病患病率/危险因素的权威来源，但不公开。",
+    usage="需合作。",
+    notes="不公开。",
+    tags=["中国","慢病","危险因素","监测","合作"],
+    paradigm="中国慢病监测：代表性抽样做患病率与危险因素；需合作获取。",
+    qr="monitor"))
+
+# ============================ 第七章 真实世界 RWD ============================
+D.append(e("香港医管局 CDARS", "Clinical Data Analysis and Reporting System", "rwd", 5,
+    [{"label":"数据实验室（待核）","url":"https://www3.ha.org.hk/data/"},{"label":"公开汇总 data.gov.hk","url":"https://data.gov.hk"}],
+    region="中国香港", scale="约 750 万", timeSpan="1990 年代至今",
+    host="香港医院管理局（HA）",
+    content="40 余公立医院+百余门诊；唯一匿名编码跨机构跨年随访；住院 ICD-9-CM、门诊 ICPC-2、处方配药、检验（肌酐序列）、影像手术、急诊住院、死亡链接；回溯 20 年以上。",
+    intro="香港无「医保局」，公立医疗由税收筹资、医管局统一运营。典型设计：自身对照病例系列、新使用者设计、目标试验模拟、疫苗安全性主动监测。数据不可下载，在安全环境分析、结果审核后带出。",
+    usage="经医管局数据实验室申请，需研究计划书+伦理批件+本地机构 PI，按项目收费；结果审核后带出。",
+    notes="别混淆：医健通 eHRSS 是公私病历互通平台，与 CDARS 不是一回事；「香港理工大学数据库」无可靠对应，理大健康数据多走 HA 数据实验室或各院系自建队列。",
+    tags=["香港","真实世界","电子病历","医保","处方","检验","死亡登记","队列","随访","合作","目标试验"],
+    paradigm="真实世界(港): 新使用者设计/目标试验模拟/自身对照病例系列；安全环境分析、不可下载。",
+    qr="monitor"))
+
+D.append(e("韩国 NHIS 国民健康保险", "National Health Insurance Service", "rwd", 5,
+    [{"label":"NHIS 数据共享","url":"https://nhiss.nhis.or.kr"}],
+    region="韩国", scale="全国参保人", timeSpan="2002 至今",
+    host="韩国国民健康保险公团",
+    content="全民单一支付方，覆盖近全部人口；NHIS-NSC 全国代表性抽样队列（随访十余年）+ 健康检查数据库（法定定期体检含血压/空腹血糖/肌酐/尿蛋白等客观指标，与理赔一体化）。",
+    intro="全世界少数「全民覆盖+客观体检+处方记录+长随访」四合一数据源。做降压药类别与肾脏结局的目标试验模拟证据等级极高。",
+    usage="需韩国本地合作者+伦理审查+按项目付费，在指定分析中心操作，数据不可带出；基本必须合作。",
+    notes="",
+    tags=["韩国","真实世界","医保","理赔","体检","处方","队列","随访","合作","目标试验","肾脏"],
+    paradigm="真实世界(韩): 四合一数据做目标试验模拟/新使用者设计；须本地合作、分析中心内操作。",
+    qr="monitor"))
+
+D.append(e("韩国 HIRA 健康保险审查评价院", "Health Insurance Review & Assessment", "rwd", 5,
+    [{"label":"官网","url":"https://www.hira.or.kr"}],
+    region="韩国", scale="全国理赔", timeSpan="进行中",
+    host="韩国健康保险审查评价院",
+    content="全国理赔审核数据，处方级别粒度。",
+    intro="与 NHIS 互补，处方粒度更细，做药物流行病学。",
+    usage="需本地合作+分析中心。",
+    notes="",
+    tags=["韩国","真实世界","医保","理赔","处方","合作","药物流行病学"],
+    paradigm="药物流行病学(韩): 理赔处方级数据做用药模式与安全监测；须合作。",
+    qr="monitor"))
+
+D.append(e("CPRD 英国基层医疗数据库", "Clinical Practice Research Datalink", "rwd", 4,
+    [{"label":"官网","url":"https://cprd.com"}],
+    region="英国", scale="累计逾 6000 万患者", timeSpan="1987 至今",
+    host="英国（GOLD 与 Aurum 两库）",
+    content="基层医疗记录，可链接 HES 住院、ONS 死亡与癌症登记。",
+    intro="药物流行病学的国际金标准。",
+    usage="需研究方案审批并付费。",
+    notes="",
+    tags=["英国","真实世界","电子病历","基层","处方","药物流行病学","队列","随访","死亡登记"],
+    paradigm="药物流行病学(英): 基层处方+住院/死亡链接做药物安全与疗效。",
+    qr="monitor"))
+
+D.append(e("OpenSAFELY 英国全民健康记录分析平台", "OpenSAFELY", "rwd", 4,
+    [{"label":"官网","url":"https://www.opensafely.org"}],
+    region="英国", scale="全英 NHS 记录", timeSpan="进行中",
+    host="英国（代码在安全环境运行）",
+    content="代码在安全环境内运行，全流程开源，透明度行业标杆。",
+    intro="可信分析平台范式，适合快速大规模观察性研究。",
+    usage="需审批，代码在安全环境运行。",
+    notes="",
+    tags=["英国","真实世界","电子病历","NHS","透明","合作"],
+    paradigm="可信分析: 在 OpenSAFELY 安全环境提交分析代码，全流程开源可复现。",
+    qr="monitor"))
+
+D.append(e("QResearch 英国基层医疗数据库", "QResearch", "rwd", 4,
+    [{"label":"官网","url":"https://www.qresearch.org"}],
+    region="英国", scale="基层医疗大样本", timeSpan="进行中",
+    host="牛津托管（QRISK 来源）",
+    content="QRISK 等风险模型的数据来源。",
+    intro="风险预测模型研究与验证的英国数据源。",
+    usage="需审批/合作。",
+    notes="",
+    tags=["英国","真实世界","电子病历","基层","预测模型","合作"],
+    paradigm="风险模型(英): 基层数据开发与验证风险预测模型。",
+    qr="monitor"))
+
+D.append(e("北欧登记体系", "Nordic Registries (Denmark/Sweden/Norway/Finland)", "rwd", 5,
+    [{"label":"各国登记官网","url":"https://www.norden.org"}],
+    region="丹麦/瑞典/挪威/芬兰", scale="全民", timeSpan="出生到死亡",
+    host="北欧各国",
+    content="唯一编号贯穿出生到死亡，随访完整度全球第一。",
+    intro="做因果推断与药物安全的天然实验场；通常需本地 PI 与合作。",
+    usage="需本地 PI，通常必须合作。",
+    notes="",
+    tags=["北欧","真实世界","登记","随访","队列","合作","药物流行病学"],
+    paradigm="北欧登记: 唯一编号全周期随访做因果/药物安全；须本地 PI。",
+    qr="monitor"))
+
+D.append(e("台湾 NHIRD 全民健康保险研究数据库", "Taiwan National Health Insurance Research Database", "rwd", 5,
+    [{"label":"资料科学中心","url":"https://dep.mohw.gov.tw/dos/"}],
+    region="中国台湾", scale="全民健保", timeSpan="1995 至今",
+    host="台湾卫生福利部资料科学中心",
+    content="全民健保数据，现由资料科学中心管理，需现场分析。",
+    intro="曾经极易发表，现在门槛提高很多。",
+    usage="需现场分析，门槛提高。",
+    notes="",
+    tags=["台湾","真实世界","医保","理赔","合作","现场分析"],
+    paradigm="台湾健保: 现场分析做真实世界研究；门槛已提高。",
+    qr="monitor"))
+
+D.append(e("日本 NDB / JMDC", "Japan NDB / JMDC", "rwd", 5,
+    [{"label":"NDB 官网","url":"https://www.mhlw.go.jp"}],
+    region="日本", scale="全国理赔/商保", timeSpan="进行中",
+    host="日本（NDB 全国理赔；JMDC 含体检）",
+    content="全国理赔数据，JMDC 含体检数据。",
+    intro="需日方合作。",
+    usage="需日方合作。",
+    notes="",
+    tags=["日本","真实世界","医保","理赔","体检","合作"],
+    paradigm="日本真实世界: 理赔/商保数据做药物与卫生服务研究；须合作。",
+    qr="monitor"))
+
+D.append(e("TriNetX 全球联邦式研究网络", "TriNetX", "rwd", 4,
+    [{"label":"官网","url":"https://trinetx.com"}],
+    region="全球联邦式", scale="数百家医疗机构", timeSpan="进行中",
+    host="商业联邦网络",
+    content="机构订阅制，几分钟出队列计数与倾向性评分匹配；看不到原始病历，数据质量取决于各院映射。",
+    intro="适合快速筛选研究问题与可行性评估。",
+    usage="机构订阅制。",
+    notes="看不到原始病历，数据质量依赖映射。",
+    tags=["全球","真实世界","联邦","队列","订阅","可行性"],
+    paradigm="可行性筛选: 联邦网络快速出队列计数与 PSM，用于研究问题可行性。",
+    qr="monitor"))
+
+D.append(e("MarketScan / Optum / IQVIA 美国商保数据", "Commercial Claims Data", "rwd", 4,
+    [{"label":"IBM MarketScan","url":"https://www.ibm.com/products/marketscan"},{"label":"Optum","url":"https://www.optum.com"}],
+    region="美国", scale="千万至亿级", timeSpan="进行中",
+    host="商业授权（药企/咨询常用）",
+    content="商业保险理赔数据，昂贵。",
+    intro="真实世界证据（RWE）与药物流行病学的商业数据源。",
+    usage="商业授权，昂贵。",
+    notes="",
+    tags=["美国","真实世界","医保","理赔","商业","昂贵"],
+    paradigm="商保 RWE: 理赔数据做药物利用与真实世界证据；商业授权。",
+    qr="monitor"))
+
+D.append(e("CMS Medicare/Medicaid (ResDAC)", "US CMS Medicare/Medicaid", "rwd", 4,
+    [{"label":"ResDAC","url":"https://www.resdac.org"}],
+    region="美国", scale="全国老年与低收入人群", timeSpan="进行中",
+    host="美国 CMS（经 ResDAC 申请）",
+    content="全国老年与低收入人群医保；与 SEER 链接即 SEER-Medicare。",
+    intro="老年人群真实世界研究的权威来源。",
+    usage="经 ResDAC 申请，付费。",
+    notes="",
+    tags=["美国","真实世界","医保","老年","肿瘤","合作"],
+    paradigm="老年真实世界: Medicare 数据做老年医疗利用；链接 SEER 做肿瘤。",
+    qr="monitor"))
+
+# ============================ 第八章 重症/ICU ============================
+D.append(e("MIMIC-IV 重症监护数据库", "Medical Information Mart for Intensive Care IV", "icu", 3,
+    [{"label":"PhysioNet 数据集","url":"https://physionet.org/content/mimiciv/"},{"label":"平台","url":"https://physionet.org"}],
+    region="美国单中心", scale="30 万+ 住院", timeSpan="2008 至今",
+    host="Beth Israel Deaconess 医学中心 / MIT 实验计算生理学实验室",
+    content="hosp（住院：实验室/处方/诊断/微生物）、icu（ICU：生命体征/给药/出入量/评分）、MIMIC-IV-ED（急诊）、MIMIC-IV-Note（去标识文本，NLP/大模型核心）、MIMIC-IV-ECG（波形心电）、MIMIC-CXR（胸片+报告）。",
+    intro="免费。获取流程：①注册 PhysioNet 账号；②完成 CITI「Data or Specimens Only Research」培训取证书；③提交 credentialing 申请（上传证书+导师/主管推荐人），审核数天至数周（推荐人不回邮件是最常见失败原因）；④签 DUA 后下载。建议 BigQuery 或本地 PostgreSQL，纯 CSV 很痛苦。",
+    usage="免费；培训+DUA，周期 2-6 周。",
+    notes="单中心、美国、ICU 人群，外推有限；时间戳随机偏移，不能做真实历法季节分析；同一患者多次入院注意聚类；AKI 需自行按 KDIGO 从肌酐序列构建。",
+    tags=["美国","ICU","重症","电子病历","重症","AKI","KDIGO","文本","影像","心电","NLP","队列","公开-协议"],
+    paradigm="ICU 预测/预后：hosp+icu 模块构建暴露结局→ML/统计模型；AKI 按 KDIGO 自肌酐序列构建；注意单中心偏倚与时间偏移。",
+    qr="monitor"))
+
+D.append(e("eICU-CRD 重症数据库", "eICU Collaborative Research Database", "icu", 3,
+    [{"label":"PhysioNet","url":"https://physionet.org/content/eicu-crd/"}],
+    region="美国多中心", scale="200 余家医院", timeSpan="进行中",
+    host="PhysioNet（多中心）",
+    content="弥补 MIMIC 单中心缺陷，多中心 ICU 数据。",
+    intro="MIMIC 训练 + eICU 外部验证是审稿接受度最高的搭配。",
+    usage="免费；同 MIMIC 的 CITI+DUA 流程。",
+    notes="",
+    tags=["美国","ICU","重症","多中心","电子病历","外部验证","公开-协议"],
+    paradigm="多中心外部验证: MIMIC 训练 → eICU 验证，提升泛化证据。",
+    qr="monitor"))
+
+D.append(e("AmsterdamUMCdb 重症数据库", "Amsterdam University Medical Centers DB", "icu", 3,
+    [{"label":"官网","url":"https://ami-cardio biomarkers.org"}],
+    region="荷兰", scale="欧洲首个大型开放 ICU", timeSpan="进行中",
+    host="阿姆斯特丹大学医学中心",
+    content="欧洲首个大型开放 ICU 库。",
+    intro="欧洲人群外部验证资源。",
+    usage="开放获取（流程类似培训/DUA）。",
+    notes="",
+    tags=["欧洲","荷兰","ICU","重症","电子病历","外部验证","公开-协议"],
+    paradigm="欧洲 ICU 验证: 跨大陆外部验证提升模型泛化。",
+    qr="monitor"))
+
+D.append(e("HiRID 高分辨率重症数据库", "High Time Resolution ICU Dataset", "icu", 3,
+    [{"label":"官网","url":"https://hirid.intensivecare.ai"}],
+    region="瑞士", scale="高时间分辨率", timeSpan="进行中",
+    host="瑞士",
+    content="高时间分辨率（可达 2 分钟级）生理数据。",
+    intro="适合生理信号处理与高分辨率预警模型。",
+    usage="开放获取（流程类似）。",
+    notes="",
+    tags=["瑞士","ICU","重症","高分辨率","生理信号","公开-协议"],
+    paradigm="高分辨率生理: 2 分钟级信号做早期预警与生理建模。",
+    qr="monitor"))
+
+D.append(e("SICdb 萨尔茨堡重症数据库", "Salzburg Intensive Care Database", "icu", 3,
+    [{"label":"官网","url":"https://github.com/CRF-UMIT/SICdb"}],
+    region="奥地利", scale="较新开放 ICU", timeSpan="进行中",
+    host="奥地利萨尔茨堡",
+    content="较新的开放 ICU 数据集。",
+    intro="补充欧洲 ICU 验证资源。",
+    usage="开放获取。",
+    notes="",
+    tags=["奥地利","ICU","重症","电子病历","公开-协议"],
+    paradigm="ICU 验证: 作为额外外部验证集。",
+    qr="monitor"))
+
+D.append(e("INSPIRE 韩国围手术期数据库", "INTensive care Precision and REsearch", "icu", 3,
+    [{"label":"官网","url":"https://inspire.re.kr"}],
+    region="韩国", scale="围手术期为主", timeSpan="进行中",
+    host="韩国",
+    content="围手术期为主，亚洲人群。",
+    intro="亚洲人群围手术期 ICU 研究资源。",
+    usage="开放获取（流程类似）。",
+    notes="",
+    tags=["韩国","ICU","重症","围手术期","亚洲","公开-协议"],
+    paradigm="围手术期 ICU: 亚洲人群围术期结局与预测。",
+    qr="monitor"))
+
+D.append(e("PIC 浙江大学附属儿童医院重症数据库", "Pediatric Intensive Care Database", "icu", 3,
+    [{"label":"浙大儿院","url":"https://www.zjuch.com"}],
+    region="中国", scale="儿科重症", timeSpan="进行中",
+    host="浙江大学医学院附属儿童医院",
+    content="儿科重症，中国唯一同类开放库。",
+    intro="中国儿科 ICU 预测模型与外部验证的独家资源。",
+    usage="开放获取（流程类似）。",
+    notes="",
+    tags=["中国","儿科","儿童","ICU","重症","电子病历","公开-协议"],
+    paradigm="儿科 ICU: 中国唯一开放儿科重症库，做儿童重症预测。",
+    qr="monitor"))
+
+# ============================ 第九章 试验二次利用 ============================
+D.append(e("BioLINCC 美国心肺血研究所数据仓库", "Biologic Specimen and Data Repository", "trial", 3,
+    [{"label":"官网","url":"https://biolincc.nhlbi.nih.gov"}],
+    region="美国", scale="SPRINT/ALLHAT/AASK/ARIC/MESA/CARDIA 等", timeSpan="经典试验与队列",
+    host="美国国立心肺血液研究所 (NHLBI)",
+    content="个体水平数据免费公开申请：SPRINT（强化降压 120 vs 140，含肾脏结局与 eGFR 序列）、ALLHAT（四类降压药头对头，4 万余人含 ESRD）、AASK（非裔高血压性肾硬化）、ACCORD（糖尿病强化控制）、ARIC（社区队列随访 30 余年）、MESA（多种族影像）、CARDIA（青年血压轨迹）、Framingham、CHS、Jackson Heart Study、LookAHEAD。",
+    intro="本文件信息差最严重、性价比最高的一档：审批周期数周、零费用。注册账号→在线提交研究计划（篇幅不长）→伦理批件或豁免证明→签 DUA→数周获批下载。数据已去标识化并部分粗化；发表需注明来源并附免责声明。",
+    usage="免费；注册+计划+伦理+DUA，周期 2-6 周。",
+    notes="NHLBI 不为分析结论背书；数据部分粗化。",
+    tags=["美国","RCT","二次利用","心血管","肾脏","高血压","降压","CKD","ESRD","队列","IPD","公开-协议"],
+    paradigm="RCT 二次利用: 选 SPRINT/ALLHAT/AASK 等做降压/肾保护分析；提交计划+伦理+DUA，零费用数周获批。",
+    qr="trial"))
+
+D.append(e("NIDDK-CR 美国糖尿病消化肾病研究所中央数据仓库", "NIDDK Central Repository", "trial", 3,
+    [{"label":"官网","url":"https://repository.niddk.nih.gov"}],
+    region="美国", scale="CRIC/CKiD/DCCT-EDIC/LookAHEAD/DPP", timeSpan="长期随访",
+    host="美国国立糖尿病消化肾病研究所 (NIDDK)",
+    content="CRIC 慢性肾功能不全队列（CKD3-4 期，密集随访 eGFR 斜率/蛋白尿/ESRD/心血管/死亡，全球最重要 CKD 进展前瞻队列）；CKiD 儿童 CKD；DCCT/EDIC 1 型糖尿病里程碑；LookAHEAD、DPP。",
+    intro="流程与 BioLINCC 类似，免费。CKD 进展预测模型要发国际期刊，在 CRIC 上做一次外部验证说服力远超再加一个中国中心。",
+    usage="免费；流程同 BioLINCC。",
+    notes="",
+    tags=["美国","RCT","二次利用","肾脏","CKD","糖尿病","eGFR","IPD","公开-协议"],
+    paradigm="CKD 进展: CRIC 做 eGFR 斜率/ESRD 分析；国际期刊外部验证首选。",
+    qr="trial"))
+
+D.append(e("NIA AgingResearchBiobank 美国老龄研究样本库", "NIA Aging Research Biobank", "trial", 3,
+    [{"label":"官网","url":"https://agingresearchbiobank.nia.nih.gov"}],
+    region="美国", scale="Health ABC/MrOS/SOF/InCHIANTI/LIFE 等", timeSpan="经典老年队列",
+    host="美国国立老龄研究所 (NIA)",
+    content="集中托管再分发已完成 NIA 资助研究的样本与数据：Health ABC、MrOS、SOF、InCHIANTI、LIFE、LookAHEAD、巴尔的摩老龄化纵向研究等。",
+    intro="表型极精细（步速、肌少症、骨密度、炎症因子系列），单独找原团队极难，此处可统一申请。数据申请友好（计划+协议）；生物样本门槛高得多。注意与第十章中国 Aging Biobank 完全不同。",
+    usage="免费；数据申请友好（计划+协议）；样本门槛高。",
+    notes="勿与中国的 Aging Biobank (ABB) 混淆，名称相近但主办方/内容/流程完全不同。",
+    tags=["美国","老龄","衰弱","肌少症","队列","二次利用","公开-协议"],
+    paradigm="老年综合征: 精细表型队列（肌少/衰弱）统一申请；区分中美两个 Aging Biobank。",
+    qr="trial"))
+
+D.append(e("Vivli / YODA / CSDR 临床试验个体数据共享平台", "Clinical Trial Data Sharing Platforms", "trial", 3,
+    [{"label":"Vivli","url":"https://vivli.org"},{"label":"YODA","url":"https://yoda.yale.edu"},{"label":"CSDR","url":"https://www.clinicalstudydatarequest.com"}],
+    region="全球", scale="多方汇集 RCT 个体数据", timeSpan="进行中",
+    host="Vivli（多方）/ YODA（耶鲁，强生等）/ CSDR（GSK 等）",
+    content="个体患者数据 (IPD) 荟萃分析与二次研究的核心入口。",
+    intro="做 IPD meta 分析的首选；YODA 由耶鲁托管强生等试验，CSDR 为 GSK 等（参与企业近年有变动）。",
+    usage="免费/审批；提交研究计划与 DUA。",
+    notes="CSDR 参与企业名单有变动（待核）。",
+    tags=["全球","RCT","IPD","meta","二次利用","公开-协议"],
+    paradigm="IPD meta: 跨试验个体数据合并做荟萃与异质性分析。",
+    qr="trial"))
+
+D.append(e("dbGaP 基因型与表型数据库", "Database of Genotypes and Phenotypes", "trial", 4,
+    [{"label":"官网","url":"https://www.ncbi.nlm.nih.gov/gap"}],
+    region="美国", scale="受控访问", timeSpan="进行中",
+    host="美国 NIH",
+    content="受控访问的人类基因型与表型数据（含 TCGA 受控层、多队列遗传数据）。",
+    intro="受控访问：需 NIH eRA Commons 账户、在线申请、签署 Data Use Certification、机构签署官员(ISO)审批、DAC 评审、签 DUA 后开通 GDC 下载。",
+    usage="受控访问；机构审批+DUA，周期数周至数月。",
+    notes="仅限批准用途；禁止再识别；强制安全培训。",
+    tags=["美国","基因","表型","受控","伦理","DUA","合作"],
+    paradigm="受控遗传数据: eRA Commons+机构 ISO+DAC 评审+DUA；严禁再识别。",
+    qr="trial"))
+
+# ============================ 第十章 组学/仓储 ============================
+D.append(e("Aging Biobank (ABB) 中国衰老生物样本库", "Aging Biobank", "omics", 5,
+    [{"label":"官方入口（待核）","url":"https://cbb.cncb.ac.cn/abb/"}],
+    region="中国", scale="待核", timeSpan="进行中",
+    host="国家生物信息中心 / 国家基因组科学数据中心体系",
+    content="面向衰老研究的生物样本与配套数据资源平台，服务衰老机制、标志物与老年疾病。同源含 AgingAtlas 等多组学资源。",
+    intro="具体样本规模、队列构成、数据类型与申请流程编制时无法核实，请以官网说明与联系方式为准（标记为待核）。命名易与美国 NIA AgingResearchBiobank 冲突，致谢与数据可用性声明务必写全称与网址。",
+    usage="申请流程待核，请以官网为准。",
+    notes="与美国 NIA AgingResearchBiobank 完全不同，检索/写作务必区分。",
+    tags=["中国","衰老","多组学","生物样本","合作","待核"],
+    paradigm="中国衰老资源: 先 NGDC DatabaseCommons 检索该体系全部衰老资源，再定向进入具体平台。",
+    qr="trial"))
+
+D.append(e("GEO 基因表达综合数据库", "Gene Expression Omnibus", "omics", 1,
+    [{"label":"官网","url":"https://www.ncbi.nlm.nih.gov/geo/"}],
+    region="全球", scale="海量 GSE 系列", timeSpan="进行中",
+    host="美国 NCBI",
+    content="芯片/RNA-seq/单细胞/甲基化/ChIP-seq 等功能基因组数据，GSE(研究)/GSM(样本)/GPL(平台)，多数附临床表型。",
+    intro="完全公开无需申请。用 GEO2R 快速探路，正式分析下原始矩阵自行处理；R 包 GEOquery 是标准入口。元数据质量参差，选数据集先看元数据完整度再看样本量；整合分析必须处理批次效应。",
+    usage="完全公开，直接下载。",
+    notes="characteristics 字段临床注释常残缺；跨数据集批次效应必须处理。",
+    tags=["全球","基因","转录组","单细胞","甲基化","组学","公开","仓储"],
+    paradigm="功能基因组: GEOquery 取数→差异分析→批次效应校正；先看元数据完整度。",
+    qr="trial"))
+
+D.append(e("Dryad 通用数据仓储", "Dryad", "omics", 1,
+    [{"label":"官网","url":"https://datadryad.org"}],
+    region="全球", scale="论文原始数据", timeSpan="进行中",
+    host="通用仓储（CC0）",
+    content="托管论文背后的原始数据，CC0 协议。",
+    intro="很多期刊要求数据存缴，这里能找到已发表研究的个体水平数据，做二次分析与再验证很有用；下载免费，存缴由作者付费。学术惯例仍应引用原文。",
+    usage="下载免费。",
+    notes="应引用原始论文。",
+    tags=["全球","通用","仓储","原始数据","公开","二次利用"],
+    paradigm="数据再验证: 检索已发表研究原始数据做二次分析/方法学验证。",
+    qr="trial"))
+
+D.append(e("SRA 序列读取归档", "Sequence Read Archive", "omics", 1,
+    [{"label":"官网","url":"https://www.ncbi.nlm.nih.gov/sra"}],
+    region="全球", scale="高通量测序原始数据", timeSpan="进行中",
+    host="美国 NCBI",
+    content="高通量测序原始数据归档。",
+    intro="测序原始数据的权威来源，常配合 GEO/GDC 使用。",
+    usage="完全公开。",
+    notes="",
+    tags=["全球","基因","测序","转录组","公开","仓储"],
+    paradigm="测序原始数据: 从 SRA 拉取 fastq 做重分析。",
+    qr="trial"))
+
+D.append(e("ArrayExpress / BioStudies", "EMBL-EBI", "omics", 1,
+    [{"label":"EBI 官网","url":"https://www.ebi.ac.uk/arrayexpress/"}],
+    region="欧洲", scale="功能基因组仓储", timeSpan="进行中",
+    host="EMBL-EBI",
+    content="欧洲版功能基因组仓储。",
+    intro="与 GEO 互为补充。",
+    usage="完全公开。",
+    notes="",
+    tags=["欧洲","基因","组学","公开","仓储"],
+    paradigm="欧洲组学: 与 GEO 互补的功能基因组数据。",
+    qr="trial"))
+
+D.append(e("GDC / TCGA / cBioPortal 癌症多组学", "Genomic Data Commons", "omics", 1,
+    [{"label":"GDC 门户","url":"https://portal.gdc.cancer.gov"},{"label":"cBioPortal","url":"https://www.cbioportal.org"}],
+    region="全球", scale="泛癌种", timeSpan="进行中",
+    host="美国 NCI / GDC；cBioPortal 可视化前端",
+    content="癌症多组学（突变/表达/甲基化/临床），开放数据免审批；部分受控数据需 dbGaP 授权。",
+    intro="GDC 下载+R 包 TCGAbiolinks 取数；cBioPortal 是探索期最快的可视化查询前端。",
+    usage="开放数据直接下载；受控数据走 dbGaP。",
+    notes="受控层需 dbGaP 授权。",
+    tags=["全球","肿瘤","癌症","多组学","基因组","公开","受控","仓储"],
+    paradigm="癌症多组学: TCGAbiolinks 取数→差异/突变分析；cBioPortal 探索；受控层走 dbGaP。",
+    qr="trial"))
+
+D.append(e("Zenodo / figshare / Mendeley Data", "General Repositories", "omics", 1,
+    [{"label":"Zenodo","url":"https://zenodo.org"},{"label":"figshare","url":"https://figshare.com"},{"label":"Mendeley Data","url":"https://data.mendeley.com"}],
+    region="全球", scale="通用代码与数据", timeSpan="进行中",
+    host="通用仓储",
+    content="代码与数据均可存缴/获取；Mendeley Data 为 Elsevier 系期刊常用。",
+    intro="论文附带的代码、数据集与材料常在此存放。",
+    usage="下载免费。",
+    notes="",
+    tags=["全球","通用","仓储","代码","公开"],
+    paradigm="补充数据/代码: 检索论文附带的代码与数据集。",
+    qr="trial"))
+
+D.append(e("ICPSR / IPUMS 调查与微观数据仓储", "Survey & Microdata Repositories", "omics", 1,
+    [{"label":"ICPSR","url":"https://www.icpsr.umich.edu"},{"label":"IPUMS","url":"https://www.ipums.org"}],
+    region="全球", scale="社会/普查微观数据", timeSpan="进行中",
+    host="密歇根大学 (ICPSR) / 明尼苏达 (IPUMS)",
+    content="ICPSR 是社会科学数据总仓库，很多老龄调查在此二次分发；IPUMS 提供全球普查与调查微观数据的调和版本（含 IPUMS Health Surveys）。",
+    intro="想找老龄/社会调查的原始微观数据，ICPSR 与 IPUMS 常是入口。",
+    usage="多数公开/注册下载。",
+    notes="",
+    tags=["全球","社会","调查","微观数据","公开","仓储","调和"],
+    paradigm="微观数据: 在 ICPSR/IPUMS 找调查原始微观数据做调和分析。",
+    qr="trial"))
+
+# ============================ 第十一章 中国国家级平台 ============================
+D.append(e("国家自然科学基金基础研究知识库", "NSFC Open Repository", "cn_platform", 1,
+    [{"label":"官网","url":"http://ir.nsfc.gov.cn"}],
+    region="中国", scale="基金资助论文", timeSpan="进行中",
+    host="国家自然科学基金委员会",
+    content="论文全文知识库（非数据库），收录基金资助产出，作者按规定存缴。",
+    intro="免费获取部分付费墙后中英文全文；反向检索某学者/某基金号产出全貌，写标书找同行或判断资助密度很好用。",
+    usage="完全公开。",
+    notes="是知识库不是数据集。",
+    tags=["中国","论文","知识库","基金","公开","文献"],
+    paradigm="文献/标书调研: 检索基金号产出与同行，定位研究方向。",
+    qr="trial"))
+
+D.append(e("NCMI 国家人口健康科学数据中心", "National Population Health Data Center", "cn_platform", 5,
+    [{"label":"官网（域名待核）","url":"https://www.ncmi.cn"}],
+    region="中国", scale="多领域科学数据", timeSpan="进行中",
+    host="中国医学科学院医学信息研究所",
+    content="国家科技资源共享服务平台，汇交基础/临床/公卫/中医药/药学等多领域科学数据。",
+    intro="资源以汇交项目数据集为主，质量与开放差异大，有些只给元数据需联系提供方，能直接下载的个体级数据比预期少。建议先当数据资源目录检索，了解国内有哪些团队汇交过什么，再定向联系合作。",
+    usage="先目录检索→定向联系合作；域名待核。",
+    notes="直接可下载的个体级数据偏少，多需联系。",
+    tags=["中国","国家级","科学数据","目录","合作","平台"],
+    paradigm="中国数据目录: 当资源目录检索→定向联系汇交团队合作。",
+    qr="trial"))
+
+D.append(e("NGDC 国家基因组科学数据中心", "National Genomics Data Center", "cn_platform", 2,
+    [{"label":"官网","url":"https://ngdc.cncb.ac.cn"}],
+    region="中国", scale="GSA/OMIX 等", timeSpan="进行中",
+    host="国家生物信息中心 (CNCB)",
+    content="GSA 测序数据归档、OMIX 组学数据，可理解为中国版 GEO 与 SRA。",
+    intro="建议先在 DatabaseCommons 检索该体系下全部衰老/组学相关资源，再定向进入具体平台。",
+    usage="注册/开放下载。",
+    notes="",
+    tags=["中国","基因","组学","测序","国家级","公开","仓储"],
+    paradigm="中国组学: GSA/OMIX 归档与检索；DatabaseCommons 发现资源。",
+    qr="trial"))
+
+D.append(e("ScienceDB 科学数据银行", "Science Data Bank", "cn_platform", 1,
+    [{"label":"官网","url":"https://www.scidb.cn"}],
+    region="中国", scale="通用数据仓储", timeSpan="进行中",
+    host="中国科学院",
+    content="通用数据仓储，中国版 Dryad。",
+    intro="论文数据存缴与共享的中国平台。",
+    usage="公开下载。",
+    notes="",
+    tags=["中国","通用","仓储","公开","平台"],
+    paradigm="中国数据仓储: 论文配套数据存缴与获取。",
+    qr="trial"))
+
+D.append(e("NMDC 国家微生物科学数据中心", "National Microbiology Data Center", "cn_platform", 1,
+    [{"label":"官网","url":"https://nmdc.cn"}],
+    region="中国", scale="微生物/微生物组", timeSpan="进行中",
+    host="中国科学院",
+    content="微生物与微生物组学数据。",
+    intro="微生物组研究的中国国家级资源。",
+    usage="公开下载。",
+    notes="",
+    tags=["中国","微生物","组学","国家级","公开","平台"],
+    paradigm="微生物组: 国家微生物数据中心检索与下载。",
+    qr="trial"))
+
+D.append(e("国家/卫生健康统计年鉴", "China Health Statistics Yearbook", "cn_platform", 1,
+    [{"label":"国家统计局","url":"https://www.stats.gov.cn"},{"label":"国家卫健委","url":"https://www.nhc.gov.cn"}],
+    region="中国", scale="宏观指标", timeSpan="年度",
+    host="国家统计局 / 国家卫健委",
+    content="宏观卫生资源与服务量指标，用于生态学分析与政策背景。",
+    intro="中国宏观卫生资源的权威来源。",
+    usage="官方发布，公开。",
+    notes="",
+    tags=["中国","宏观","卫生资源","年鉴","公开","政策"],
+    paradigm="宏观背景: 年鉴指标做生态学分析与政策背景。",
+    qr="trial"))
+
+# ============================ 第十二章 卫生经济/服务 ============================
+D.append(e("HCUP 美国医疗成本与利用项目", "Healthcare Cost and Utilization Project", "healthecon", 4,
+    [{"label":"官网","url":"https://hcup-us.ahrq.gov"}],
+    region="美国", scale="NIS 每年约 700 万出院", timeSpan="1988 至今",
+    host="美国医疗保健研究与质量局 (AHRQ)",
+    content="NIS 全国住院样本（加权代表约 3500 万次住院）、NRD 再入院库、KID 儿科住院、SID/SEDD/SASD 州级住院/急诊/日间手术；含诊断操作编码、住院日、总费用、付费方、转归、医院特征。",
+    intro="卫生管理方向核心：住院费用、住院日、再入院率、医院/区域差异是卫生事业管理议题，NIS 是全球最成熟的数据源。完成在线数据使用协议培训后购买，每个库每年数百美元量级。",
+    usage="培训后购买，每年数百美元量级。",
+    notes="需购买。",
+    tags=["美国","卫生经济","卫生服务","住院","再入院","费用","医院","购买"],
+    paradigm="卫生服务研究: NIS/NRD 做住院费用/再入院/区域差异；培训后购买。",
+    qr="trial"))
+
+D.append(e("MEPS 美国医疗支出面板调查", "Medical Expenditure Panel Survey", "healthecon", 1,
+    [{"label":"官网","url":"https://meps.ahrq.gov"}],
+    region="美国", scale="家庭面板", timeSpan="1996 至今",
+    host="美国 AHRQ",
+    content="两年期面板，免费公开；家庭医疗服务使用、支出、支付来源、保险状态，并与机构/雇主问卷交叉验证。",
+    intro="灾难性卫生支出、自付比例、保险对服务利用影响；卫生技术评估的成本参数来源或国际对照。",
+    usage="完全公开下载。",
+    notes="",
+    tags=["美国","卫生经济","支出","保险","面板","公开","问卷"],
+    paradigm="卫生经济: 面板数据做灾难性支出/自付比例/保险效应。",
+    qr="trial"))
+
+D.append(e("GBD / GHDx 全球疾病负担", "Global Burden of Disease", "healthecon", 1,
+    [{"label":"GHDx","url":"https://ghdx.healthdata.org"}],
+    region="全球", scale="国家/省/年龄/性别/年份", timeSpan="年度更新",
+    host="IHME（华盛顿大学）",
+    content="DALY、YLL、YLD，可按国家/省份/年龄/性别/年份查询。",
+    intro="论文背景章节与政策论证的必备引用源。",
+    usage="完全公开。",
+    notes="",
+    tags=["全球","疾病负担","DALY","宏观","公开","政策"],
+    paradigm="疾病负担: GBD 指标做背景论证与跨国比较。",
+    qr="trial"))
+
+D.append(e("WHO 全球卫生观察站 / 卫生支出 / OECD / 世界银行", "Global Health Indicators", "healthecon", 1,
+    [{"label":"WHO GHO","url":"https://www.who.int/data/gho"},{"label":"世界银行","url":"https://data.worldbank.org"},{"label":"CDC WONDER","url":"https://wonder.cdc.gov"}],
+    region="全球", scale="宏观指标", timeSpan="年度",
+    host="WHO / OECD / 世界银行 / CDC",
+    content="WHO 官方指标库；各国卫生总费用构成（筹资比较）；OECD 发达国家卫生系统比较；世界银行宏观社会经济与卫生指标；CDC WONDER 美国死亡与出生在线查询。",
+    intro="卫生系统比较与政策背景的权威宏观源（部分入口待核，请现查）。",
+    usage="完全公开。",
+    notes="OECD/WHO 卫生支出入口网站改版过，请现查。",
+    tags=["全球","宏观","卫生系统","筹资","卫生支出","公开","政策"],
+    paradigm="卫生系统比较: 宏观指标做跨国筹资与系统比较。",
+    qr="trial"))
+
+# ============================ 澳大利亚与大洋洲（联网核实） ============================
+D.append(e("45 and Up Study 澳大利亚 45 岁以上人群队列", "The 45 and Up Study", "oceania", 4,
+    [{"label":"官网","url":"https://45andup.org.au/"},
+     {"label":"Sax Institute 申请页","url":"https://www.saxinstitute.org.au/solutions/45-and-up-study/use-the-45-and-up-study/cupl/"},
+     {"label":"邮件咨询","url":"mailto:45andUp.Research@saxinstitute.org.au"}],
+    region="澳大利亚（新南威尔士州）", scale="逾 25 万（招募逾 26.7 万）", timeSpan="2005 至今",
+    host="Sax Institute（与 Cancer Council NSW、NSW Ministry of Health 合作）",
+    content="45 岁及以上人群纵向调查，覆盖健康行为、生活经历、家庭与人口学、照护责任、心理困扰、生命质量与慢病；可链接 MBS（医保诊疗）、PBS（药品）、住院、癌症登记等行政与登记数据；含生物样本与地理空间数据。",
+    intro="澳大利亚规模最大的健康与老龄化持续研究，由 Sax Institute 管理。参与者均同意其调查数据与常规行政健康数据链接。可开发子研究（sub-study）邀请受试者参加干预、采集体检与生物样本。数据经安全统一研究环境（SURE）访问，严格保密。",
+    usage="研究者向 Sax Institute 提交申请：需科学合理可行的研究方案、伦理批件、数据保管方(custodian)批准，并承担 45 and Up 许可费与 SURE 使用费。任何 bona fide 研究者均可申请。",
+    notes="队列基于 NSW 州，全国代表性有限；80 岁以上与农村偏远地区人群过采样；应答率约 19%。",
+    tags=["澳大利亚","大洋洲","队列","前瞻性","老龄","慢病","真实世界","医保","MBS","PBS","链接","癌症登记","生物样本"],
+    paradigm="澳洲老龄与慢病：以 45 and Up 调查+MBS/PBS/住院链接做慢病发生与结局；需 SURE 安全环境分析。",
+    qr=None))
+
+D.append(e("CUPL 慢性疾病伞式数据链接项目", "Chronic Conditions Umbrella Program Linkage", "oceania", 4,
+    [{"label":"CUPL 官方页","url":"https://www.saxinstitute.org.au/solutions/45-and-up-study/use-the-45-and-up-study/cupl/"}],
+    region="澳大利亚", scale="45 and Up + 10 个行政数据集", timeSpan="持续更新（年更或更频）",
+    host="Sax Institute（经 PHSREC 与各数据保管方批准）",
+    content="一次审批即可获取 45 and Up 调查 + 10 个数据集：MBS（含 DVA）、PBS（含 RPBS）、NSW 住院(APDC)、出生死亡婚姻登记(RBDM-Death)、死因单元记录(COD-URF)、急诊(EDDC)、癌症登记(NSW CCR)、精神健康数据(CHAMB)、传染病报告(NCIMS，含 COVID)。",
+    intro="CUPL 让研究者用一次审批同时拿到调查数据与 10 类行政健康数据，相比逐个数据保管方申请可将等待时间缩短至多 80%——原本可能需要一年以上，经 CUPL 最短约 2-3 个月。数据经 SURE 安全环境提供。",
+    usage="经 Sax Institute 申请，聚焦慢性疾病的研究方案；需伦理与数据保管方批准；数据在 SURE 内分析。",
+    notes="仅适用于慢性疾病相关研究（含多病共存、慢病急性加重、长期传染病等）。",
+    tags=["澳大利亚","慢病","多病共存","医保","MBS","PBS","住院","急诊","癌症登记","死亡登记","真实世界","链接"],
+    paradigm="澳洲慢病真实世界：一次审批打通调查+10类行政数据，在 SURE 内做慢病发生率、多病共存与结局研究。",
+    qr=None))
+
+D.append(e("PLIDA 澳大利亚个人级整合数据资产（ABS DataLab）", "Person Level Integrated Data Asset", "oceania", 4,
+    [{"label":"ABS 官网（检索 PLIDA / DataLab）","url":"https://www.abs.gov.au/"},
+     {"label":"咨询邮箱","url":"mailto:mydataportal@abs.gov.au"}],
+    region="澳大利亚", scale="全国人口级纵向资产", timeSpan="纵向（跨年份）",
+    host="澳大利亚统计局 ABS（Accredited Data Service Provider）",
+    content="以 Person Linkage Spine 链接的纵向数据资产，涵盖健康、教育、政府支付、收入与税收、就业、人口普查等。核心模块：残障、教育、家庭与住户、健康、收入与税收、移民、社会支持；含 MBS 模块。",
+    intro="PLIDA（前身 MADIP）由 ABS 牵头，联合税务、教育、卫生、社会服务、Services Australia、内政部等机构共建。经审批的研究者可在 ABS DataLab 内使用去标识化微观数据（PLIDA Modular Product），按研究需要逐模块申请。",
+    usage="澳大利亚政府机构或学术机构所属研究者可申请；通过 ABS DataLab 项目提案申请，需各数据保管方批准；在 DataLab 内用统计软件分析，数据不可带出。",
+    notes="模块需单独申请与批准；仅限获批项目所需模块。",
+    tags=["澳大利亚","全国","真实世界","医保","MBS","税收","教育","普查","DataLab","微观数据","纵向"],
+    paradigm="澳洲政策评估：在 ABS DataLab 用 PLIDA 模块做健康-收入-教育-税收的跨部门政策评估与纵向分析。",
+    qr=None))
+
+D.append(e("MBS / PBS 澳大利亚医保诊疗与药品报销数据", "Medicare Benefits Schedule / Pharmaceutical Benefits Scheme", "oceania", 4,
+    [{"label":"Services Australia","url":"https://www.servicesaustralia.gov.au/"}],
+    region="澳大利亚", scale="全国参保人诊疗与药品报销记录", timeSpan="持续",
+    host="Services Australia（经数据保管方批准后链接获取）",
+    content="MBS 为医保诊疗服务项目记录，PBS 为药品报销（含 RPBS 退役军人药品）记录；处方与服务级别粒度，可链接住院、癌症登记、死亡登记等。",
+    intro="澳洲全民医保（Medicare）的行政数据，是卫生服务利用与药物流行病学研究的核心。一般不直接向研究者开放下载，需通过 PLIDA（ABS DataLab）或 CUPL（Sax Institute SURE）等受控链接途径在安全环境内申请使用。",
+    usage="须经数据保管方批准，通过 PLIDA / CUPL 等受控链接途径在安全环境内分析；需伦理审批与项目付费。",
+    notes="不可直接下载；须走链接与审批路径。",
+    tags=["澳大利亚","医保","MBS","PBS","处方","理赔","药物流行病学","真实世界","卫生服务","受控"],
+    paradigm="澳洲药物流行病学：经 PLIDA/CUPL 链接 MBS/PBS，在安全环境做用药模式、依从性与结局的目标试验模拟。",
+    qr=None))
+
+D.append(e("AIHW 澳大利亚健康与福利研究院", "Australian Institute of Health and Welfare", "oceania", 2,
+    [{"label":"官网","url":"https://www.aihw.gov.au/"}],
+    region="澳大利亚", scale="全国健康与福利统计", timeSpan="持续",
+    host="澳大利亚健康与福利研究院（AIHW）",
+    content="全国卫生与福利统计：疾病负担、医院服务、癌症、心理健康、老龄化、原住民健康、卫生支出等公开报告与数据集。",
+    intro="澳洲官方卫生统计权威机构，大量指标在线免费查看/下载，适合做背景论证、国际比较与生态学分析；更细的单元记录数据需另行申请。",
+    usage="公开报告与数据集免费；细粒度数据需申请/合作。",
+    notes="公开层面以汇总统计为主；个体级数据需另走审批。",
+    tags=["澳大利亚","官方统计","疾病负担","卫生服务","老龄化","心理健康","公开","宏观"],
+    paradigm="澳洲背景与比较：用 AIHW 官方统计做疾病负担、卫生服务与支出的背景论证与跨国比较。",
+    qr=None))
+
+D.append(e("HILDA 澳大利亚家庭收入与劳动力动态调查", "Household, Income and Labour Dynamics in Australia", "oceania", 2,
+    [{"label":"墨尔本研究院","url":"https://melbourneinstitute.unimelb.edu.au/hilda"}],
+    region="澳大利亚", scale="全国住户面板", timeSpan="2001 至今",
+    host="墨尔本大学墨尔本研究院",
+    content="全国代表性住户面板：收入、就业、家庭结构、健康与福祉、生活满意度等年度随访。",
+    intro="澳洲版的社会经济面板，与 CFPS/HRS 属同类设计，可用于健康的社会决定因素、卫生服务公平与政策评估。",
+    usage="注册并申请数据许可后下载（通常免费/学术用途）。",
+    notes="健康变量以自报为主，客观体检指标有限。",
+    tags=["澳大利亚","面板","家庭","收入","就业","健康","公平","问卷","队列"],
+    paradigm="澳洲健康公平：住户面板做收入/就业与健康的关系及政策评估。",
+    qr=None))
+
+D.append(e("ALSWH 澳大利亚女性健康纵向研究", "Australian Longitudinal Study on Women's Health", "oceania", 4,
+    [{"label":"官网","url":"https://alswh.org.au/"}],
+    region="澳大利亚", scale="多出生队列女性", timeSpan="1996 至今",
+    host="澳大利亚（联邦卫生署支持）",
+    content="按出生年份划分的女性队列（青年、中年、老年），长期随访健康、生活方式、医疗服务利用、心理健康与生命质量。",
+    intro="澳洲女性健康研究的核心长期队列，可链接行政健康数据（MBS/PBS/住院等）。",
+    usage="需提交研究方案申请并获批；可申请链接行政数据。",
+    notes="仅限女性人群。",
+    tags=["澳大利亚","女性","队列","纵向","健康","生活行为","心理健康","链接"],
+    paradigm="澳洲女性健康：多出生队列做生命历程健康、生殖与慢病轨迹研究。",
+    qr=None))
+
+D.append(e("Ten to Men 澳大利亚男性健康纵向研究", "Australian Longitudinal Study on Male Health", "oceania", 4,
+    [{"label":"官网","url":"https://tentomen.org.au/"}],
+    region="澳大利亚", scale="全国男性样本", timeSpan="2013 前后至今",
+    host="澳大利亚（男性健康纵向研究）",
+    content="10 岁及以上男性队列，涵盖健康行为、心理健康、伤害、医疗服务利用、社会决定因素。",
+    intro="澳洲男性健康研究的对应资源，弥补男性健康证据缺口。",
+    usage="需申请数据访问许可。",
+    notes="仅限男性人群。",
+    tags=["澳大利亚","男性","队列","纵向","健康","心理健康","伤害","行为"],
+    paradigm="澳洲男性健康：男性队列做健康行为、伤害与心理健康研究。",
+    qr=None))
+
+# 补充条目：北方生活方式队列（用户指定，牵头 苗玉东教授）
+D.append(e("北方生活方式队列", "Northern China Lifestyle Cohort", "china_cohort", 5,
+    [{"label":"以团队官方发布为准（待核）","url":"https://www.cnsda.org"}],
+    region="中国北方", scale="规模待核", timeSpan="待核",
+    host="苗玉东教授团队（具体依托单位与联系方式待核）",
+    content="以生活方式为核心暴露的人群队列（膳食、运动、吸烟饮酒、体重与代谢等），用于慢病与生活方式关联研究。",
+    intro="由苗玉东教授牵头的生活方式队列。具体依托单位、基线年份、样本量、随访周期、变量清单与申请流程本文件未能核实，请以团队官方发布与近期论文的方法学部分为准（本条标记为待核）。",
+    usage="预计为合作制（参照中国本土队列通行做法：联系团队、提交研究方案、通常涉及共同署名）；具体流程待核。",
+    notes="本条由用户补充，细节待核实；引用前务必核对团队官方信息。",
+    tags=["中国","生活方式","膳食","运动","慢病","队列","合作","待核","北方"],
+    paradigm="生活方式-慢病：以膳食/运动/吸烟饮酒等生活方式暴露为核心，做慢病风险与交互分析；需联系团队获取。",
+    qr=None))
+
+# PBICR 补充更详实的检索入口
+for d in D:
+    if d["name"].startswith("PBICR"):
+        d["intro"] = ("PBICR（Psychology and Behavior Investigation of Chinese Residents）中国居民心理与行为调查，"
+            "全国性重复横断面调查，2021 年起开展，以第七次全国人口普查为基础的配额抽样结合多阶段分层，覆盖 31 个省级行政区。"
+            "它真正的卖点是量表密度极高，是国内变量最丰富的心理行为类调查之一；一个数据集可支撑几十个不同选题，出稿速度快。")
+        d["notes"] = ("横断面为主、因果推断能力弱；全自报，无客观体检与生化指标，做慢病结局完全不行；"
+            "同源方差与共同方法偏倚突出；配额抽样属非概率抽样，勿直接声称全国代表性；产出同质化、撞题概率大。")
+        d["urls"] = [{"label":"CNSDA 中国国家调查数据库（检索 PBICR）","url":"http://www.cnsda.org"},
+                     {"label":"PubMed 检索 PBICR 相关研究","url":"https://pubmed.ncbi.nlm.nih.gov/?term=PBICR"}]
+
+# 经典指标（主要/经典变量）——依据 PDF 明确记载整理，未记载者留空由页面提示查 codebook
+IND = {
+ "HRS 健康与退休研究":"健康与功能、认知、就业与退休、收入财富、家庭代际支持、医疗支出与保险；RAND HRS 纵向文件；生物标志物（干血斑/唾液，2006 起隔轮采集）",
+ "CHARLS 中国健康与养老追踪调查":"血肌酐、胱抑素C、尿素氮、尿酸、糖化血红蛋白、血脂、CRP、实测血压（可算 eGFR）；认知与抑郁量表、医疗服务利用与支出、养老保险",
+ "CLHLS 中国老年健康影响因素跟踪调查":"日常生活活动能力(ADL/IADL)、认知、心理健康、临终照护回顾问卷、死亡随访；超高龄与百岁老人过采样",
+ "CFPS 中国家庭追踪调查":"自评健康、慢病自报、医疗支出、医保类型、CES-D 心理量表；部分轮次身高体重血压；家庭/成人/少儿/社区四层匹配",
+ "CHNS 中国健康与营养调查":"连续 3 天 24 小时膳食回顾、家庭食物称重盘存、血压、身高体重腰围；2009 年空腹血多项生化",
+ "UK Biobank 英国生物样本库":"血液尿液生化约 30 余项（肌酐、胱抑素C、尿微量白蛋白、尿肌酐→可算 eGFR 与 UACR）、全基因组分型、WGS、Olink 蛋白组、Nightingale 代谢组、多模态影像、加速度计；NHS 住院/癌登/死亡链接",
+ "CKB 中国慢性病前瞻性研究":"基因分型约 10 万人，另含测序、代谢组、蛋白组子集；结局经疾病监测点、医保理赔、死因登记链接",
+ "开滦队列":"标准化血压、身高体重腰围、空腹血糖、血脂四项、血肌酐、尿酸、超敏CRP、肝肾功能、血常规、尿常规、心电图；亚组含颈动脉超声、baPWV/ABI、脑核磁、认知",
+ "同济东风队列":"职业暴露史（工种/粉尘/噪声/金属/化学品）、血压、人体测量、心电图、颈动脉超声、肺功能；空腹血与 DNA 及基因分型；医保与死因链接结局",
+ "PBICR 中国居民心理与行为调查":"PHQ-9、GAD-7、PSS 感知压力、UCLA 孤独、PSQI 睡眠、HPLP-II 健康促进生活方式、FHS-SF 家庭健康、健康素养与 eHEALS、EQ-5D、社会支持/社会资本/医患信任、就医行为",
+ "NHANES 美国国家健康与营养检查调查":"标准化血肌酐、部分周期胱抑素C、尿白蛋白肌酐比(UACR)、多次标准化血压测量、处方药文件中的降压药使用；国家死亡索引链接随访",
+ "香港医管局 CDARS":"住院诊断 ICD-9-CM、基层门诊 ICPC-2、处方与配药记录、实验室检验值（含肌酐序列）、影像与手术操作、急诊与住院、死亡链接",
+ "韩国 NHIS 国民健康保险":"法定定期国民健康体检（血压、空腹血糖、血肌酐、尿蛋白定性）+ 理赔与处方记录；NHIS-NSC 全国代表性抽样队列",
+ "MIMIC-IV 重症监护数据库":"hosp 模块（实验室、处方、ICD-9/10 诊断、微生物学）、icu 模块（生命体征、给药事件、出入量、评分）、MIMIC-IV-ED、MIMIC-IV-Note 临床文本、MIMIC-IV-ECG 波形、MIMIC-CXR 影像",
+ "BioLINCC 美国心肺血研究所数据仓库":"SPRINT/ALLHAT/AASK/ACCORD 等试验的血压、eGFR 序列、ESRD 与心血管结局；ARIC、MESA、CARDIA、Framingham、CHS、JHS 队列变量",
+ "NIDDK-CR 美国糖尿病消化肾病研究所中央数据仓库":"CRIC：eGFR 斜率、蛋白尿、终末期肾病、心血管结局与死亡；CKiD 儿童 CKD；DCCT/EDIC 1 型糖尿病",
+ "NIA AgingResearchBiobank 美国老龄研究样本库":"步速、肌少症、骨密度、炎症因子系列等精细老年表型",
+ "GEO 基因表达综合数据库":"芯片、RNA-seq、单细胞、甲基化、ChIP-seq 表达矩阵与临床表型（GSE/GSM/GPL 三级结构）",
+ "HCUP 美国医疗成本与利用项目":"诊断与操作编码、住院日、住院总费用、付费方、转归、医院特征（教学属性、床位规模、地区、所有制）；NRD 再入院数据库",
+ "MEPS 美国医疗支出面板调查":"家庭医疗服务使用、支出、支付来源、保险状态（与机构/雇主问卷交叉验证）",
+ "GBD / GHDx 全球疾病负担":"DALY、YLL、YLD，可按国家/省份/年龄/性别/年份查询",
+ "China-PAR 中国动脉粥样硬化性心血管病风险预测":"China-PAR 10 年及终生 ASCVD 风险模型变量（年龄、血压、血脂、吸烟、糖尿病等易获取指标）",
+ "C-STRIDE 中国慢性肾脏病队列":"eGFR、蛋白尿、CKD 进展终点（数千例 CKD 患者前瞻随访）",
+ "中国高血压调查 CHS":"高血压患病率、知晓率、治疗率、控制率",
+ "CK-NET 中国肾脏疾病网络":"全国医保与住院数据的肾脏疾病指标；年度报告可直接作为论文中国背景引用源",
+ "CNSR 中国国家卒中登记":"卒中登记信息、III 期含生物标志物与影像",
+ "CMEC 中国西南多民族队列":"民族（藏、彝、苗、白、侗等）、高原环境暴露、体检与生化指标",
+ "上海女性/男性健康研究 SWHS/SMHS":"膳食问卷、体格测量、肿瘤随访（女性 40-70 岁 / 男性 40-74 岁配对设计）",
+ "GDC / TCGA / cBioPortal 癌症多组学":"突变、基因表达、甲基化、拷贝数及配套临床信息",
+ "泰州队列":"完善生物样本库（血液/DNA 等）、肿瘤与代谢方向指标（具体变量清单以团队/官网说明为准）",
+ "ELSA 英格兰老龄化追踪调查":"与 HRS 高度对标的健康、认知、就业退休、收入财富变量，并含客观体检",
+ "SHARE 欧洲健康、老龄与退休调查":"欧洲多国统一编码的健康、认知、退休与经济状况变量",
+ "dbGaP 基因型与表型数据库":"受控访问的基因型与表型数据（需机构签署与 DAC 评审）",
+}
+
+# 代表性 / 里程碑文献（均建议以官网 Publications 页核对）
+PAPERS = {
+ "BioLINCC 美国心肺血研究所数据仓库":["SPRINT 强化降压试验（NEJM 2015，收缩压目标 120 vs 140，含完整肾脏结局与 eGFR 序列）","ALLHAT 四类降压药头对头试验（JAMA 2002，4 万余人，含终末期肾病结局）","AASK 非裔高血压性肾硬化试验（JAMA 2002）"],
+ "UK Biobank 英国生物样本库":["Sudlow C, et al. UK Biobank: An Open Access Resource for Identifying the Causes of Disease. PLoS Med. 2015（队列描述）","建议同步查阅官网 Publications 页按年份检索最新成果"],
+ "CHARLS 中国健康与养老追踪调查":["Zhao Y, et al. Cohort profile: the China Health and Retirement Longitudinal Study (CHARLS). Int J Epidemiol. 2014","建议以 CHARLS 官网与 PubMed 检索 “CHARLS” 核对最新论文"],
+ "CKB 中国慢性病前瞻性研究":["Chen Z, et al. China Kadoorie Biobank of 0.5 million people: survey methods, baseline characteristics and long-term follow-up. Int J Epidemiol. 2011","CKB 官网 Publications 页有完整成果列表"],
+ "MIMIC-IV 重症监护数据库":["Johnson A, et al. MIMIC-IV, a freely accessible electronic health record dataset. Sci Data. 2023","PhysioNet 官网提供完整的 MIMIC 相关文献列表"],
+ "开滦队列":["开滦研究团队在心血管与肾病方向的系列论文（建议 PubMed 检索 “Kailuan Study” 核对）","团队论文方法学部分含队列注册号"],
+ "NIDDK-CR 美国糖尿病消化肾病研究所中央数据仓库":["CRIC 研究（慢性肾功能不全队列）系列论文，为 CKD 进展预测模型的国际验证基准"],
+ "NHANES 美国国家健康与营养检查调查":["CDC/NCHS 官方《NHANES 分析指南与权重说明》为必读方法学文件","PubMed 检索 “NHANES” 可查海量已发表研究"],
+ "CLHLS 中国老年健康影响因素跟踪调查":["曾毅教授团队关于中国长寿、失能轨迹与临终照护的系列研究"],
+ "GEO 基因表达综合数据库":["以各 GSE 数据集对应的原始发表论文为准（每条 GSE 记录均附 PubMed 链接）"],
+}
+
+for d in D:
+    d["indicators"] = IND.get(d["name"], "")
+    d["papers"] = PAPERS.get(d["name"], [])
+    d["pubmed"] = "https://pubmed.ncbi.nlm.nih.gov/?term=" + \
+        (d["en"].replace(" ", "+") if d["en"] else d["name"])
+
+# 论文致谢 / 数据可用性声明模板（[XXXXX] 为批准/项目编号占位）
+ACK_SPECIAL = {
+ "UK Biobank 英国生物样本库":(
+   "This research has been conducted using the UK Biobank Resource under Application Number [XXXXX].",
+   "本研究使用英国生物样本库（UK Biobank）资源开展，批准申请编号为 [XXXXX]。"),
+ "MIMIC-IV 重症监护数据库":(
+   "This research used the MIMIC-IV database (version [X.X]), maintained by the MIT Laboratory for "
+   "Computational Physiology and hosted on PhysioNet, accessed under approved credentialed access "
+   "(certification number [XXXXX]).",
+   "本研究使用 MIMIC-IV 数据库（版本 [X.X]，由 MIT 实验计算生理学实验室维护、PhysioNet 托管），"
+   "经凭证化访问批准后使用（证书编号 [XXXXX]）。"),
+ "dbGaP 基因型与表型数据库":(
+   "Data used in this study were obtained from the database of Genotypes and Phenotypes (dbGaP) "
+   "under accession [phsXXXXXX], with approved project number [XXXXX].",
+   "本研究数据来源于 dbGaP（基因型与表型数据库），数据集编号 [phsXXXXXX]，批准项目编号 [XXXXX]。"),
+ "NHANES 美国国家健康与营养检查调查":(
+   "Data from the National Health and Nutrition Examination Survey (NHANES), US Centers for Disease "
+   "Control and Prevention / National Center for Health Statistics, were used in this study. "
+   "NCHS does not endorse or assume responsibility for the analyses or interpretations presented here.",
+   "本研究使用了美国疾控中心国家卫生统计中心（CDC/NCHS）的 NHANES 数据；NCHS 不对本研究的分析与解读背书或担责。"),
+ "CHARLS 中国健康与养老追踪调查":(
+   "This research uses data from the China Health and Retirement Longitudinal Study (CHARLS), "
+   "conducted by Peking University, under data use approval [XXXXX].",
+   "本研究使用了北京大学中国健康与养老追踪调查（CHARLS）数据，数据使用批准号 [XXXXX]。"),
+ "CKB 中国慢性病前瞻性研究":(
+   "This research used data from the China Kadoorie Biobank (CKB) under approved project / "
+   "collaboration number [XXXXX].",
+   "本研究使用了中国慢性病前瞻性研究（CKB）数据，批准项目/合作编号 [XXXXX]。"),
+ "GEO 基因表达综合数据库":(
+   "Publicly available datasets (GSE accession number [GSEXXXXX]) were obtained from the NCBI Gene "
+   "Expression Omnibus (GEO).",
+   "本研究数据来源于 NCBI GEO 公共数据集（GSE 编号 [GSEXXXXX]）。"),
+}
+for d in D:
+    sp = ACK_SPECIAL.get(d["name"])
+    if sp:
+        d["ackEn"], d["ackCn"] = sp[0], sp[1]
+    else:
+        en = d["en"] or d["name"]
+        d["ackEn"] = ("This research used data from %s. Data access was granted under approved "
+                      "application / project number [XXXXX] (or through a collaboration agreement "
+                      "with the data custodian)." % en)
+        d["ackCn"] = ("本研究使用了 %s 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]"
+                      "（或通过与数据持有方的合作协议获得）。" % d["name"])
+
+# ============ 内容加厚：申请步骤统一升级 + 重点库补充介绍/指标 ============
+GEN_USAGE = {
+ 1: "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+ 2: "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+ 3: "完成指定培训（如 CITI「Data or Specimens Only Research」）取得证书，签署数据使用协议（DUA/SDUA）后获取。审批通常数天至数周，免费；数据多在安全环境或授权账号内分析。",
+ 4: "提交研究计划/数据申请并签署协议，部分需付费、机构审批与数据保管方（custodian）批准，周期约 1-6 个月。按获批的变量字段范围提供数据；受控数据还需 DAC/伦理评审。",
+ 5: "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+}
+GEN_IND = {
+ "aging": "健康与功能、认知与心理、就业退休与收入、家庭与代际、医疗支出与保险（类别级概述，具体变量见官方 codebook）",
+ "social": "自评健康、慢病自报、医疗支出与医保、社会态度与家庭结构（类别级概述，具体变量见 codebook）",
+ "biobank": "基线问卷、体格测量、血液生化、基因组/多组学，以及与登记或医保链接的结局变量（详见官网 Showcase / codebook）",
+ "china_cohort": "体检与生化、生活方式与职业暴露、基因/生物样本，及医保或死因链接的结局（详见团队论文方法学与数据说明）",
+ "monitor": "问卷、体检、实验室指标与死亡链接（详见官方 codebook 与权重说明）",
+ "rwd": "诊断与操作编码、处方/配药、检验值、就诊与住院、死亡登记（详见数据字典）",
+ "oceania": "调查问卷、体检与生化、与 MBS/PBS/住院/癌症/死亡登记的链接变量（详见 Data Dictionary）",
+ "icu": "生命体征、实验室检验、用药与操作、严重度评分、住院与转归（详见数据字典）",
+ "trial": "试验/队列原始变量：暴露、结局、协变量与随访时间（详见各研究 codebook）",
+ "omics": "原始数据、表达/变异矩阵与元数据、临床表型注释（详见数据集说明）",
+ "cn_platform": "平台汇交的数据与指标、元数据描述（详见平台数据说明）",
+ "healthecon": "费用、服务利用、支付方、结局与宏观指标（详见数据字典 / 官方统计口径）",
+}
+# 重点库：更详实的介绍 / 申请方式 / 指标
+OVR = {
+ "ELSA 英格兰老龄化追踪调查": dict(
+   intro="英格兰 50 岁及以上人群的老龄化追踪研究，1998 年起多轮随访，设计上与美国 HRS 高度对标，因此可与 HRS/CHARLS/SHARE 做统一编码的跨国比较（推荐用 g2aging 调和数据集）。除问卷外含客观体检、护士访视与生物样本，是欧洲老龄研究中体检模块较完整的一个。",
+   usage=None, indicators="健康与功能、认知、心理健康、就业与退休、收入与财富、社会参与；客观体检（血压、人体测量、体成分、肺功能等）与生物样本"),
+ "SHARE 欧洲健康、老龄与退休调查": dict(
+   intro="覆盖欧洲 28 国的跨国老龄面板（2004 年起），样本量与国别覆盖在欧洲最大，是欧洲跨国比较的默认数据源。变量经统一编码（含健康、认知、经济、社会网络），并可与部分国家的行政登记链接；跨国比较建议直接用 Harmonized SHARE。",
+   indicators="健康与功能、认知、抑郁(CES-D/Euro-D)、就业退休、收入财富、社会网络与代际支持；部分国家含体检与生物样本"),
+ "LASI 印度纵向老龄化调查": dict(
+   intro="印度全国代表性老龄面板（2017-2019 基线，样本 7 万以上），是研究发展中大国老龄化、慢病与家庭照料的关键资源，可与 HRS 家族做统一编码比较。含认知、功能、健康行为与生物标志物子样本。",
+   indicators="健康与功能、认知、慢病自报、健康行为、家庭与经济状况；部分子样本含血压、人体测量与生物标志物"),
+ "CLASS 中国老年社会追踪调查": dict(
+   intro="中国人民大学中国调查与数据中心主办的 60 岁及以上老年社会调查（2014 年基线，约 1.1 万人，两年一轮）。相比 CHARLS 更聚焦老年社会照料、养老服务需求、社区养老资源与代际支持，服务利用变量粒度更细，最贴合卫生管理与养老服务体系研究。",
+   indicators="ADL/IADL、慢病自报、养老服务需求与利用、社区养老资源、代际支持、经济状况；客观体检指标有限"),
+ "CGSS 中国综合社会调查": dict(
+   intro="中国人民大学中国调查与数据中心主办的全国性综合社会调查（2003 年起），是中国最早的综合社会调查。健康模块不深，但价值观、社会公平感、阶层认同、医患信任等变量独一份，适合就医体验、健康公平感知与卫生政策社会基础研究。",
+   indicators="自评健康、就医行为与医患信任、社会公平感、阶层认同、社会保障参与；以自报为主"),
+ "All of Us 美国全民健康研究": dict(
+   intro="美国 NIH 的全民健康研究计划，目标招募百万人，强调少数族裔与 underrepresented 人群代表性。数据类型包括电子病历、问卷、可穿戴设备、体检与生物样本（基因组、代谢组）。研究者通过 Researcher Workbench 云端环境在受控层级下分析，无需下载原始数据。",
+   usage="注册研究者账号（需机构邮箱与身份核验）→ 完成研究用途声明与数据使用协议 → 在 Researcher Workbench 云端分析。分层数据（Public/Registered/Controlled）权限不同，Controlled 层需额外审批。免费。",
+   indicators="电子病历（诊断/用药/检验）、问卷（健康、生活方式、社会决定因素）、可穿戴（活动/心率）、基因组与代谢组、体检"),
+ "FinnGen 芬兰基因组计划": dict(
+   intro="芬兰国家級基因组计划，约 50 万人，将基因型与全国健康登记（住院、处方、死亡等）链接，形成高质量的表型-基因关联资源。GWAS 汇总统计在官网公开，可直接下载用于荟萃分析；个体级数据需向 FinnGen/THL 申请。",
+   usage="GWAS 汇总统计在官网公开下载；个体级数据需提交研究申请并经 FinnGen/THL 审批，部分需在芬兰安全环境分析。",
+   indicators="基因型/全基因组、全国登记表型（诊断、处方、住院、死亡）、GWAS 汇总统计（含 AF、beta、SE、P）"),
+ "BioBank Japan 日本生物样本库": dict(
+   intro="日本大型生物样本库（约 27 万人，涵盖 12 类疾病），是东亚人群 GWAS 与疾病遗传学的重要来源，与欧美队列联合可做跨族裔比较。以 DNA 与临床信息为主。",
+   usage="通过 BioBank Japan / 理化学研究所（RIKEN）提交研究申请，说明研究目的与所需数据，经审批后获取（多为合作或受控方式）。",
+   indicators="DNA/基因型、疾病诊断（12 类疾病）、临床基本信息；GWAS 汇总统计"),
+ "Million Veteran Program 百万退伍军人计划": dict(
+   intro="美国退伍军人事务部（VA）的百万级队列，以男性为主，整合基因组、电子病历与问卷，是研究男性健康、药物基因组学与创伤后应激等的重要资源。数据在 VA 受控环境中分析。",
+   usage="需通过 VA 研究审批（ORD）与数据使用协议，在 VA 安全环境内分析；一般需美方合作者。",
+   indicators="基因组、电子病历（诊断/用药/检验）、问卷（暴露、心理健康、生活方式）"),
+ "Estonian Biobank 爱沙尼亚生物样本库": dict(
+   intro="爱沙尼亚全国性生物样本库，约 20 万人（覆盖全国约 20% 成年人口），基因型与全国电子健康记录链接，是国家级精准医学与药物基因组学的代表性资源。",
+   usage="向爱沙尼亚塔尔图大学生物样本库提交研究申请，经伦理与数据审批后在受控环境分析；部分数据需合作。",
+   indicators="基因型/全基因组、电子健康记录（诊断、处方、检验）、问卷与体检"),
+ "KoGES 韩国基因组流行病学研究": dict(
+   intro="韩国国立保健研究院主导的基因组流行病学研究，含城市、农村、Ansan-Ansung 等多个子队列，合计 20 余万人，有基因组与长期随访。做慢病遗传与基因-环境交互用 KoGES；做社会经济与老龄化用 KLoSA；做卫生服务与药物流行病学用 NHIS。",
+   usage=None, indicators="基因型、体检与生化（血糖、血脂、血压、肝肾功能）、生活方式问卷、随访结局"),
+ "CMEC 中国西南多民族队列": dict(
+   intro="四川大学华西公共卫生学院牵头的大型多民族队列（云贵川渝藏，近 10 万人，2018 年前后起），覆盖藏、彝、苗、白、侗等民族，是研究民族健康差异与高原环境健康的唯一大型资源。",
+   indicators="民族与人口学、生活方式、体检与生化、高原环境暴露；生物样本"),
+ "泰州队列": dict(
+   intro="复旦大学在江苏泰州建立的区域人群队列，生物样本库较完善，主要面向肿瘤与代谢方向研究。具体基线年份与样本量以团队公开论文为准（本页标注十万量级，待核）。",
+   indicators="问卷与生活方式、体检与生化、生物样本；肿瘤与代谢相关指标（以团队数据说明为准）"),
+ "上海女性/男性健康研究 SWHS/SMHS": dict(
+   intro="上海市疾控与范德堡大学合作的上海女性健康研究（74,942 名 40-70 岁女性）与上海男性健康研究（61,480 名 40-74 岁男性），采用配对设计，随访极长，是膳食与肿瘤研究的经典东亚队列。",
+   indicators="膳食问卷（食物频率）、生活方式、生殖与激素因素、体格测量；肿瘤发病与死亡随访"),
+ "CNSR 中国国家卒中登记": dict(
+   intro="北京天坛医院王拥军团队牵头中国国家卒中登记（CNSR），I 期约 2.2 万、III 期约 1.5 万例，III 期含生物标志物与影像，是卒中方向国内最强、可用于预后与医疗质量评价的登记数据。",
+   indicators="卒中类型与严重度（NIHSS）、影像、生物标志物、治疗与转归（mRS）、院内结局"),
+ "C-STRIDE 中国慢性肾脏病队列": dict(
+   intro="北京大学第一医院牵头的中国慢性肾脏病（CKD）前瞻队列，纳入数千例 CKD 患者，密集随访 eGFR、蛋白尿与肾脏终点，是中国最重要的 CKD 进展研究资源。",
+   indicators="eGFR 与 eGFR 斜率、蛋白尿（UACR/24h）、血压、CKD 进展与 ESRD、心血管事件与死亡"),
+ "CK-NET 中国肾脏疾病网络": dict(
+   intro="北京大学第一医院牵头、基于全国医保与住院数据的肾脏疾病网络，发布年度《中国肾脏疾病年度科学报告》，是论文中国背景、疾病负担与医疗利用的权威引用源。",
+   indicators="CKD/ESRD 患病与治疗（透析、移植）、住院与费用、地区差异；年度报告指标"),
+ "中国高血压调查 CHS": dict(
+   intro="中国医学科学院阜外医院开展的大规模高血压流行病学调查，是中国高血压患病率、知晓率、治疗率、控制率的权威来源，常用于论文背景与政策论证。",
+   indicators="血压测量、患病率、知晓率、治疗率、控制率；地区与人群分层"),
+ "KNHANES 韩国国民健康营养调查": dict(
+   intro="韩国疾病管理厅（KDCA）的全国健康与营养调查，设计对标美国 NHANES，自 1998 年起每年开展约万人规模，含问卷、体检与实验室检查，可公开下载（韩文界面为主），适合与 NHANES 做跨国比较。",
+   indicators="血压、身高体重腰围、空腹血糖、血脂、肝肾功能、血常规；膳食与健康行为问卷"),
+ "BRFSS 行为危险因素监测系统": dict(
+   intro="美国 CDC 的年度电话健康调查，全球规模最大的行为危险因素监测，每年数十万人、具州级代表性，适合健康行为、慢病筛查与健康公平的州际比较。",
+   indicators="吸烟/饮酒、体力活动、饮食、体重、慢病自报、健康筛查利用、自评健康"),
+ "NHIS 美国国民健康访问调查": dict(
+   intro="美国 CDC/NCHS 的全国健康访谈调查，样本量大、无体检，与 NHANES 互补，适合医疗服务利用、保险覆盖与健康可及性研究。",
+   indicators="自报健康状况与慢病、医疗服务利用、保险类型与覆盖、就医障碍、健康行为"),
+ "中国慢性病及危险因素监测": dict(
+   intro="中国疾控中心慢病中心主办的全国慢性病与危险因素监测，是中国代表性最好的慢病监测数据，含吸烟、饮酒、膳食、体力活动、血压血糖等，但不公开下载，需合作获取。",
+   usage=None, indicators="吸烟/饮酒/膳食/体力活动、血压、血糖、血脂、身高体重腰围、慢病患病自报"),
+ "韩国 HIRA 健康保险审查评价院": dict(
+   intro="韩国健康保险审查评价院（HIRA）掌握全国理赔审核数据，处方级粒度，与 NHIS 互补，适合药物流行病学、用药模式与医疗利用研究。需本地合作，在指定分析中心操作。",
+   indicators="诊断编码、处方与配药（药品名/剂量/天数）、门诊与住院、医疗费用"),
+ "CPRD 英国基层医疗数据库": dict(
+   intro="英国临床实践研究数据链（CPRD），含 GOLD 与 Aurum 两个库，累计逾 6000 万患者，可链接 HES 住院、ONS 死亡与癌症登记，是药物流行病学的国际金标准。",
+   indicators="基层就诊与诊断（Read code）、处方、检验值、转诊；链接住院(HES)、死亡(ONS)、癌症登记"),
+ "OpenSAFELY 英国全民健康记录分析平台": dict(
+   intro="OpenSAFELY 是英国 NHS 的可信分析平台，研究者的分析代码在安全环境中运行、全流程开源，透明度是行业标杆，适合大规模观察性研究与快速政策评估。",
+   usage="提交分析代码与研究申请，经审批后在 OpenSAFELY 安全环境运行；代码与结果可复现、公开。",
+   indicators="NHS 电子病历（诊断、处方、检验、就诊）、死亡登记；通过可复现代码提取"),
+ "QResearch 英国基层医疗数据库": dict(
+   intro="QResearch 是英国大型基层医疗数据库（牛津托管），是 QRISK 系列心血管风险模型的数据来源，适合风险预测模型的开发与外部验证。",
+   indicators="基层诊断与处方、检验（血压、血脂、血糖、肌酐）、BMI、吸烟；结局与死亡链接"),
+ "北欧登记体系": dict(
+   intro="丹麦、瑞典、挪威、芬兰的全民登记体系，用唯一个人编号贯穿出生到死亡，随访完整度全球第一，是因果推断与药物安全的天然实验场。通常需本地 PI 与合作。",
+   indicators="诊断（ICD）、处方、住院、死亡、出生与移民；可与生物样本库和队列链接"),
+ "台湾 NHIRD 全民健康保险研究数据库": dict(
+   intro="台湾全民健康保险研究数据库（NHIRD），覆盖全民、1995 年起，现由卫生福利部资料科学中心管理。曾在真实世界研究中产出极多，近年需现场分析、门槛提高。",
+   indicators="诊断（ICD-9/10）、处方与用药、住院与门诊、手术操作、费用"),
+ "日本 NDB / JMDC": dict(
+   intro="日本 NDB 为全国医保理赔数据（覆盖广、粒度细），JMDC 为商业保险理赔数据并含体检信息。两者互补，适合药物流行病学与卫生服务研究，需日方合作。",
+   indicators="诊断、处方、诊疗行为、住院；JMDC 另含体检（血压、血糖、血脂、BMI）"),
+ "TriNetX 全球联邦式研究网络": dict(
+   intro="TriNetX 是连接数百家医疗机构的联邦式研究网络，可在几分钟内产出队列计数与倾向性评分匹配结果，适合快速筛选研究问题与可行性评估。局限是看不到原始病历，数据质量取决于各机构映射。",
+   usage="机构订阅制：由所属机构开通账号后，在平台内在线查询与做倾向性评分匹配；不提供原始病历下载。",
+   indicators="诊断、用药、检验、手术、就诊；以标准化术语映射后的计数与分布为主"),
+ "MarketScan / Optum / IQVIA 美国商保数据": dict(
+   intro="美国商业保险理赔数据（MarketScan、Optum、IQVIA 等），规模千万至亿级，是真实世界证据（RWE）、药物利用与卫生经济评价的常用商业数据源，价格昂贵，药企与咨询公司常用。",
+   usage="商业授权：按项目或年度订阅购买，签署数据使用协议后在指定环境分析，费用较高。",
+   indicators="诊断与操作编码、处方与配药、住院与门诊、费用与支付方；部分含实验室结果"),
+ "CMS Medicare/Medicaid (ResDAC)": dict(
+   intro="美国 CMS 的 Medicare（老年/残障）与 Medicaid（低收入）全国医保数据，经 ResDAC 申请并付费获取；与 SEER 链接后即为 SEER-Medicare，是老年肿瘤与卫生服务研究的权威数据源。",
+   usage="经 ResDAC 提交申请、签署数据使用协议并付费，审批数周；数据在受控环境使用。",
+   indicators="诊断与操作（ICD）、处方(Part D)、住院与门诊、费用与支付、机构特征；链接 SEER 可得肿瘤分期与治疗"),
+ "eICU-CRD 重症数据库": dict(
+   intro="美国多中心重症监护数据库（200 余家医院），弥补 MIMIC 单中心缺陷。做多中心外部验证时，MIMIC-IV 训练 + eICU 外部验证是目前审稿接受度最高的搭配。",
+   indicators="生命体征、实验室、用药与输液、APACHE IV 评分、诊断与转归；多中心异质性可用于外部验证"),
+ "AmsterdamUMCdb 重症数据库": dict(
+   intro="欧洲首个大型开放 ICU 数据库（荷兰阿姆斯特丹大学医学中心），可作欧洲人群的外部验证集，弥补 MIMIC/eICU 以美国人群为主的局限。",
+   indicators="生命体征、实验室、用药、通气与评分；欧洲人群表型"),
+ "HiRID 高分辨率重症数据库": dict(
+   intro="瑞士伯尔尼的高时间分辨率 ICU 数据库（部分变量可达 2 分钟级），适合生理信号处理、早期预警模型与高分辨率时序分析。",
+   indicators="高频生命体征与血流动力学、实验室、用药；2 分钟级时间序列"),
+ "SICdb 萨尔茨堡重症数据库": dict(
+   intro="奥地利萨尔茨堡较新的开放 ICU 数据集，可作为额外的欧洲外部验证集，补充 MIMIC/eICU/AmsterdamUMCdb 的人群与机构多样性。",
+   indicators="生命体征、实验室、用药、评分与转归"),
+ "INSPIRE 韩国围手术期数据库": dict(
+   intro="韩国围手术期重症数据库，以亚洲人群为主，适合围手术期结局、术后并发症与预测模型研究，是亚洲 ICU 外部验证的补充资源。",
+   indicators="围手术期生命体征、麻醉与用药、实验室、术后并发症与转归"),
+ "PIC 浙江大学附属儿童医院重症数据库": dict(
+   intro="浙江大学医学院附属儿童医院的儿科重症数据库，是中国唯一同类开放库，适合儿童重症预测模型、儿科 AKI/ARDS 等研究及外部验证。",
+   indicators="儿童生命体征、实验室、用药与通气、评分、转归；儿科特异表型"),
+ "Vivli / YODA / CSDR 临床试验个体数据共享平台": dict(
+   intro="临床试验个体水平数据（IPD）共享平台：Vivli 汇集多方试验（做 IPD meta 分析首选）、YODA 由耶鲁托管强生等企业试验、CSDR 汇集 GSK 等药企数据（参与企业近年有变动）。适合个体数据荟萃、亚组与异质性分析。",
+   indicators="试验个体数据：随机分组、暴露与剂量、主要/次要结局、协变量、随访时间"),
+ "dryad": dict(),
+ "SRA 序列读取归档": dict(
+   intro="NCBI 的 Sequence Read Archive（SRA），归档高通量测序原始数据（fastq），常与 GEO/GDC 配合使用；可公开下载并重新比对分析。",
+   indicators="测序原始 reads、样本元数据、平台与文库信息"),
+ "ArrayExpress / BioStudies": dict(
+   intro="EMBL-EBI 的功能基因组数据仓储（ArrayExpress 及后续 BioStudies），是欧洲版的功能基因组资源，与 NCBI GEO 互为补充。",
+   indicators="表达矩阵、样本与平台注释、实验设计元数据"),
+ "Zenodo / figshare / Mendeley Data": dict(
+   intro="通用数据与代码仓储：Zenodo（CERN）、figshare、Mendeley Data（Elsevier 系期刊常用），论文附带的代码、数据集与补充材料常存放于此，可直接下载复用。",
+   indicators="论文配套数据集、分析代码、补充材料与元数据"),
+ "ICPSR / IPUMS 调查与微观数据仓储": dict(
+   intro="ICPSR 是密歇根大学的社会科学数据总仓库，很多老龄与社会调查在此二次分发；IPUMS 提供全球普查与调查微观数据的调和版本（含 IPUMS Health Surveys），便于跨国与跨年比较。",
+   indicators="调查微观数据（人口、健康、经济、家庭）、普查样本；IPUMS 提供统一编码的调和变量"),
+ "国家自然科学基金基础研究知识库": dict(
+   intro="国家自然科学基金资助论文的全文知识库（非数据集），作者按规定存缴。可用于免费获取部分付费墙后的中英文全文，也能反向检索某学者、某基金号的全部产出，写标书、判断方向资助密度很好用。",
+   usage="公开访问：在官网按作者、机构、基金号或关键词检索，直接下载可获取的全文。",
+   indicators="论文全文与元数据（作者、机构、基金号、期刊、年份）"),
+ "NGDC 国家基因组科学数据中心": dict(
+   intro="国家基因组科学数据中心（CNCB-NGDC），下设 GSA（测序数据归档，中国版 SRA）与 OMIX（组学数据），以及 Aging Atlas 等专题资源。建议先在 Database Commons 检索该体系下的资源，再定向进入具体平台。",
+   indicators="测序原始数据、组学矩阵、样本与实验元数据；专题资源（如衰老多组学）"),
+ "ScienceDB 科学数据银行": dict(
+   intro="中国科学院主办的通用数据仓储（中国版 Dryad），支持论文数据存缴与共享，可公开检索与下载，适合获取已发表研究配套的数据与代码。",
+   indicators="论文配套数据集、代码与元数据"),
+ "NMDC 国家微生物科学数据中心": dict(
+   intro="国家微生物科学数据中心，汇聚微生物与微生物组学数据，是微生物组、病原与感染研究的国家级资源。",
+   indicators="微生物基因组、微生物组测序、样本元数据"),
+ "国家/卫生健康统计年鉴": dict(
+   intro="国家统计局与国家卫健委发布的年度统计年鉴，提供卫生资源、服务量、费用等宏观指标，常用于论文背景、生态学分析与政策论证。",
+   usage="官方出版物/官网公开：直接查阅或下载年鉴表格；按年度与地区口径引用。",
+   indicators="卫生机构与床位、卫生人员、诊疗人次、住院与费用、卫生总费用、期望寿命等宏观指标"),
+ "MEPS 美国医疗支出面板调查": dict(
+   intro="美国医疗支出面板调查（MEPS），两年期面板设计、免费公开，记录家庭医疗服务使用、支出、支付来源与保险状态，并与医疗机构与雇主问卷交叉验证。适合灾难性卫生支出、自付比例与保险效应研究。",
+   indicators="医疗服务使用、总支出与自付、支付来源、保险状态、健康与功能、收入"),
+ "GBD / GHDx 全球疾病负担": dict(
+   intro="全球疾病负担研究（GBD，IHME），提供按国家、省份、年龄、性别、年份的 DALY、YLL、YLD 等指标，是论文背景与政策论证的必备引用源。",
+   usage="完全公开：在 GHDx 网站按指标/地区/年份查询并下载结果表。",
+   indicators="DALY、YLL、YLD、患病率、发病率、死亡率、危险因素归因负担"),
+ "WHO 全球卫生观察站 / 卫生支出 / OECD / 世界银行": dict(
+   intro="全球宏观卫生指标集合：WHO 全球卫生观察站（GHO）官方指标库、WHO 全球卫生支出数据库（各国卫生总费用构成）、OECD Health Statistics（发达国家卫生系统比较）、世界银行开放数据（宏观社会经济与卫生）、CDC WONDER（美国死亡与出生）。适合卫生系统与筹资的跨国比较。",
+   usage="完全公开：在各自官网按指标查询/下载；注意各平台口径与年份差异。",
+   indicators="卫生总费用与构成、期望寿命、死亡率、疾病负担、卫生资源、社会经济指标"),
+ "45 and Up Study 澳大利亚 45 岁以上人群队列": dict(
+   intro="澳大利亚规模最大的健康与老龄化持续研究（Sax Institute 管理），2005-2009 年在新南威尔士州招募逾 26.7 万名 45 岁及以上人群，应答率约 19%。参与者均同意将调查数据与 MBS（医保诊疗）、PBS（药品）、住院、癌症登记等行政数据链接；含生物样本与地理空间数据，并可开发子研究。数据经 SURE 安全环境访问。",
+   indicators="问卷（健康行为、慢病、心理困扰、生命质量、家庭与照护）；链接 MBS/PBS/住院/癌症/死亡登记；体格与生物样本；地理空间"),
+ "CUPL 慢性疾病伞式数据链接项目": dict(
+   intro="CUPL 让研究者用一次审批同时获得 45 and Up 调查数据与 10 类行政健康数据（MBS、PBS、NSW 住院、出生死亡婚姻登记、死因、急诊、癌症登记、精神健康、传染病报告含 COVID），相比逐个保管方申请可将等待时间缩短至多 80%（一年以上→约 2-3 个月）。数据经 SURE 安全环境提供。",
+   indicators="调查变量 + MBS 诊疗、PBS 药品、住院(APDC)、急诊(EDDC)、癌症登记(CCR)、死亡登记、精神健康(CHAMB)、传染病(NCIMS)"),
+ "PLIDA 澳大利亚个人级整合数据资产（ABS DataLab）": dict(
+   intro="澳大利亚统计局（ABS）的个人级整合数据资产（前身 MADIP），用 Person Linkage Spine 链接健康、教育、政府支付、收入与税收、就业与人口普查等数据，覆盖全国人口、跨年份纵向。获批研究者通过 PLIDA Modular Product 在 ABS DataLab 内按需逐模块申请并分析，数据不可带出。",
+   indicators="健康模块、MBS 模块、收入与税收、教育、家庭与住户、残障、移民、社会支持、人口普查"),
+ "MBS / PBS 澳大利亚医保诊疗与药品报销数据": dict(
+   intro="MBS（Medicare Benefits Schedule）记录医保诊疗服务项目，PBS（Pharmaceutical Benefits Scheme，含 RPBS 退役军人药品）记录药品报销，均为处方/服务级粒度，是澳洲卫生服务利用与药物流行病学的核心。一般不直接开放下载，须经 PLIDA（ABS DataLab）或 CUPL（SURE）等受控链接途径在安全环境内使用。",
+   indicators="MBS：服务项目、就诊日期、提供者类型、费用与报销；PBS：药品、剂量、数量、日期、费用；可链接住院/癌症/死亡"),
+ "AIHW 澳大利亚健康与福利研究院": dict(
+   intro="澳大利亚健康与福利研究院（AIHW）是官方卫生统计权威机构，发布疾病负担、医院服务、癌症、心理健康、老龄化、原住民健康与卫生支出等报告与数据集，多数可在官网免费查看/下载，适合背景论证、国际比较与生态学分析；个体级数据需另行申请。",
+   indicators="疾病负担、住院与服务量、癌症发病率与生存、心理健康、老龄化、卫生支出、原住民健康等汇总指标"),
+ "HILDA 澳大利亚家庭收入与劳动力动态调查": dict(
+   intro="墨尔本大学墨尔本研究院的全国住户面板（2001 年起），年度随访收入、就业、家庭结构、健康与福祉、生活满意度，是澳洲版的社会经济面板，适合健康的社会决定因素、卫生服务公平与政策评估。",
+   indicators="收入与财富、就业与工时、家庭结构与照料、健康与自评健康、心理健康(SF-36/MCS)、生活满意度"),
+ "ALSWH 澳大利亚女性健康纵向研究": dict(
+   intro="澳大利亚女性健康纵向研究（ALSWH），按出生年份分为青年、中年、老年多个队列，1996 年起长期随访健康、生活方式、医疗服务利用、心理健康与生命质量，可申请链接 MBS/PBS/住院等行政数据。",
+   indicators="健康与慢病、生殖与激素、生活方式、心理健康、医疗服务利用、生命质量；可链接行政数据"),
+ "Ten to Men 澳大利亚男性健康纵向研究": dict(
+   intro="澳大利亚男性健康纵向研究（Ten to Men），覆盖 10 岁及以上男性，随访健康行为、心理健康、伤害、医疗服务利用与社会决定因素，弥补男性健康证据缺口。",
+   indicators="健康行为、心理健康、伤害与暴力、医疗服务利用、社会决定因素、就业与教育"),
+}
+for nm, fields in OVR.items():
+    if not fields: continue
+    for d in D:
+        if d["name"] == nm:
+            for k, v in fields.items():
+                if v: d[k] = v
+            break
+
+# 少数库的申请流程补成分步骤
+USAGE_FIX = {
+ "UK Biobank 英国生物样本库": "四步：① 在 Showcase 免账号浏览全部变量与分布；② 注册 AMS，提交约 2000 字研究计划（含机构 PI 与合作者信息）；③ 审批通过后按获批字段范围付费并签署数据使用协议；④ 在 UKB-RAP（基于 DNAnexus 的云平台）分析，另计算力与存储费用，结果需回传。周期约 1-6 个月。",
+ "CKB 中国慢性病前瞻性研究": "分层开放：① 先在 Open Access 层获取汇总数据与部分个体数据（较快）；② 深度数据需在线提交研究申请、说明科学问题与所需变量；③ 经 CKB 科学委员会与伦理审批，通常需与 CKB 团队合作并共同署名；④ 获批后在受控环境分析。周期 1-6 个月。",
+ "MCPS 墨西哥城前瞻性研究": "研究申请入口以牛津大学临床试验服务部（CTSU）官方发布为准（本条入口待核）：一般需提交研究方案、经数据持有方与伦理审批，并与团队合作；具体流程与费用请以官网/CTSU 说明为准。",
+ "KoGES 韩国基因组流行病学研究": "向韩国国立保健研究院（KDCA）提交研究申请，说明研究目的与所需子队列/变量，经审批后获取；英文入口与具体流程以官网为准（本条待核），通常需韩方合作。",
+ "同济东风队列": "校内与机构间合作制：① 联系华中科技大学同济医学院公共卫生学院相关团队；② 提交研究方案与所需变量；③ 签署合作协议并办理伦理审批；④ 在合作框架内分析，通常涉及共同署名。本院系引荐通常只需几次沟通。",
+ "PBICR 中国居民心理与行为调查": "通过项目组申请：① 取得项目组联系方式（见近期 PBICR 论文的数据可用性声明/致谢）；② 提交研究方案与所需量表/变量；③ 经审核后按合作署名模式获取数据。具体流程与周期以项目组说明为准（待核）。",
+ "泰州队列": "合作制：① 联系复旦大学公共卫生学院相关团队；② 提交研究方案与变量需求；③ 经伦理与团队审批后，在合作框架内使用生物样本与数据，通常涉及共同署名。具体流程以团队说明为准。",
+ "中国高血压调查 CHS": "以官方报告与团队合作为主：① 引用已发布的患病率/知晓率/治疗率/控制率报告；② 需要个体级数据时联系阜外医院团队，提交研究方案并走合作与伦理流程。",
+}
+for d in D:
+    if d["name"] in USAGE_FIX:
+        d["usage"] = USAGE_FIX[d["name"]]
+
+# 统一升级过短申请方式；补齐缺失指标（类别级概述）
+for d in D:
+    u = (d.get("usage") or "").strip()
+    if len(u) < 18:
+        d["usage"] = GEN_USAGE[d["access"]]
+    if not (d.get("indicators") or "").strip():
+        d["indicators"] = GEN_IND.get(d["cat"], "详见官网 codebook / Data Dictionary。")
+
+# ---------------------------------------------------------------------------
+# 渲染
+# ---------------------------------------------------------------------------
+DB_JSON = json.dumps(D, ensure_ascii=False)
+
+CAT_OPTIONS = "".join(f'<option value="{k}">{v}</option>' for k,v in CATS)
+
+# 查询器选项
+REGION_OPTS = ["中国","美国","欧洲","英国","韩国","日本","港台","墨西哥","印度","北欧","多国/国际"]
+DATATYPE_OPTS = ["问卷/自报","客观体检/生化","基因/多组学","电子病历/医保","影像","死亡登记/随访","文本/NLP"]
+DESIGN_OPTS = ["前瞻性队列","回顾性/横断面","RCT 数据二次利用","真实世界观察性","预测模型","IPD 荟萃","重复横断面"]
+TOPIC_OPTS = ["老龄与认知","心血管与肾脏","肿瘤","营养与代谢","职业与环境","精神心理/行为","卫生经济与卫生服务","重症/ICU","妇幼与儿童","遗传/组学","罕见病","卫生政策/公平"]
+
+REGION_CHIPS = "".join(f'<button type="button" class="chip" data-group="region" data-val="{x}">{x}</button>' for x in REGION_OPTS)
+DATATYPE_CHIPS = "".join(f'<button type="button" class="chip" data-group="datatype" data-val="{x}">{x}</button>' for x in DATATYPE_OPTS)
+DESIGN_CHIPS = "".join(f'<button type="button" class="chip" data-group="design" data-val="{x}">{x}</button>' for x in DESIGN_OPTS)
+TOPIC_CHIPS = "".join(f'<button type="button" class="chip" data-group="topic" data-val="{x}">{x}</button>' for x in TOPIC_OPTS)
+
+# 开放度图例
+LEGEND = "".join(
+    f'<div class="legend-item"><span class="stars s{a}">{"★"*a}</span> {ACCESS[a]}</div>'
+    for a in sorted(ACCESS))
+
+# 总览速查表
+def overview_tables():
+    out = []
+    for key, title in QR.items():
+        rows = [d for d in D if d.get("qr") == key]
+        if not rows:
+            continue
+        body = ""
+        for d in rows:
+            stars = "★"*d["access"]
+            body += (f'<tr class="ov-row" data-nm="{d["name"]}" style="cursor:pointer">'
+                     f'<td><b>{d["name"]}</b><br><span class="en">{d["en"]}</span></td>'
+                     f'<td>{d.get("region","")}</td><td>{d.get("scale","")}</td>'
+                     f'<td>{d.get("timeSpan","")}</td>'
+                     f'<td class="stars s{d["access"]}">{stars}</td></tr>')
+        out.append(
+            f'<h3 class="ov-title">{title}</h3>'
+            f'<div class="table-wrap"><table class="ov-table"><thead><tr>'
+            f'<th>数据库</th><th>地区</th><th>规模（约）</th><th>时间跨度</th><th>开放度</th>'
+            f'</tr></thead><tbody>{body}</tbody></table></div>')
+    return "\n".join(out)
+
+OVERVIEW = overview_tables()
+
+# 分类锚点导航
+CAT_NAV = "".join(f'<a href="#cat-{k}" class="cat-link">{i+1}. {v}</a>' for i,(k,v) in enumerate(CATS))
+
+# 实战阶梯（第 13 章）
+LADDER = [
+    ("★ 零门槛，当天开工","NHANES、MEPS、BRFSS、GEO、Dryad、GBD、CDC WONDER、IPUMS、cBioPortal、NSFC 知识库、UK Biobank Showcase 浏览","几分钟","免费"),
+    ("★★ 注册即下","CHARLS、CFPS、CLHLS、HRS、MHAS、CHNS、CNSDA 系列（CGSS、CLASS）","1-3 天","免费"),
+    ("★★★ 培训或签署协议","MIMIC-IV、SEER、eICU、BioLINCC（SPRINT/ALLHAT/AASK）、NIDDK-CR（CRIC）、NIA AgingResearchBiobank、Vivli","2-6 周","免费"),
+    ("★★★☆ 需购买","HCUP NIS 与 NRD、CMS 经 ResDAC 申请","数周","数百至数千美元"),
+    ("★★★★ 正式申请并付费","UK Biobank、CPRD、CKB 深度层、SEER-Medicare、dbGaP","1-6 个月","较高"),
+    ("★★★★★ 必须本地合作","开滦、东风、China PEACE、CMEC、韩国 NHIS、香港 CDARS、北欧登记、Taiwan NHIRD、中国慢性病及危险因素监测","半年起","通常涉及共同署名"),
+]
+
+LADDER_ROWS = ""
+for i,(lvl,ex,per,cost) in enumerate(LADDER):
+    LADDER_ROWS += (f'<tr><td class="stars s{6-i}">{lvl}</td><td>{ex}</td>'
+                    f'<td>{per}</td><td>{cost}</td></tr>')
+
+HTML = r"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>医学与健康研究公共数据库汇总 · 检索与导航</title>
+<style>
+:root{
+  --bg:#f2f7fd; --card:#ffffff; --ink:#12263f; --muted:#5a6b82;
+  --line:#dbe6f4; --primary:#2563eb; --primary-d:#1746b8; --accent:#06b6d4;
+  --s1:#10b981; --s2:#06b6d4; --s3:#3b82f6; --s4:#8b5cf6; --s5:#f43f5e;
+  --shadow:0 2px 6px rgba(20,60,120,.08),0 10px 26px rgba(20,60,120,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+a{color:var(--primary);text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+header.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-inner{display:flex;align-items:center;gap:14px;padding:10px 18px;max-width:1180px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;color:var(--primary-d);white-space:nowrap}
+.logo{width:34px;height:34px;flex:none;border-radius:9px;box-shadow:0 2px 8px rgba(37,99,235,.28)}
+.logo-lg{width:74px;height:74px;flex:none;border-radius:18px;box-shadow:0 6px 20px rgba(6,182,212,.35)}
+.brand small{display:block;font-weight:500;font-size:11.5px;color:var(--muted)}
+.top nav{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.top nav a{font-size:13.5px;color:var(--muted);padding:5px 9px;border-radius:7px}
+.top nav a:hover{background:#e8f0fb;color:var(--primary-d)}
+.search-box{border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:13.5px;min-width:200px;flex:0 1 260px}
+/* Hero：科技感深蓝渐变 */
+.hero{padding:40px 0 30px;background:linear-gradient(135deg,#0a2342,#134a8f 55%,#0e7490);color:#eaf4ff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-80px;top:-70px;width:340px;height:340px;
+  background:radial-gradient(circle,rgba(6,182,212,.30),transparent 65%);pointer-events:none}
+.hero-inner{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.hero h1{margin:0 0 6px;font-size:36px;font-weight:800;letter-spacing:.5px;color:#fff}
+.hero p{margin:5px 0;color:#c7dcf5;max-width:860px;font-size:16px}
+.badge-src{display:inline-block;background:rgba(255,255,255,.14);color:#d7ecff;font-size:13px;
+  padding:4px 12px;border-radius:20px;margin-bottom:12px;border:1px solid rgba(255,255,255,.22)}
+.creator{display:inline-block;margin-top:10px;background:rgba(6,182,212,.18);
+  border:1px solid rgba(6,182,212,.45);color:#cfeea;font-size:14px;padding:6px 14px;border-radius:22px}
+.creator{color:#d6f4fb}
+.creator a{color:#fff;font-weight:700}
+.creator a:hover{text-decoration:underline}
+.beta-tag{display:inline-block;background:linear-gradient(90deg,#f59e0b,#f43f5e);color:#fff;font-size:12px;
+  font-weight:800;padding:3px 10px;border-radius:6px;margin-left:8px;letter-spacing:.5px;vertical-align:middle}
+section{padding:28px 0}
+h2.sec{font-size:23px;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+h2.sec .num{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;width:30px;height:30px;border-radius:9px;
+  display:inline-flex;align-items:center;justify-content:center;font-size:15px;flex:none}
+.sec-sub{color:var(--muted);font-size:14.5px;margin:0 0 18px}
+/* 注册门（内测版） */
+#gate{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:linear-gradient(135deg,#08213c,#123f78);overflow:auto}
+#gate .gate-card{background:#fff;border-radius:18px;padding:26px 28px;max-width:420px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+#gate h3{margin:0 0 4px;font-size:21px;color:var(--primary-d)}
+#gate .sub{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.field input{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:14.5px;font-family:inherit}
+.field input:focus{outline:2px solid #c7dbfb;border-color:var(--primary)}
+.code-row{display:flex;gap:8px}
+.code-row input{flex:1}
+.code-btn{border:none;border-radius:10px;background:var(--primary);color:#fff;font-weight:700;font-size:13px;
+  padding:0 14px;cursor:pointer;white-space:nowrap}
+.code-btn:disabled{background:#9fb4d4;cursor:not-allowed}
+.gate-msg{font-size:13px;margin-top:8px;min-height:18px}
+.gate-msg.ok{color:#0f9d58}.gate-msg.err{color:#e11d48}
+.gate-tip{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+/* 详情弹窗 */
+#modal{position:fixed;inset:0;z-index:150;display:none;align-items:flex-start;justify-content:center;padding:26px 16px;
+  background:rgba(8,25,45,.6);overflow:auto}
+#modal .modal-card{background:#fff;border-radius:18px;max-width:760px;width:100%;padding:24px 26px;
+  box-shadow:0 20px 50px rgba(0,0,0,.3);margin:auto}
+#modal h3{margin:0 0 2px;font-size:22px;color:var(--primary-d)}
+#modal .m-en{color:var(--muted);font-size:13.5px;margin-bottom:10px}
+#modal .m-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0}
+#modal .m-cell{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:13.5px}
+#modal .m-cell b{display:block;font-size:11.5px;color:var(--muted);font-weight:700;margin-bottom:2px}
+#modal h5{margin:16px 0 6px;font-size:16px;color:var(--primary-d)}
+#modal p,#modal li{font-size:14.5px;line-height:1.7}
+#modal ul{margin:6px 0;padding-left:20px}
+.m-close{position:sticky;float:right;top:0;background:#eef4fd;border:1px solid var(--line);border-radius:9px;
+  padding:5px 12px;font-size:13px;cursor:pointer;font-weight:700;color:var(--primary-d)}
+/* 引用信息 */
+.cite-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+.cite-pre{background:#0e2748;color:#d7ecff;border-radius:10px;padding:12px 14px;font-size:13px;white-space:pre-wrap;
+  line-height:1.7;overflow-x:auto;margin:8px 0}
+.cite-pre .k{color:#7fd1ff;font-weight:700}
+.copy-btn{border:none;border-radius:8px;background:var(--primary);color:#fff;font-size:12.5px;font-weight:700;
+  padding:5px 12px;cursor:pointer;margin-bottom:6px}
+/* 经典指标 */
+.ind{background:#eff6ff;border:1px solid #cfe0fb;border-radius:10px;padding:8px 11px;font-size:13.5px;margin:8px 0}
+.ind b{color:var(--primary-d)}
+.detail-btn{border:none;border-radius:8px;background:#eef4fd;color:var(--primary-d);font-size:12.5px;font-weight:700;
+  padding:6px 12px;cursor:pointer;border:1px solid var(--line)}
+
+/* 查询器（科技感墨蓝） */
+#query{background:linear-gradient(135deg,#08213c,#123f78 60%,#0e7490);color:#e6f0fb}
+#query h2.sec{color:#fff}
+#query h2.sec .num{background:linear-gradient(135deg,#06b6d4,#2563eb);color:#fff}
+#query .sec-sub{color:#a8c6e6}
+.q-card{background:rgba(255,255,255,.07);border:1px solid rgba(120,180,240,.28);border-radius:18px;padding:20px;margin-top:14px}
+.q-row{margin-bottom:16px}
+.q-label{font-size:14px;color:#9fd4ec;margin-bottom:7px;font-weight:700;letter-spacing:.3px}
+.chip-row{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:rgba(255,255,255,.10);border:1px solid rgba(120,180,240,.35);color:#d7ecff;border-radius:18px;
+  padding:5px 12px;font-size:13.5px;cursor:pointer;transition:.15s}
+.chip:hover{background:rgba(255,255,255,.20)}
+.chip.on{background:linear-gradient(135deg,#06b6d4,#2563eb);border-color:#06b6d4;color:#fff;font-weight:700}
+textarea.q-text{width:100%;min-height:78px;border-radius:12px;border:1px solid rgba(120,180,240,.35);
+  background:rgba(6,25,48,.55);color:#eaf4ff;padding:11px;font-size:15px;font-family:inherit;resize:vertical}
+.q-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.btn{border:none;border-radius:12px;padding:10px 22px;font-size:14.5px;font-weight:700;cursor:pointer}
+.btn-primary{background:linear-gradient(135deg,#06b6d4,#2563eb);color:#fff}
+.btn-primary:hover{filter:brightness(1.12)}
+.btn-ghost{background:transparent;border:1px solid rgba(120,180,240,.45);color:#d7ecff}
+.hint{font-size:12.5px;color:#9dbada}
+#qResult{margin-top:18px}
+.q-empty{color:#d7ecff;font-size:14.5px;padding:14px;background:rgba(255,255,255,.08);
+  border:1px dashed rgba(120,180,240,.35);border-radius:12px}
+.rec{border-left:5px solid #06b6d4;background:#fff;border-radius:14px;padding:15px 17px;margin-bottom:13px;box-shadow:var(--shadow)}
+.rec.locked{border-left:5px solid #2563eb;background:#f4f9ff}
+.rec h4{margin:0 0 4px;font-size:18px;color:var(--ink)}
+.rec .en{font-size:12px;color:var(--muted)}
+.rec .meta{font-size:13px;color:var(--muted);margin-bottom:6px}
+.rec .why{font-size:14px;color:#33475e;margin:6px 0}
+.rec .para{font-size:14px;color:#0f5f6b;background:#e6fbfd;border:1px solid #b6e6ee;padding:9px 11px;border-radius:10px;margin-top:7px}
+.rec .stars{font-size:13px}
+.rec a{color:var(--primary-d);font-size:13.5px;margin-right:12px;font-weight:600}
+.match-tags{display:inline-block;background:#e8f0fb;color:var(--primary-d);border:1px solid #cfe0fb;border-radius:6px;
+  padding:1px 7px;font-size:11.5px;margin:2px 4px 0 0}
+.template-box{background:#fffaf0;border:1px solid #f6e3c0;border-radius:14px;padding:14px 16px;margin-top:14px;box-shadow:var(--shadow)}
+.template-box h4{margin:0 0 8px;color:#c98a2e;font-size:15px}
+.template-box table{width:100%;border-collapse:collapse;font-size:12.5px}
+.template-box td{border-bottom:1px solid #f6e3c0;padding:6px 8px;vertical-align:top}
+.template-box td:first-child{color:#b56a8e;font-weight:700;white-space:nowrap;width:120px}
+
+/* 图例 */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.legend-item{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:8px 12px;font-size:13px;box-shadow:var(--shadow)}
+.stars{font-weight:700;letter-spacing:1px}
+.s1{color:var(--s1)} .s2{color:var(--s2)} .s3{color:var(--s3)}
+.s4{color:var(--s4)} .s5{color:var(--s5)}
+.s6{color:var(--s3)}
+
+/* 统计 */
+.stats{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;
+  box-shadow:var(--shadow);flex:1;min-width:140px}
+.stat .n{font-size:26px;font-weight:800;color:var(--primary-d)}
+.stat .l{font-size:12.5px;color:var(--muted)}
+
+/* 速查表 */
+.table-wrap{overflow-x:auto;margin-bottom:18px;border:1px solid var(--line);border-radius:10px}
+.ov-title{font-size:15px;margin:18px 0 8px;color:var(--primary-d)}
+.ov-table{border-collapse:collapse;width:100%;font-size:13px;background:var(--card)}
+.ov-table th,.ov-table td{border-bottom:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+.ov-table th{background:#eef4fa;color:var(--primary-d);font-weight:700;position:sticky;top:0}
+.ov-table tr:hover{background:#f7fbff}
+.ov-table .en{color:var(--muted);font-size:11px}
+
+/* 分类导航 */
+.cat-nav{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 0}
+.cat-link{font-size:12.5px;background:#eaf2fa;color:var(--primary-d);padding:5px 11px;border-radius:20px}
+.cat-link:hover{background:var(--primary);color:#fff}
+
+/* 卡片 */
+.cat-block{margin-top:30px;scroll-margin-top:70px}
+.cat-head{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--primary);padding-bottom:6px;margin-bottom:14px}
+.cat-head h3{margin:0;font-size:18px;color:var(--primary-d)}
+.cat-head .cnt{font-size:12.5px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 17px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.15s}
+.card:hover{box-shadow:0 8px 26px rgba(16,40,70,.14);transform:translateY(-2px)}
+.card h4{margin:0;font-size:16px;color:var(--ink)}
+.card .en{color:var(--muted);font-size:11.5px;font-weight:500}
+.card .acc{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px;
+  background:#f1f5f9;margin:8px 0}
+.card .kv{font-size:12.5px;color:var(--muted);margin:2px 0}
+.card .kv b{color:var(--ink);font-weight:600}
+.card .intro{font-size:13px;margin:9px 0;color:#33414f}
+.card .usage{font-size:12.5px;background:#f3f8ff;border-left:3px solid var(--primary);
+  padding:7px 10px;border-radius:0 8px 8px 0;margin:6px 0}
+.card .notes{font-size:12px;color:#8a5a00;background:#fff8ec;border-left:3px solid #e0a93b;
+  padding:6px 10px;border-radius:0 8px 8px 0;margin:6px 0}
+.card .links{margin-top:auto;padding-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.card .links a{font-size:12.5px;background:var(--primary);color:#fff;padding:5px 11px;border-radius:7px}
+.card .links a.alt{background:#eef4fa;color:var(--primary-d)}
+.card .tagrow{margin-top:8px}
+.card .tag{display:inline-block;background:#eef4fa;color:var(--primary-d);font-size:10.5px;
+  padding:1px 7px;border-radius:5px;margin:2px 4px 0 0}
+
+/* 阶梯表 */
+.ladder{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.ladder table{border-collapse:collapse;width:100%;font-size:13px}
+.ladder th,.ladder td{border-bottom:1px solid var(--line);padding:10px 13px;text-align:left;vertical-align:top}
+.ladder th{background:#eef4fa;color:var(--primary-d)}
+
+footer{background:#0a2342;color:#bcd3e6;font-size:13px;padding:28px 0;margin-top:30px}
+footer .wrap a{color:#7fd1ff}
+.disclaim{background:rgba(255,255,255,.06);border:1px solid rgba(120,180,240,.25);border-radius:12px;padding:14px 16px;margin-top:12px;color:#c3d9ef}
+.disclaim b{color:#eaf4ff}
+.hl{background:#fff3bf;padding:0 2px;border-radius:3px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero h1{font-size:22px}}
+</style>
+</head>
+<body>
+
+<!-- 内测注册门 -->
+<div id="gate">
+  <div class="gate-card">
+    <h3>全球健康数据库整合网页<span class="beta-tag">内测版</span></h3>
+    <p class="sub">本平台处于内测阶段，登记后即可使用。信息仅用于内测身份识别与后续开通「变量查询 / 数据对接」功能。</p>
+    <div class="field"><label>姓名 Name</label><input id="gName" placeholder="请输入真实姓名" autocomplete="name"></div>
+    <div class="field"><label>机构 / 单位 Institution</label><input id="gOrg" placeholder="如：XX 大学公共卫生学院 / XX 医院" autocomplete="organization"></div>
+    <div class="field"><label>邮箱 Email</label><input id="gMail" placeholder="you@example.com" autocomplete="email"></div>
+    <div class="field"><label>验证码 Verification Code</label>
+      <div class="code-row"><input id="gCode" placeholder="6 位验证码"><button class="code-btn" id="gSend">获取验证码</button></div>
+    </div>
+    <button class="btn btn-primary" id="gSubmit" style="width:100%;margin-top:6px">注册并进入</button>
+    <div class="gate-msg" id="gMsg"></div>
+    <div class="gate-tip">内测阶段：验证码在页面直接生成并展示（正式版将发送至所填邮箱，并由服务端校验）。<br>
+      <b>使用本平台请引用：</b>杜思娴. 全球健康数据库整合网页 [EB/OL]. 2026.<br>
+      合作与引用联系：<a href="mailto:dusixian16@163.com">dusixian16@163.com</a></div>
+  </div>
+</div>
+
+<!-- 数据库详情弹窗 -->
+<div id="modal"><div class="modal-card">
+  <button class="m-close" id="mClose">关闭 ✕</button>
+  <div id="mBody"></div>
+</div></div>
+
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#top" title="回到顶部">
+      <svg class="logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="lgA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0b3a72"/><stop offset="100%" stop-color="#12b3d6"/>
+        </linearGradient></defs>
+        <rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#lgA)"/>
+        <ellipse cx="24" cy="13.5" rx="11" ry="4.3" fill="#eaf4ff" stroke="#7fd1ff" stroke-width="1.8"/>
+        <path d="M13 13.5v14c0 2.4 4.9 4.3 11 4.3s11-1.9 11-4.3v-14" fill="#cfe9ff" stroke="#7fd1ff" stroke-width="1.8"/>
+        <path d="M24 20.5v11M18.5 26h11" stroke="#0b3a72" stroke-width="3.2" stroke-linecap="round"/>
+        <circle cx="38" cy="10" r="3.2" fill="#7fd1ff"/>
+      </svg>
+      <span>全球健康数据库整合网页<small>Global Health Database Integration Platform</small></span>
+    </a>
+    <nav>
+      <a href="#query">研究匹配查询器</a>
+      <a href="#legend">开放度分级</a>
+      <a href="#overview">总览速查表</a>
+      __CAT_NAV__
+      <a href="#ladder">实战阶梯</a>
+    </nav>
+    <input class="search-box" id="globalSearch" placeholder="搜索数据库 / 主办 / 关键词…">
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-inner">
+      <svg class="logo-lg" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="lgB" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0b3a72"/><stop offset="100%" stop-color="#12b3d6"/>
+        </linearGradient></defs>
+        <rect x="1.5" y="1.5" width="45" height="45" rx="12" fill="url(#lgB)"/>
+        <ellipse cx="24" cy="13.5" rx="11" ry="4.3" fill="#eaf4ff" stroke="#7fd1ff" stroke-width="1.8"/>
+        <path d="M13 13.5v14c0 2.4 4.9 4.3 11 4.3s11-1.9 11-4.3v-14" fill="#cfe9ff" stroke="#7fd1ff" stroke-width="1.8"/>
+        <path d="M24 20.5v11M18.5 26h11" stroke="#0b3a72" stroke-width="3.2" stroke-linecap="round"/>
+        <circle cx="38" cy="10" r="3.2" fill="#7fd1ff"/>
+      </svg>
+      <div style="flex:1;min-width:280px">
+        <div>
+          <span class="badge-src">AI for Health</span>
+          <span class="badge-src">AI for Data Sharing</span>
+          <span class="badge-src">内测版 Beta</span>
+        </div>
+        <h1>全球健康数据库整合网页<span class="beta-tag">BETA</span></h1>
+        <p style="font-size:17px"><b>Global Health Database Integration Platform</b> — 全球健康与医学研究公共数据库的一站式检索、分类与申请导航。</p>
+        <p><b>共收录 __TOTAL__ 个数据库与数据平台</b>：老龄追踪、生物样本库、中国本土队列、医保与电子病历（真实世界）、澳大利亚与大洋洲、重症 ICU、临床试验数据二次利用、组学仓储、卫生经济与卫生服务管理。</p>
+        <div class="creator">创建人：<b>杜思娴</b> ｜ 合作与引用联系：<a href="mailto:dusixian16@163.com">dusixian16@163.com</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 查询器 -->
+<section id="query">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">Q</span>研究匹配查询器</h2>
+    <p class="sec-sub">描述你的科学问题，或点选条件，网站会锁定最匹配的数据库并给出「怎么做」的研究范式。</p>
+    <div class="q-card">
+      <div class="q-row">
+        <div class="q-label">① 一句话描述你的科学问题（可留空，配合下方勾选）</div>
+        <textarea class="q-text" id="qText" placeholder="例：我想研究中国老年人长期血压变化对肾功能下降的影响，需要前瞻队列和重复体检生化数据。"></textarea>
+      </div>
+      <div class="q-row">
+        <div class="q-label">② 地区 / 人群</div>
+        <div class="chip-row" id="grp-region">__REGION_CHIPS__</div>
+      </div>
+      <div class="q-row">
+        <div class="q-label">③ 想要的数据类型</div>
+        <div class="chip-row" id="grp-datatype">__DATATYPE_CHIPS__</div>
+      </div>
+      <div class="q-row">
+        <div class="q-label">④ 研究设计 / 方法</div>
+        <div class="chip-row" id="grp-design">__DESIGN_CHIPS__</div>
+      </div>
+      <div class="q-row">
+        <div class="q-label">⑤ 主题 / 疾病领域</div>
+        <div class="chip-row" id="grp-topic">__TOPIC_CHIPS__</div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-primary" id="qBtn">匹配数据库</button>
+        <button class="btn btn-ghost" id="qReset">重置</button>
+        <span class="hint">提示：条件越具体，匹配越准；也可直接写一句话让系统解析关键词。</span>
+      </div>
+    </div>
+    <div id="qResult"><div class="q-empty">填写上方条件后点击「匹配数据库」，推荐结果将显示在这里。</div></div>
+  </div>
+</section>
+
+<!-- 图例 -->
+<section id="legend">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">!</span>开放度分级（获取难度）</h2>
+    <p class="sec-sub">★ 完全公开可直接下载 → ★★★★★ 必须本地合作（常含共同署名）。颜色由绿到红表示难度递增。</p>
+    <div class="legend">__LEGEND__</div>
+  </div>
+</section>
+
+<!-- 速查表 -->
+<section id="overview">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">1</span>总览速查表</h2>
+    <p class="sec-sub">按 PDF 第 1 章分组，先快速定位「哪个库大概有什么、多难拿」。</p>
+    __OVERVIEW__
+  </div>
+</section>
+
+<!-- 分类卡片 -->
+<section id="catalog">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">2-12</span>分类目录（按研究性质 12 大类）</h2>
+    <p class="sec-sub">点击下方分类跳转；卡片支持按「开放度」与「关键词」筛选（顶部搜索框全局可用）。</p>
+    <div class="cat-nav" style="margin-bottom:6px">__CAT_NAV__</div>
+    <div id="accFilter" class="chip-row" style="margin:10px 0 0">
+      <button type="button" class="chip acc-chip on" data-acc="0">全部难度</button>
+      <button type="button" class="chip acc-chip" data-acc="1">★ 公开</button>
+      <button type="button" class="chip acc-chip" data-acc="2">★★ 注册</button>
+      <button type="button" class="chip acc-chip" data-acc="3">★★★ 协议</button>
+      <button type="button" class="chip acc-chip" data-acc="4">★★★★ 付费</button>
+      <button type="button" class="chip acc-chip" data-acc="5">★★★★★ 合作</button>
+    </div>
+    <div id="cards"></div>
+  </div>
+</section>
+
+<!-- 阶梯 -->
+<section id="ladder">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">13</span>按获取难度排列的实战阶梯</h2>
+    <p class="sec-sub">新手常见错误是直接冲最难的库。合理路径：先用 ★★ 级把方法学跑通、选题验证掉，再去申请 ★★★★ 级。</p>
+    <div class="ladder">
+      <table>
+        <thead><tr><th>级别</th><th>代表数据库</th><th>周期</th><th>费用</th></tr></thead>
+        <tbody>__LADDER_ROWS__</tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 变量查询 -->
+<section id="varsearch">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">V</span>变量查询（按指标反查数据库）</h2>
+    <p class="sec-sub">输入你关心的<b>变量 / 指标</b>（如「肌酐」「eGFR」「血压」「PHQ-9」「MBS」），查看哪些数据库收录了该指标及其开放度——这是「提取变量」能力的第一层（元数据级）。</p>
+    <div class="q-card" style="background:#fff;border-color:var(--line)">
+      <div class="code-row">
+        <input id="vInput" placeholder="例如：肌酐 / eGFR / 血压 / 抑郁 / PBS / 影像" style="border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:15px">
+        <button class="btn btn-primary" id="vBtn">查询变量</button>
+      </div>
+      <div class="hint" style="margin-top:8px">支持中英文关键词；结果为元数据级（依据各库公开的变量说明整理），具体变量名请以各库 codebook 为准。</div>
+    </div>
+    <div id="vResult" style="margin-top:16px"></div>
+  </div>
+</section>
+
+<!-- 引用与联系 -->
+<section id="cite">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">C</span>引用与联系（使用本站请务必引用）</h2>
+    <p class="sec-sub">若您在论文、报告或标书中使用了本平台的检索与推荐结果，请引用本平台，并欢迎邮件联系合作。</p>
+    <div class="cite-box">
+      <div style="background:#fff4e5;border:1px solid #f6d9a0;border-radius:10px;padding:11px 14px;margin-bottom:14px;color:#8a5a00;font-size:14px">
+        <b>重要：</b>凡使用「全球健康数据库整合网页 / Global Health Database Integration Platform」的检索、匹配或变量查询功能产出成果者，请按下方格式引用，并将合作/咨询邮件发送至 <a href="mailto:dusixian16@163.com" style="color:#b45309"><b>dusixian16@163.com</b></a>。
+      </div>
+      <button class="copy-btn" data-copy="cn">复制中文引用</button>
+      <div class="cite-pre" id="citeCn">__CITE_CN__</div>
+      <button class="copy-btn" data-copy="en">复制英文引用</button>
+      <div class="cite-pre" id="citeEn">__CITE_EN__</div>
+      <button class="copy-btn" data-copy="bib">复制 BibTeX</button>
+      <div class="cite-pre" id="citeBib">__CITE_BIB__</div>
+      <div style="margin-top:12px;font-size:14px;color:var(--muted)">
+        创建人：<b>杜思娴</b> ｜ 邮箱：<a href="mailto:dusixian16@163.com"><b>dusixian16@163.com</b></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b style="color:#eaf4ff">免责声明（据原 PDF）</b>
+    <div class="disclaim">
+      <p>本文件内容来自已有知识整理，<b>编制过程中没有联网核验</b>。各库近年频繁迁移入口（如 UK Biobank 已迁至云平台、SEER 更换过申请流程），<b>引用或投稿前请实点核对官网</b>。</p>
+      <p>标注「<b>待核</b>」的条目表示把握不足，宁可留白也不虚构；只能给近似值的写作「约」。中国本土队列绝大多数不公开下载、走合作制——这不完全是缺点：正因为有门槛，选题被做烂的概率低，比拼的是选题质量与合作关系。</p>
+      <p>本网站为基于该 PDF 的结构化导航与检索工具，<b>不构成任何数据库的官方入口或申请承诺</b>；具体申请流程、伦理审查与数据使用协议请以各平台官方说明为准。</p>
+    </div>
+    <p style="margin-top:14px;font-size:13px">创建人：<b>杜思娴</b> ｜ 联系：<a href="mailto:dusixian16@163.com">dusixian16@163.com</a></p>
+    <p style="margin-top:6px">© 医学与健康研究公共数据库汇总 · 导航站 ｜ 数据来源：用户提供的 PDF 文档</p>
+  </div>
+</footer>
+
+<script>
+const DB = __DB_JSON__;
+const CATS = __CATS_JSON__;
+const ACCESS = __ACCESS_JSON__;
+
+// ---------- 渲染分类卡片 ----------
+function esc(s){return (s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function cardHTML(d){
+  let links = (d.urls||[]).map((u,i)=>{
+    const cls = i===0?'':' alt';
+    return `<a class="${cls.trim()}" href="${u.url}" target="_blank" rel="noopener">${esc(u.label)} ↗</a>`;
+  }).join("");
+  let tags = (d.tags||[]).slice(0,10).map(t=>`<span class="tag">${esc(t)}</span>`).join("");
+  let kv = "";
+  if(d.region) kv += `<div class="kv"><b>地区：</b>${esc(d.region)}</div>`;
+  if(d.scale) kv += `<div class="kv"><b>规模：</b>${esc(d.scale)}</div>`;
+  if(d.timeSpan) kv += `<div class="kv"><b>时间：</b>${esc(d.timeSpan)}</div>`;
+  if(d.host) kv += `<div class="kv"><b>主办：</b>${esc(d.host)}</div>`;
+  if(d.content) kv += `<div class="kv"><b>核心内容：</b>${esc(d.content)}</div>`;
+  let usage = d.usage?`<div class="usage"><b>使用情况：</b>${esc(d.usage)}</div>`:"";
+  let notes = d.notes?`<div class="notes"><b>常见坑：</b>${esc(d.notes)}</div>`:"";
+  return `<div class="card" data-cat="${d.cat}" data-acc="${d.access}" data-text="${esc((d.name+' '+d.en+' '+d.host+' '+d.intro+' '+d.content+' '+(d.tags||[]).join(' ')).toLowerCase())}">
+    <h4>${esc(d.name)}</h4>
+    <div class="en">${esc(d.en)}</div>
+    <span class="acc stars s${d.access}">${"★".repeat(d.access)} ${ACCESS[d.access]}</span>
+    ${kv}
+    ${d.indicators?`<div class="ind"><b>经典指标：</b>${esc(d.indicators)}</div>`:""}
+    ${d.intro?`<div class="intro">${esc(d.intro)}</div>`:""}
+    ${usage}${notes}
+    <div class="tagrow">${tags}</div>
+    <div class="links">${links}<button class="detail-btn" data-nm="${esc(d.name)}">查看详情 / 申请方式</button></div>
+  </div>`;
+}
+
+function renderCards(){
+  const root=document.getElementById('cards');
+  let html="";
+  CATS.forEach(([k,label],idx)=>{
+    const list=DB.filter(d=>d.cat===k);
+    if(!list.length)return;
+    html+=`<div class="cat-block" id="cat-${k}"><div class="cat-head"><h3>${idx+1}. ${esc(label)}</h3><span class="cnt">${list.length} 个</span></div><div class="grid">`;
+    html+=list.map(cardHTML).join("");
+    html+=`</div></div>`;
+  });
+  root.innerHTML=html;
+}
+renderCards();
+
+// ---------- 全局搜索 + 难度筛选 ----------
+let accFilter=0;
+document.getElementById('accFilter').addEventListener('click',e=>{
+  const b=e.target.closest('.acc-chip'); if(!b)return;
+  document.querySelectorAll('.acc-chip').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); accFilter=+b.dataset.acc; applyFilter();
+});
+document.getElementById('globalSearch').addEventListener('input',applyFilter);
+function applyFilter(){
+  const q=document.getElementById('globalSearch').value.trim().toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>{
+    const okAcc = accFilter===0 || +c.dataset.acc===accFilter;
+    const okQ = !q || c.dataset.text.includes(q);
+    c.style.display=(okAcc&&okQ)?'':'none';
+  });
+  // 隐藏空分类
+  document.querySelectorAll('.cat-block').forEach(b=>{
+    const vis=b.querySelectorAll('.card:not([style*="display: none"])').length;
+    b.style.display=vis?'':'none';
+  });
+}
+
+// ---------- 查询器 ----------
+const sel={region:[],datatype:[],design:[],topic:[]};
+document.querySelectorAll('.chip[data-group]').forEach(ch=>{
+  ch.addEventListener('click',()=>{
+    const g=ch.dataset.group,v=ch.dataset.val;
+    const arr=sel[g];const i=arr.indexOf(v);
+    if(i>=0){arr.splice(i,1);ch.classList.remove('on');}
+    else{arr.push(v);ch.classList.add('on');}
+  });
+});
+// 把引导选项映射到库 tags 的关键词
+const MAP={
+  region:{'中国':['中国'],'美国':['美国'],'欧洲':['欧洲'],'英国':['英国'],'韩国':['韩国'],'日本':['日本'],'港台':['香港','台湾'],'墨西哥':['墨西哥'],'印度':['印度'],'北欧':['北欧'],'多国/国际':['全球','国际','多国']},
+  datatype:{'问卷/自报':['问卷','自报','量表'],'客观体检/生化':['体检','生化','肌酐','血压','检验'],'基因/多组学':['基因','组学','测序','转录组','多组学'],'电子病历/医保':['电子病历','医保','理赔','处方','真实世界'],'影像':['影像'],'死亡登记/随访':['死亡登记','随访'],'文本/NLP':['文本','NLP']},
+  design:{'前瞻性队列':['前瞻性','队列'],'回顾性/横断面':['横断面','回顾性'],'RCT 数据二次利用':['RCT','二次利用','IPD'],'真实世界观察性':['真实世界','观察性','目标试验'],'预测模型':['预测模型','风险'],'IPD 荟萃':['IPD','meta'],'重复横断面':['重复横断面']},
+  topic:{'老龄与认知':['老龄','认知','痴呆','失能','长寿','衰弱'],'心血管与肾脏':['心血管','肾脏','高血压','CKD','卒中','心衰','eGFR'],'肿瘤':['肿瘤','癌症'],'营养与代谢':['营养','膳食','代谢','肥胖','糖尿病'],'职业与环境':['职业','暴露','环境'],'精神心理/行为':['心理','抑郁','焦虑','睡眠','行为'],'卫生经济与卫生服务':['卫生经济','卫生服务','费用','医疗质量','医保'],'重症/ICU':['ICU','重症'],'妇幼与儿童':['儿童','妇幼','儿科','青少年'],'遗传/组学':['基因','组学','遗传'],'罕见病':['罕见病'],'卫生政策/公平':['政策','公平','社会']}
+};
+document.getElementById('qReset').addEventListener('click',()=>{
+  Object.keys(sel).forEach(k=>sel[k]=[]);
+  document.querySelectorAll('.chip[data-group]').forEach(c=>c.classList.remove('on'));
+  document.getElementById('qText').value='';
+  document.getElementById('qResult').innerHTML='<div class="q-empty">已重置。填写条件后点击「匹配数据库」。</div>';
+});
+document.getElementById('qBtn').addEventListener('click',runQuery);
+
+function tokenize(text){
+  // 中英混合：拆中文 2-gram + 英文单词
+  const out=[];
+  const cn=text.match(/[一-龥]{2,}/g)||[];
+  cn.forEach(w=>{out.push(w); if(w.length>2){out.push(w.slice(0,2));out.push(w.slice(1,3));}});
+  const en=text.toLowerCase().match(/[a-z]{2,}/g)||[];
+  en.forEach(w=>out.push(w));
+  return out;
+}
+function paradigmTemplate(d){
+  let design='观察性研究';
+  if(d.cat==='trial') design='RCT / 经典队列数据二次利用（IPD）';
+  else if(d.cat==='icu'||d.cat==='rwd') design='真实世界观察性研究（新使用者设计 / 目标试验模拟 / 队列）';
+  else if(d.cat==='omics') design='功能基因组 / 组学分析（差异 + 整合 + 批次校正）';
+  else if(d.access>=4) design='需正式申请 / 本地合作的前瞻性队列研究';
+  else design='前瞻性或重复测量队列研究';
+  const stat='队列→Cox 比例风险 / 广义线性模型 / 轨迹（潜类别增长）；横断面→Logistic / 线性回归；预测→C-index、校准曲线、决策曲线、NRI/IDI；荟萃→IPD 合并与异质性。';
+  let ethic='';
+  if(d.access<=2) ethic='注册账号即可获取；常规科研伦理审查（如涉及）按所在单位要求办理。';
+  else if(d.access===3) ethic='完成指定培训（如 CITI）并取得证书 + 签署数据使用协议（DUA），部分需伦理批件或豁免。';
+  else if(d.access===4) ethic='正式提交研究计划、机构审批并付费；受控数据还需机构签署官员(ISO)与 DAC 评审。';
+  else ethic='必须本地合作 + 机构 PI + 伦理委员会批件；数据通常不可下载，在指定安全环境分析。';
+  return `<div class="template-box"><h4>通用研究范式模板（可套用于本站的任一数据库）</h4>
+   <table>
+     <tr><td>研究问题 PICO</td><td>在 <b>${esc(d.region||'目标人群')}</b> 中，探讨【暴露 X】与【结局 Y】的关系——按你的科学问题替换占位。</td></tr>
+     <tr><td>推荐数据库</td><td><b>${esc(d.name)}</b>（${esc(d.en)}）</td></tr>
+     <tr><td>研究设计</td><td>${design}</td></tr>
+     <tr><td>关键变量</td><td>${esc(d.content||'参见数据库说明书 / codebook')}</td></tr>
+     <tr><td>统计方法</td><td>${stat}</td></tr>
+     <tr><td>数据申请</td><td>${esc(d.usage||'—')}</td></tr>
+     <tr><td>伦理 / 合规</td><td>${esc(ethic)}</td></tr>
+     <tr><td>注意事项</td><td>${esc(d.notes||'遵守数据库数据使用协议，禁止再识别；发表须注明数据来源。')}</td></tr>
+     <tr><td>论文致谢模板</td><td>${esc(d.ackEn||'')}<br><span style="color:#8a7a4a">${esc(d.ackCn||'')}</span></td></tr>
+     <tr><td>本站引用</td><td>${esc(d.ackEn?'发表时请同时引用本平台：Dusixian. Global Health Database Integration Platform [EB/OL]. 2026.':'')}</td></tr>
+   </table></div>`;
+}
+function recHTML(it, locked){
+  const d=it.d;
+  const mtags=it.reasons.map(r=>`<span class="match-tags">${esc(r)}</span>`).join("");
+  const links=(d.urls||[]).map(u=>`<a href="${u.url}" target="_blank" rel="noopener">${esc(u.label)} ↗</a>`).join("");
+  const para=d.paradigm?`<div class="para"><b>参考范式：</b>${esc(d.paradigm)}</div>`:"";
+  const usage=d.usage?`<div class="meta">使用情况：${esc(d.usage)}</div>`:"";
+  const badge=locked?`<span style="background:#e98ab0;color:#fff;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:6px">已锁定</span>`:"";
+  return `<div class="rec ${locked?'locked':''}">
+    <h4>${esc(d.name)} <span class="en" style="font-size:11px;color:#a98ca0">${esc(d.en)}</span>${badge}</h4>
+    <div class="meta stars s${d.access}">${"★".repeat(d.access)} ${ACCESS[d.access]} · ${esc(d.region||'')} · ${esc(d.scale||'')}</div>
+    <div class="why"><b>匹配理由：</b>${mtags||'关键词命中'}</div>
+    ${usage}${para}
+    <div style="margin-top:8px">${links}</div>
+  </div>`;
+}
+function runQuery(){
+  const qtext=document.getElementById('qText').value.trim();
+  const qtokens=tokenize(qtext);
+  const scored=[];
+  DB.forEach(d=>{
+    let score=0; const reasons=new Set(); const tagset=(d.tags||[]);
+    // 引导选项
+    ['region','datatype','design','topic'].forEach(g=>{
+      sel[g].forEach(selv=>{
+        const kws=MAP[g][selv]||[];
+        kws.forEach(kw=>{
+          if(tagset.some(t=>t.includes(kw)||kw.includes(t))){score+=2;reasons.add(selv);}
+        });
+      });
+    });
+    // 自由文本
+    const blob=(d.name+' '+d.en+' '+d.host+' '+(d.tags||[]).join(' ')+' '+(d.intro||'')).toLowerCase();
+    qtokens.forEach(tok=>{
+      if(tok.length>=2 && blob.includes(tok)){score+=3;reasons.add(tok);}
+    });
+    if(score>0)scored.push({d,score,reasons:[...reasons].slice(0,8)});
+  });
+  scored.sort((a,b)=>b.score-a.score);
+  const res=document.getElementById('qResult');
+  if(!scored.length){
+    res.innerHTML='<div class="q-empty">没有匹配的数据库。试着放宽条件，或在①里用一句话描述科学问题（如「中国老人 血压 肾功能 队列」）。</div>';
+    return;
+  }
+  const top=scored.slice(0,6);
+  const locked=top[0];
+  let html=`<div class="q-empty" style="background:#fff5fa;border-color:#f6d9ea;color:#9c5b7e">已为你 <b>锁定 1 个主推数据库</b>（匹配度最高），附「参考范式」与备选；下方「通用研究范式模板」可套用于本站任一数据库。</div>`;
+  html+=recHTML(locked,true);
+  if(top.length>1){
+    html+=`<div style="margin:14px 0 6px;font-weight:700;color:#b56a8e;font-size:13.5px">备选数据库（${top.length-1}）</div>`;
+    top.slice(1).forEach(it=>html+=recHTML(it,false));
+  }
+  html+=paradigmTemplate(locked.d);
+  res.innerHTML=html;
+  res.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ---------- 详情弹窗：介绍 + 网址 + 申请方式 + 变量申请情况 ----------
+function varAccessText(d){
+  const a=d.access;
+  if(a===1) return '变量级数据可公开获取：无需申请，直接下载；个体级记录通常可在遵守许可（如 CC0/CC-BY）下使用，发表须引用来源。';
+  if(a===2) return '注册账号并说明用途后即可下载变量级数据（免费）；部分受限变量需额外协议。建议先下载官方 codebook / Data Dictionary 核对变量名。';
+  if(a===3) return '需完成指定培训（如 CITI）并取得证书、签署数据使用协议（DUA）后方可获取变量级数据；通常在安全环境或经授权账号下载，周期约 2-6 周，免费。';
+  if(a===4) return '需正式提交研究计划、机构审批并付费；按获批的变量字段范围提供数据（部分库按字段计费）。受控数据还需机构签署官员(ISO)与 DAC 评审。周期约 1-6 个月。';
+  return '不公开下载，走合作制：需联系数据持有团队、提交研究方案、通常涉及共同署名；变量级数据（个体记录）须在合作框架内获取，周期半年起。';
+}
+function openModalByName(nm){
+  const d=DB.find(x=>x.name===nm); if(d) openModal(d);
+}
+function openModal(d){
+  const cells=[['开放度',"★".repeat(d.access)+" "+ACCESS[d.access]],
+    ['地区',d.region||'—'],['规模',d.scale||'—'],
+    ['时间跨度',d.timeSpan||'—'],['主办单位',d.host||'—']]
+    .map(([k,v])=>`<div class="m-cell"><b>${k}</b>${esc(v)}</div>`).join("");
+  const ind=d.indicators?`<div class="ind"><b>${esc(d.indicators)}</b></div>`
+    :`<p style="color:var(--muted)">本条目未整理指标清单，请以官网 codebook / Data Dictionary 为准。</p>`;
+  const papers=(d.papers&&d.papers.length)?`<ul>${d.papers.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>`
+    :`<p style="color:var(--muted)">建议在官网 Publications / Data Users 页面核对代表性文献。</p>`;
+  const links=(d.urls||[]).map(u=>`<a href="${u.url}" target="_blank" rel="noopener" style="margin-right:14px;font-weight:700">${esc(u.label)} ↗</a>`).join("");
+  document.getElementById('mBody').innerHTML=`
+    <h3>${esc(d.name)}</h3>
+    <div class="m-en">${esc(d.en)}</div>
+    <div class="m-grid">${cells}</div>
+    <h5>数据库介绍</h5><p>${esc(d.intro||d.content||'—')}</p>
+    <h5>核心内容</h5><p>${esc(d.content||'—')}</p>
+    <h5>经典指标 / 主要变量</h5>${ind}
+    <h5>注册与申请方式（流程 / 费用 / 周期）</h5><p>${esc(d.usage||'—')}</p>
+    <h5>变量申请情况</h5><p>${esc(varAccessText(d))}</p>
+    <h5>官方入口直达</h5><p>${links}</p>
+    <h5>代表性 / 里程碑文献（建议核对官网 Publications）</h5>${papers}
+    <p style="margin-top:10px"><a href="${d.pubmed}" target="_blank" rel="noopener">在 PubMed 检索该数据库相关研究 ↗</a></p>
+    <h5>论文致谢 / 数据可用性声明模板（[XXXXX] 处填你的批准项目编号）</h5>
+    <div class="cite-pre" id="mAckEn">${esc(d.ackEn||'')}</div>
+    <div class="cite-pre" id="mAckCn">${esc(d.ackCn||'')}</div>
+    <button class="copy-btn" id="mAckCopy">复制英文致谢</button>
+    <p style="margin-top:8px;color:var(--muted);font-size:13px">提示：发表时请<b>同时</b>引用本平台（见页面「引用与联系」区），并按各库要求注明版本号与数据来源。</p>
+    ${d.notes?`<h5>常见坑 / 注意事项</h5><p>${esc(d.notes)}</p>`:""}
+    ${d.paradigm?`<h5>研究范式建议</h5><div style="color:#0f5f6b;background:#e6fbfd;border:1px solid #b6e6ee;padding:9px 11px;border-radius:10px;font-size:14px">${esc(d.paradigm)}</div>`:""}
+  `;
+  document.getElementById('modal').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+document.getElementById('mClose').onclick=closeModal;
+document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeModal();};
+function closeModal(){document.getElementById('modal').style.display='none';document.body.style.overflow='';}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.detail-btn'); if(b){openModalByName(b.dataset.nm);return;}
+  const r=e.target.closest('.ov-row'); if(r){openModalByName(r.dataset.nm);}
+});
+
+// ---------- 内测注册门（姓名 / 邮箱 / 验证码） ----------
+let sentCode='';
+const gMsg=document.getElementById('gMsg');
+function mailOK(m){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m);}
+document.getElementById('gSend').onclick=function(){
+  const m=document.getElementById('gMail').value.trim();
+  if(!mailOK(m)){gMsg.className='gate-msg err';gMsg.textContent='请先填写有效的邮箱地址。';return;}
+  sentCode=String(Math.floor(100000+Math.random()*900000));
+  gMsg.className='gate-msg ok';
+  gMsg.innerHTML='验证码已生成（内测演示）：<b>'+sentCode+'</b>　正式版将发送至 '+esc(m);
+  let left=60;const btn=this;btn.disabled=true;btn.textContent=left+'s 后重发';
+  const t=setInterval(()=>{left--;if(left<=0){clearInterval(t);btn.disabled=false;btn.textContent='获取验证码';}else{btn.textContent=left+'s 后重发';}},1000);
+};
+document.getElementById('gSubmit').onclick=()=>{
+  const n=document.getElementById('gName').value.trim();
+  const o=document.getElementById('gOrg').value.trim();
+  const m=document.getElementById('gMail').value.trim();
+  const c=document.getElementById('gCode').value.trim();
+  if(!n){gMsg.className='gate-msg err';gMsg.textContent='请填写姓名。';return;}
+  if(!o){gMsg.className='gate-msg err';gMsg.textContent='请填写所在机构 / 单位。';return;}
+  if(!mailOK(m)){gMsg.className='gate-msg err';gMsg.textContent='请填写有效的邮箱地址。';return;}
+  if(!sentCode){gMsg.className='gate-msg err';gMsg.textContent='请先点击「获取验证码」。';return;}
+  if(c!==sentCode){gMsg.className='gate-msg err';gMsg.textContent='验证码不正确，请重新输入。';return;}
+  try{localStorage.setItem('ghdip_user',JSON.stringify({name:n,org:o,mail:m,ts:Date.now()}));}catch(e){}
+  showUser(n,o);
+  document.getElementById('gate').style.display='none';
+  document.body.style.overflow='';
+};
+function showUser(n,o){
+  let el=document.getElementById('userChip');
+  if(!el){el=document.createElement('span');el.id='userChip';
+    el.style.cssText='font-size:12.5px;background:#e8f0fb;color:#1746b8;padding:4px 10px;border-radius:16px;font-weight:700;cursor:pointer';
+    el.title='点击可退出登录（清除登记）';
+    el.onclick=()=>{if(confirm('退出并清除本机登记信息？')){try{localStorage.removeItem('ghdip_user');}catch(e){}location.reload();}};
+    document.querySelector('.top-inner').appendChild(el);}
+  el.textContent='已登记：'+n+(o?' · '+o:'');
+}
+(function(){
+  let u=null;
+  try{u=JSON.parse(localStorage.getItem('ghdip_user')||'null');}catch(e){}
+  if(u&&u.name){showUser(u.name,u.org);document.getElementById('gate').style.display='none';}
+  else{document.getElementById('gate').style.display='flex';document.body.style.overflow='hidden';}
+})();
+
+// ---------- 变量查询 ----------
+function runVarSearch(){
+  const q=document.getElementById('vInput').value.trim().toLowerCase();
+  const res=document.getElementById('vResult');
+  if(!q){res.innerHTML='<div class="q-empty" style="color:var(--muted);background:#fff;border-color:var(--line)">请输入要查询的变量 / 指标关键词，例如：肌酐、eGFR、血压、PHQ-9、PBS、影像。</div>';return;}
+  const hits=[];
+  DB.forEach(d=>{
+    const src=((d.indicators||'')+' '+(d.content||'')+' '+(d.tags||[]).join(' ')+' '+d.name+' '+d.en).toLowerCase();
+    if(src.includes(q)) hits.push({d:d,snip:d.indicators||d.content||''});
+  });
+  if(!hits.length){res.innerHTML='<div class="q-empty" style="color:var(--muted);background:#fff;border-color:var(--line)">未收录含该关键词的指标，可换更通用的词（如「血压」「基因」「费用」「抑郁」）。</div>';return;}
+  hits.sort((a,b)=>a.d.access-b.d.access);
+  let html=`<div class="q-empty" style="color:var(--primary-d);background:#eef6ff;border-color:#cfe0fb">共 <b>${hits.length}</b> 个数据库收录与「<b>${esc(q)}</b>」相关的指标（按开放度从易到难）。</div>`;
+  hits.slice(0,20).forEach(h=>{
+    const d=h.d;
+    html+=`<div class="rec" style="margin-bottom:10px">
+      <h4 style="font-size:16.5px">${esc(d.name)} <span class="en">${esc(d.en)}</span></h4>
+      <div class="meta stars s${d.access}">${"★".repeat(d.access)} ${ACCESS[d.access]} · ${esc(d.region||'')}</div>
+      <div class="ind" style="margin-top:6px"><b>匹配指标：</b>${esc(h.snip||'—')}</div>
+      <div class="why" style="font-size:13px"><b>变量申请情况：</b>${esc(varAccessText(d))}</div>
+      <div style="margin-top:8px"><button class="detail-btn" data-nm="${esc(d.name)}">查看详情 / 申请方式</button></div>
+    </div>`;
+  });
+  res.innerHTML=html;
+}
+document.getElementById('vBtn').onclick=runVarSearch;
+document.getElementById('vInput').addEventListener('keydown',e=>{if(e.key==='Enter')runVarSearch();});
+
+// 弹窗内致谢复制
+function copyTxt(t,btn){
+  const done=()=>{const o=btn.textContent;btn.textContent='已复制 ✓';setTimeout(()=>{btn.textContent=o;},1500);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,done);}else{done();}
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('#mAckCopy');
+  if(b){const s=document.getElementById('mAckEn');if(s)copyTxt(s.innerText,b);}
+});
+
+// ---------- 引用复制 ----------
+document.querySelectorAll('.copy-btn').forEach(b=>{
+  b.onclick=()=>{
+    const id=b.dataset.copy==='cn'?'citeCn':(b.dataset.copy==='en'?'citeEn':'citeBib');
+    const t=document.getElementById(id).innerText;
+    const done=()=>{const o=b.textContent;b.textContent='已复制 ✓';setTimeout(()=>{b.textContent=o;},1500);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,done);}
+    else{done();}
+  };
+});
+</script>
+</body>
+</html>
+"""
+
+CITE_CN = ("杜思娴. 全球健康数据库整合网页 [EB/OL]. 2026. "
+           "Global Health Database Integration Platform（医学与健康研究公共数据库检索、分类与申请导航平台）. "
+           "联系邮箱: dusixian16@163.com.")
+CITE_EN = ("Dusixian. Global Health Database Integration Platform [EB/OL]. 2026. "
+           "A navigation platform for retrieval, classification and access application of global health and "
+           "medical research public databases. Contact: dusixian16@163.com.")
+CITE_BIB = ("@misc{ghdip2026,\n"
+            "  author       = {Dusixian},\n"
+            "  title        = {Global Health Database Integration Platform\n"
+            "                  (全球健康数据库整合网页)},\n"
+            "  year         = {2026},\n"
+            "  howpublished = {[EB/OL]},\n"
+            "  note         = {Contact: dusixian16@163.com}\n"
+            "}")
+
+HTML = (HTML
+    .replace("__DB_JSON__", DB_JSON)
+    .replace("__CATS_JSON__", json.dumps(CATS, ensure_ascii=False))
+    .replace("__ACCESS_JSON__", json.dumps(ACCESS, ensure_ascii=False))
+    .replace("__CAT_NAV__", CAT_NAV)
+    .replace("__REGION_CHIPS__", REGION_CHIPS)
+    .replace("__DATATYPE_CHIPS__", DATATYPE_CHIPS)
+    .replace("__DESIGN_CHIPS__", DESIGN_CHIPS)
+    .replace("__TOPIC_CHIPS__", TOPIC_CHIPS)
+    .replace("__LEGEND__", LEGEND)
+    .replace("__OVERVIEW__", OVERVIEW)
+    .replace("__LADDER_ROWS__", LADDER_ROWS)
+    .replace("__TOTAL__", str(len(D)))
+    .replace("__CITE_CN__", CITE_CN)
+    .replace("__CITE_EN__", CITE_EN)
+    .replace("__CITE_BIB__", CITE_BIB))
+
+out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "index.html")
+with open(out, "w", encoding="utf-8") as f:
+    f.write(HTML)
+print("WROTE", out, "entries=", len(D), "bytes=", len(HTML))

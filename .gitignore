@@ -1,0 +1,23 @@
+# 生成的发布副本（由 index.html 复制而来）
+site/
+
+# WorkBuddy / 应用标记
+.workbuddy/
+*.genie
+.wbapp_*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# 临时文件
+_c.js
+*.log
