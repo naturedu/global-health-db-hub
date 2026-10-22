@@ -1610,7 +1610,14 @@ HTML = r"""<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>医学与健康研究公共数据库汇总 · 检索与导航</title>
+<title>全球健康数据库整合网页 · Global Health Database Integration Platform</title>
+<meta name="description" content="面向医学科研的全球健康与医学公共数据库检索、分类、研究匹配与申请导航平台：91 个数据库，含开放度分级、申请流程与费用周期、变量申请情况、论文致谢模板。创建人：杜思娴 dusixian16@163.com">
+<meta name="keywords" content="医学数据库,公共数据库,队列研究,UK Biobank,CHARLS,NHANES,MIMIC-IV,dbGaP,SEER,数据申请,变量查询,数据使用协议">
+<meta property="og:title" content="全球健康数据库整合网页 · Global Health Database Integration Platform">
+<meta property="og:description" content="输入科学问题 → 锁定数据库 + 研究范式 + 申请指南。91 个医学与健康公共数据库。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://naturedu.github.io/global-health-db-hub/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b3a72'/%3E%3Cellipse cx='16' cy='9' rx='7' ry='3' fill='%2312b3d6'/%3E%3Cpath d='M9 9v14c0 1.7 3.1 3 7 3s7-1.3 7-3V9' fill='none' stroke='%2312b3d6' stroke-width='2'/%3E%3Cpath d='M16 13v8M12 17h8' stroke='%23fff' stroke-width='1.8'/%3E%3C/svg%3E">
 <style>
 :root{
   --bg:#f2f7fd; --card:#ffffff; --ink:#12263f; --muted:#5a6b82;
