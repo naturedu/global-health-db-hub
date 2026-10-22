@@ -3,7 +3,9 @@
 > 面向医学科研的**公共数据库检索、分类、申请导航与研究匹配**平台（内测版 Beta）。
 > 收录 **89 个**全球健康与医学研究公共数据库，覆盖老龄追踪、生物样本库、中国本土队列、医保与电子病历（真实世界）、澳大利亚与大洋洲、重症 ICU、临床试验数据二次利用、组学仓储、卫生经济与卫生服务管理。
 
-- 🌐 在线访问：<https://global-health-db-hub.app.workbuddy.host/?sharecode=OPMUXAOLWT>
+- 🌐 在线访问（推荐，稳定直链）：**<https://naturedu.github.io/global-health-db-hub/>**
+- 🌐 备用（WorkBuddy 托管）：<https://global-health-db-hub.app.workbuddy.host/?sharecode=OPMUXAOLWT>
+- 🧩 Skill 版（可装进 Claude Code / WorkBuddy / GPT）：见 [第九节](#九skill-版装进-claude-code--workbuddy--gpt)
 - 👩‍🔬 创建人：**杜思娴**
 - ✉️ 合作与引用联系：**dusixian16@163.com**
 
@@ -40,6 +42,13 @@
 ├── index.html        # 生成的自包含单页站点（可直接双击打开 / 部署）
 ├── site/index.html   # 发布用副本（静态托管入口）
 ├── invite_qr.png     # 邀请二维码
+├── skill/
+│   └── global-health-db-advisor/   # 可移植 Skill（Claude Code / WorkBuddy / GPT）
+│       ├── SKILL.md                # 技能定义与工作流
+│       ├── data/databases.json     # 89 库结构化数据（单一数据源）
+│       ├── scripts/advise.py       # 科学问题 → 锁定库 + 申请指南
+│       ├── scripts/varsearch.py    # 变量 → 反查哪些库收录
+│       └── references/             # 开放度分级 / 引用致谢 / 研究范式
 ├── README.md
 ├── LICENSE
 └── CONTRIBUTING.md
@@ -146,18 +155,79 @@ Contact: dusixian16@163.com.
 
 同时建议按各数据库要求注明版本号与数据来源，并引用该库的标志性文献/官网。
 
-## 九、路线图
+## 九、Skill 版（装进 Claude Code / WorkBuddy / GPT）
+
+网页是给人看的，Skill 是给 AI 用的。同一套数据被封装成一个**可移植技能**：
+
+> 输入一个科学问题 → 输出「锁定哪个库 + 研究范式 + 申请方式（费用/周期）+ 变量怎么拿 + 致谢模板」。
+
+位置：`skill/global-health-db-advisor/`
+
+```
+SKILL.md                  # 技能定义（frontmatter: name + description）+ 工作流 + 安装说明
+data/databases.json       # 89 库结构化数据（与网页同源）
+scripts/advise.py         # 选库 + 申请指南
+scripts/varsearch.py      # 变量反查
+references/access-levels.md   # 5 级开放度与申请流程详解
+references/citation-ack.md    # 引用、致谢、数据可用性声明模板
+references/paradigms.md       # 12 大类研究范式骨架
+```
+
+### 直接用（不需要任何 Agent）
+
+仅需 Python 3.8+ 标准库，零依赖：
+
+```bash
+cd skill/global-health-db-advisor
+
+python scripts/advise.py "中国老年人长期血压变化与肾功能下降的关系"
+# → 锁定数据库：CHARLS（★★）
+
+python scripts/advise.py "儿童重症监护的公开数据，做预测模型" --topic 重症ICU
+# → 锁定数据库：PIC 浙江大学附属儿童医院重症数据库（★★★）
+
+python scripts/varsearch.py 肌酐 --top 5
+# → NHANES / CHARLS / UK Biobank / QResearch …
+```
+
+### 装到 Claude Code
+
+```bash
+# 用户级（所有项目可用）
+cp -r skill/global-health-db-advisor ~/.claude/skills/
+# 或项目级
+cp -r skill/global-health-db-advisor ./.claude/skills/
+```
+
+### 装到 WorkBuddy
+
+```bash
+cp -r skill/global-health-db-advisor ~/.workbuddy/skills/
+# Windows: C:\Users\<用户名>\.workbuddy\skills\
+```
+
+放好后新开一个会话，说「我想用公共数据库研究 XX」即会自动触发。
+
+### 装到 GPT / 只吃文本的模型
+
+1. 把 `SKILL.md` 全文粘进「自定义指令」或 GPT Instructions；
+2. 上传 `data/databases.json` 作为知识文件（或按 12 类拆成多个 md）；
+3. 若平台支持 Code Interpreter，直接上传 `scripts/*.py` 让它运行。
+
+
+## 十、路线图
 
 - [x] 89 个库的结构化条目（介绍/申请/指标/文献/致谢）
 - [x] 研究匹配查询器 + 通用研究范式模板
 - [x] 变量查询（元数据级）+ 变量申请情况
 - [x] 内测注册门（姓名/机构/邮箱/验证码）
+- [x] **Skill 版封装（Claude Code / WorkBuddy / GPT 通用，含选库与变量反查 CLI）**
 - [ ] 真实邮件验证码 + 服务端校验（需后端）
 - [ ] 账号体系 + 邀请码/白名单 + 注册名单管理
 - [ ] 开放库（NHANES / GEO 等）的**变量级实时提取**适配器
 - [ ] 受控库的「申请包自动生成」
 
-## 十、致谢
+## 十一、致谢
 
 内容基础来自《医学与健康研究公共数据库汇总》；澳大利亚条目（45 and Up、CUPL、PLIDA/ABS DataLab、MBS/PBS、AIHW、HILDA、ALSWH、Ten to Men）已联网核实。
 

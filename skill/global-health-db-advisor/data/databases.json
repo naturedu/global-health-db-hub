@@ -1,0 +1,3548 @@
+{
+ "meta": {
+  "name": "全球健康数据库整合网页",
+  "count": 89,
+  "source": "用户提供 PDF + 联网核实的澳洲条目"
+ },
+ "access": {
+  "1": "★ 完全公开，直接下载",
+  "2": "★★ 注册后下载",
+  "3": "★★★ 培训/签署协议后下载",
+  "4": "★★★★ 正式申请并付费",
+  "5": "★★★★★ 必须本地合作（常含共同署名）"
+ },
+ "cats": [
+  [
+   "aging",
+   "老龄化追踪调查（HRS 家族）"
+  ],
+  [
+   "social",
+   "中国社会科学类面板"
+  ],
+  [
+   "biobank",
+   "大型生物样本库"
+  ],
+  [
+   "china_cohort",
+   "中国本土大型人群队列"
+  ],
+  [
+   "monitor",
+   "国家健康监测与横断面调查"
+  ],
+  [
+   "rwd",
+   "医保行政数据与电子病历（真实世界）"
+  ],
+  [
+   "oceania",
+   "澳大利亚与大洋洲数据源"
+  ],
+  [
+   "icu",
+   "重症与临床电子病历数据库"
+  ],
+  [
+   "trial",
+   "临床试验与经典队列数据二次利用"
+  ],
+  [
+   "omics",
+   "衰老资源、组学数据与通用仓储"
+  ],
+  [
+   "cn_platform",
+   "中国国家级科学数据平台与知识库"
+  ],
+  [
+   "healthecon",
+   "卫生经济与卫生服务管理数据源"
+  ]
+ ],
+ "databases": [
+  {
+   "name": "HRS 健康与退休研究",
+   "en": "Health and Retirement Study",
+   "cat": "aging",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://hrs.isr.umich.edu"
+    },
+    {
+     "label": "调和数据 Gateway",
+     "url": "https://g2aging.org"
+    }
+   ],
+   "region": "美国",
+   "scale": "约 2 万",
+   "timeSpan": "1992 至今",
+   "host": "密歇根大学社会研究所；美国国立老龄研究所(NIA)与社保署资助",
+   "content": "50 岁及以上，每 2 年一轮，队列更替设计持续补充年轻队列。健康、认知、就业退休、收入财富、代际支持、医疗支出与保险。",
+   "intro": "老龄追踪研究的标杆。做国际比较不要自己逐库对变量，直接用 Gateway to Global Aging Data 的统一编码调和版（Harmonized HRS/CHARLS/ELSA/SHARE/MHAS/KLoSA/LASI），可省 2-3 周清洗。RAND HRS Longitudinal File 是清洗好的纵向文件，强烈建议优先用它而非原始文件；HCAP 为认知深度评估；2006 起隔轮采干血斑/唾液；遗传数据需经 dbGaP 另申。",
+   "usage": "注册后即可下载公开文件，免费；受限数据（详细地理、社保/医保链接）需签协议并说明数据安全环境。",
+   "notes": "变量命名每轮前缀不同，不用 RAND 版本会非常痛苦。",
+   "tags": [
+    "老龄",
+    "认知",
+    "痴呆",
+    "失能",
+    "养老",
+    "退休",
+    "收入",
+    "财富",
+    "代际",
+    "美国",
+    "队列",
+    "前瞻性",
+    "问卷",
+    "随访"
+   ],
+   "paradigm": "跨国/纵向老龄比较：用 g2aging 调和数据集统一变量→选取暴露(如认知/功能)与结局→多层/纵向模型；遗传相关变量走 dbGaP。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "健康与功能、认知、就业与退休、收入财富、家庭代际支持、医疗支出与保险；RAND HRS 纵向文件；生物标志物（干血斑/唾液，2006 起隔轮采集）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Health+and+Retirement+Study",
+   "ackEn": "This research used data from Health and Retirement Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 HRS 健康与退休研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CHARLS 中国健康与养老追踪调查",
+   "en": "China Health and Retirement Longitudinal Study",
+   "cat": "aging",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "http://charls.pku.edu.cn"
+    },
+    {
+     "label": "数据平台",
+     "url": "https://opendata.pku.edu.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "约 1.7 万",
+   "timeSpan": "2011 至今",
+   "host": "北京大学国家发展研究院、中国社会科学调查中心",
+   "content": "45 岁及以上，覆盖 150 县区/450 村居。人口学、健康功能、认知抑郁、医疗服务利用与支出、养老保险、收入消费、家庭结构。",
+   "intro": "对中国肾脏与心血管方向极重要：2011 与 2015 两轮采静脉血，含血肌酐、胱抑素 C、尿素氮、尿酸、糖化血红蛋白、血脂、CRP，可算 eGFR（肌酐法/胱抑素C法/联合）且血压为实测值。中英文文档齐全。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "血样仅两轮，纵向 eGFR 斜率只有两个时间点，勿硬做轨迹模型；两轮检测批次/实验室有差异，跨轮比较建议校准；自报「医生告知患肾病」漏报率高，单靠自报定义 CKD 会严重低估。",
+   "tags": [
+    "老龄",
+    "中国",
+    "认知",
+    "抑郁",
+    "养老",
+    "医保",
+    "医疗支出",
+    "肾脏",
+    "eGFR",
+    "肌酐",
+    "血压",
+    "队列",
+    "前瞻性",
+    "问卷",
+    "体检",
+    "生化"
+   ],
+   "paradigm": "中国中老年：用实测血压+静脉血生化构建暴露→肾病/心血管结局→Cox/轨迹模型；血样仅两轮，纵向分析注意时间点限制。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "血肌酐、胱抑素C、尿素氮、尿酸、糖化血红蛋白、血脂、CRP、实测血压（可算 eGFR）；认知与抑郁量表、医疗服务利用与支出、养老保险",
+   "papers": [
+    "Zhao Y, et al. Cohort profile: the China Health and Retirement Longitudinal Study (CHARLS). Int J Epidemiol. 2014",
+    "建议以 CHARLS 官网与 PubMed 检索 “CHARLS” 核对最新论文"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Health+and+Retirement+Longitudinal+Study",
+   "ackEn": "This research uses data from the China Health and Retirement Longitudinal Study (CHARLS), conducted by Peking University, under data use approval [XXXXX].",
+   "ackCn": "本研究使用了北京大学中国健康与养老追踪调查（CHARLS）数据，数据使用批准号 [XXXXX]。"
+  },
+  {
+   "name": "CLHLS 中国老年健康影响因素跟踪调查",
+   "en": "Chinese Longitudinal Healthy Longevity Survey",
+   "cat": "aging",
+   "access": 2,
+   "urls": [
+    {
+     "label": "数据平台",
+     "url": "https://opendata.pku.edu.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "累计数万",
+   "timeSpan": "1998 至今",
+   "host": "北京大学健康老龄与发展研究中心（曾毅团队）",
+   "content": "覆盖 23 省，约八轮。日常生活能力、认知、社会经济与照料、心理健康、临终照护回顾。",
+   "intro": "不可替代之处是超高龄过采样：80 岁以上乃至百岁老人样本量全球稀缺，研究长寿、失能轨迹与临终照护必用。部分长寿地区采过血样（指标覆盖面与轮次以官网说明书为准）。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "高龄组代理回答比例高，认知/自评健康类变量要单独处理；死亡随访是强项，但注意失访与死亡的竞争风险。",
+   "tags": [
+    "老龄",
+    "长寿",
+    "失能",
+    "百岁",
+    "临终照护",
+    "认知",
+    "中国",
+    "队列",
+    "前瞻性",
+    "问卷"
+   ],
+   "paradigm": "长寿/失能轨迹：以超高龄过采样人群做生存与功能下降分析；注意代理回答偏倚与竞争风险。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "日常生活活动能力(ADL/IADL)、认知、心理健康、临终照护回顾问卷、死亡随访；超高龄与百岁老人过采样",
+   "papers": [
+    "曾毅教授团队关于中国长寿、失能轨迹与临终照护的系列研究"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Chinese+Longitudinal+Healthy+Longevity+Survey",
+   "ackEn": "This research used data from Chinese Longitudinal Healthy Longevity Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CLHLS 中国老年健康影响因素跟踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CFPS 中国家庭追踪调查",
+   "en": "China Family Panel Studies",
+   "cat": "social",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "http://www.isss.pku.edu.cn/cfps/"
+    },
+    {
+     "label": "数据平台",
+     "url": "https://opendata.pku.edu.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "约 1.5 万户",
+   "timeSpan": "2010 至今",
+   "host": "北京大学中国社会科学调查中心",
+   "content": "25 省市区，两年一轮。家庭/成人/少儿/社区四层问卷可匹配（最强之处）。",
+   "intro": "健康相关含自评健康、慢病自报、医疗支出、医保类型、CES-D、部分轮次身高体重血压。典型用法：医保改革双重差分、家庭照料与老年健康、灾难性卫生支出。健康变量以自报为主，但社会经济/家庭结构/政策暴露是医学库没有的。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "健康测量以自报为主，客观指标有限。",
+   "tags": [
+    "中国",
+    "家庭",
+    "社会",
+    "医疗支出",
+    "医保",
+    "灾难性卫生支出",
+    "抑郁",
+    "CES-D",
+    "队列",
+    "重复横断面",
+    "问卷"
+   ],
+   "paradigm": "卫生政策评估：用四层匹配数据做 DID/断点回归评估医保或政策冲击对医疗利用与支出的影响。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "自评健康、慢病自报、医疗支出、医保类型、CES-D 心理量表；部分轮次身高体重血压；家庭/成人/少儿/社区四层匹配",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Family+Panel+Studies",
+   "ackEn": "This research used data from China Family Panel Studies. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CFPS 中国家庭追踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CLASS 中国老年社会追踪调查",
+   "en": "China Longitudinal Aging Social Survey",
+   "cat": "social",
+   "access": 2,
+   "urls": [
+    {
+     "label": "CNSDA 入口",
+     "url": "http://www.cnsda.org"
+    }
+   ],
+   "region": "中国",
+   "scale": "约 1.1 万",
+   "timeSpan": "2014 至今",
+   "host": "中国人民大学中国调查与数据中心",
+   "content": "60 岁及以上，两年一轮。老年社会照料、养老服务需求、社区养老资源、代际支持。",
+   "intro": "中国人民大学中国调查与数据中心主办的 60 岁及以上老年社会调查（2014 年基线，约 1.1 万人，两年一轮）。相比 CHARLS 更聚焦老年社会照料、养老服务需求、社区养老资源与代际支持，服务利用变量粒度更细，最贴合卫生管理与养老服务体系研究。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "健康指标以自报为主。",
+   "tags": [
+    "老龄",
+    "养老",
+    "社会服务",
+    "代际",
+    "中国",
+    "队列",
+    "重复横断面",
+    "问卷"
+   ],
+   "paradigm": "老年服务体系研究：用服务利用/需求变量评估社区养老资源与照料供给差距。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "ADL/IADL、慢病自报、养老服务需求与利用、社区养老资源、代际支持、经济状况；客观体检指标有限",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Longitudinal+Aging+Social+Survey",
+   "ackEn": "This research used data from China Longitudinal Aging Social Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CLASS 中国老年社会追踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CGSS 中国综合社会调查",
+   "en": "Chinese General Social Survey",
+   "cat": "social",
+   "access": 2,
+   "urls": [
+    {
+     "label": "CNSDA 入口",
+     "url": "http://www.cnsda.org"
+    }
+   ],
+   "region": "中国",
+   "scale": "每轮上万",
+   "timeSpan": "2003 至今",
+   "host": "中国人民大学中国调查与数据中心",
+   "content": "中国最早全国性综合社会调查。价值观、社会公平感、阶层认同等独一份。",
+   "intro": "中国人民大学中国调查与数据中心主办的全国性综合社会调查（2003 年起），是中国最早的综合社会调查。健康模块不深，但价值观、社会公平感、阶层认同、医患信任等变量独一份，适合就医体验、健康公平感知与卫生政策社会基础研究。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "健康客观指标有限。",
+   "tags": [
+    "中国",
+    "社会",
+    "公平",
+    "医患信任",
+    "问卷",
+    "横断面"
+   ],
+   "paradigm": "健康公平/就医体验：用社会态度变量分析健康公平感知与医患信任。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "自评健康、就医行为与医患信任、社会公平感、阶层认同、社会保障参与；以自报为主",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Chinese+General+Social+Survey",
+   "ackEn": "This research used data from Chinese General Social Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CGSS 中国综合社会调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CHNS 中国健康与营养调查",
+   "en": "China Health and Nutrition Survey",
+   "cat": "social",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.cpc.unc.edu/projects/china"
+    }
+   ],
+   "region": "中国",
+   "scale": "约 10 轮/12 省市",
+   "timeSpan": "1989-2015",
+   "host": "北卡大学人口中心与中国疾控中心营养与健康所",
+   "content": "连续 3 天 24 小时膳食回顾 + 家庭食物称重盘存；多轮测血压、身高体重腰围；2009 一轮采空腹血样查多项生化。",
+   "intro": "营养流行病学在中国几乎无替代。2015 后基本停更，做近年趋势不合适；做 1990-2015 膳食转型、城镇化与代谢病是绝配。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "非概率抽样；2015 后停更。",
+   "tags": [
+    "中国",
+    "营养",
+    "膳食",
+    "代谢",
+    "肥胖",
+    "血压",
+    "生化",
+    "队列",
+    "重复横断面",
+    "问卷",
+    "体检"
+   ],
+   "paradigm": "营养-代谢病：用 3 天膳食回顾+称重构建饮食暴露→代谢/心血管结局；注意非概率抽样与停更时间。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "连续 3 天 24 小时膳食回顾、家庭食物称重盘存、血压、身高体重腰围；2009 年空腹血多项生化",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Health+and+Nutrition+Survey",
+   "ackEn": "This research used data from China Health and Nutrition Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CHNS 中国健康与营养调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "KLoSA 韩国老龄化追踪研究",
+   "en": "Korean Longitudinal Study of Ageing",
+   "cat": "aging",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网（待核）",
+     "url": "https://survey.keis.or.kr"
+    }
+   ],
+   "region": "韩国",
+   "scale": "约 1 万",
+   "timeSpan": "2006 至今",
+   "host": "韩国雇佣情报院",
+   "content": "45 岁及以上（济州岛除外），每 2 年一轮。偏就业、退休、收入保障。",
+   "intro": "主办方为劳动就业口，健康变量以自报为主，生物样本非常有限。界面以韩文为主，英文文件另设下载区（入口待核）。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "拼写是 KLoSA 不是 KOLSA；健康客观指标少。",
+   "tags": [
+    "老龄",
+    "韩国",
+    "就业",
+    "退休",
+    "收入",
+    "问卷",
+    "队列",
+    "前瞻性"
+   ],
+   "paradigm": "韩国社会经济与老龄化：做就业/退休对健康影响；慢病生物学用 KoGES、卫生服务用 NHIS。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "健康与功能、认知与心理、就业退休与收入、家庭与代际、医疗支出与保险（类别级概述，具体变量见官方 codebook）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Korean+Longitudinal+Study+of+Ageing",
+   "ackEn": "This research used data from Korean Longitudinal Study of Ageing. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 KLoSA 韩国老龄化追踪研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "MHAS 墨西哥健康与老龄化研究",
+   "en": "Mexican Health and Aging Study",
+   "cat": "aging",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.mhasweb.org"
+    }
+   ],
+   "region": "墨西哥",
+   "scale": "约 1.5 万",
+   "timeSpan": "2001 至今",
+   "host": "德州大学医学部与墨西哥国家统计地理局",
+   "content": "50 岁及以上；含大量美墨移民史变量、Mex-Cog 认知专项；部分轮次采干血斑与人体测量。",
+   "intro": "拉美唯一大型全国代表性老龄面板，跨种族/跨发展阶段比较的关键一环；移民与健康研究的独门数据。英西双语文档。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "",
+   "tags": [
+    "老龄",
+    "墨西哥",
+    "移民",
+    "认知",
+    "拉美",
+    "队列",
+    "前瞻性",
+    "问卷",
+    "体检"
+   ],
+   "paradigm": "移民与健康/拉美老龄：用移民史变量+认知专项做跨发展阶段的比较研究。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "健康与功能、认知与心理、就业退休与收入、家庭与代际、医疗支出与保险（类别级概述，具体变量见官方 codebook）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Mexican+Health+and+Aging+Study",
+   "ackEn": "This research used data from Mexican Health and Aging Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 MHAS 墨西哥健康与老龄化研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "ELSA 英格兰老龄化追踪调查",
+   "en": "English Longitudinal Study of Ageing",
+   "cat": "aging",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.elsa-project.ac.uk"
+    }
+   ],
+   "region": "英格兰",
+   "scale": "数万",
+   "timeSpan": "1998 至今",
+   "host": "英国（与 HRS 高度对标）",
+   "content": "含客观体检，与 HRS 设计对标。",
+   "intro": "英格兰 50 岁及以上人群的老龄化追踪研究，1998 年起多轮随访，设计上与美国 HRS 高度对标，因此可与 HRS/CHARLS/SHARE 做统一编码的跨国比较（推荐用 g2aging 调和数据集）。除问卷外含客观体检、护士访视与生物样本，是欧洲老龄研究中体检模块较完整的一个。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "",
+   "tags": [
+    "老龄",
+    "英国",
+    "欧洲",
+    "认知",
+    "体检",
+    "队列",
+    "前瞻性",
+    "问卷"
+   ],
+   "paradigm": "英美老龄比较：经 g2aging 调和变量与 HRS/SHARE 做跨国纵向比较。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "健康与功能、认知、心理健康、就业与退休、收入与财富、社会参与；客观体检（血压、人体测量、体成分、肺功能等）与生物样本",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=English+Longitudinal+Study+of+Ageing",
+   "ackEn": "This research used data from English Longitudinal Study of Ageing. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 ELSA 英格兰老龄化追踪调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "SHARE 欧洲健康、老龄与退休调查",
+   "en": "Survey of Health, Ageing and Retirement in Europe",
+   "cat": "aging",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://share-eric.eu"
+    }
+   ],
+   "region": "欧洲 28 国",
+   "scale": "数万至 7 万",
+   "timeSpan": "2004 至今",
+   "host": "欧洲多国联合",
+   "content": "跨国样本量最大的老龄面板，做欧洲比较的默认选择。",
+   "intro": "覆盖欧洲 28 国的跨国老龄面板（2004 年起），样本量与国别覆盖在欧洲最大，是欧洲跨国比较的默认数据源。变量经统一编码（含健康、认知、经济、社会网络），并可与部分国家的行政登记链接；跨国比较建议直接用 Harmonized SHARE。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "",
+   "tags": [
+    "老龄",
+    "欧洲",
+    "跨国",
+    "退休",
+    "健康不平等",
+    "队列",
+    "前瞻性",
+    "问卷"
+   ],
+   "paradigm": "欧洲健康不平等：多国面板做跨国比较与政策评估。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "健康与功能、认知、抑郁(CES-D/Euro-D)、就业退休、收入财富、社会网络与代际支持；部分国家含体检与生物样本",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Survey+of+Health,+Ageing+and+Retirement+in+Europe",
+   "ackEn": "This research used data from Survey of Health, Ageing and Retirement in Europe. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 SHARE 欧洲健康、老龄与退休调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "LASI 印度纵向老龄化调查",
+   "en": "Longitudinal Aging Study in India",
+   "cat": "aging",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.lasi-india.org"
+    }
+   ],
+   "region": "印度",
+   "scale": "7 万以上",
+   "timeSpan": "2017 至今",
+   "host": "印度（与 HRS 家族对标）",
+   "content": "规模惊人的全国老龄面板。",
+   "intro": "印度全国代表性老龄面板（2017-2019 基线，样本 7 万以上），是研究发展中大国老龄化、慢病与家庭照料的关键资源，可与 HRS 家族做统一编码比较。含认知、功能、健康行为与生物标志物子样本。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "",
+   "tags": [
+    "老龄",
+    "印度",
+    "发展中国家",
+    "队列",
+    "前瞻性",
+    "问卷",
+    "体检"
+   ],
+   "paradigm": "发展中大国老龄：大规模面板做健康转型与老龄化负担研究。",
+   "qr": "survey",
+   "lite": false,
+   "indicators": "健康与功能、认知、慢病自报、健康行为、家庭与经济状况；部分子样本含血压、人体测量与生物标志物",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Longitudinal+Aging+Study+in+India",
+   "ackEn": "This research used data from Longitudinal Aging Study in India. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 LASI 印度纵向老龄化调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "UK Biobank 英国生物样本库",
+   "en": "UK Biobank",
+   "cat": "biobank",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.ukbiobank.ac.uk"
+    },
+    {
+     "label": "变量浏览 Showcase",
+     "url": "https://biobank.ndph.ox.ac.uk/showcase/"
+    },
+    {
+     "label": "申请系统 AMS",
+     "url": "https://ams.ukbiobank.ac.uk"
+    }
+   ],
+   "region": "英国",
+   "scale": "约 50 万",
+   "timeSpan": "2006-2010 招募",
+   "host": "英国（22 个评估中心）",
+   "content": "基线问卷、体格测量、生化 30 余项（肌酐/胱抑素C/尿白蛋白肌酐比）、全基因组分型、WGS、蛋白组(Olink)、代谢组、多模态影像(脑心腹DXA)、加速度计、与 NHS 住院/癌登/死亡链接。",
+   "intro": "需正式申请并付费。先在 Showcase 免账号浏览全部变量与分布；注册 AMS 提交约 2000 字研究计划+机构 PI 与合作者；审批后按字段范围付费；分析已迁至 DNAnexus 的 UKB-RAP 云平台，另有计算与存储费；结果需回传。",
+   "usage": "四步：① 在 Showcase 免账号浏览全部变量与分布；② 注册 AMS，提交约 2000 字研究计划（含机构 PI 与合作者信息）；③ 审批通过后按获批字段范围付费并签署数据使用协议；④ 在 UKB-RAP（基于 DNAnexus 的云平台）分析，另计算力与存储费用，结果需回传。周期约 1-6 个月。",
+   "notes": "健康志愿者偏倚显著（应答率约 5%），绝对风险不可外推总人群，相对关联通常有效——讨论必写；组学项目易超支。",
+   "tags": [
+    "英国",
+    "一般人群",
+    "基因",
+    "多组学",
+    "影像",
+    "蛋白组",
+    "代谢组",
+    "队列",
+    "前瞻性",
+    "体检",
+    "生化",
+    "死亡登记",
+    "真实世界"
+   ],
+   "paradigm": "大型前瞻队列：先用 Showcase 确定变量→AMS 提交计划→UKB-RAP 云上分析；注意志愿者偏倚与云成本。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "血液尿液生化约 30 余项（肌酐、胱抑素C、尿微量白蛋白、尿肌酐→可算 eGFR 与 UACR）、全基因组分型、WGS、Olink 蛋白组、Nightingale 代谢组、多模态影像、加速度计；NHS 住院/癌登/死亡链接",
+   "papers": [
+    "Sudlow C, et al. UK Biobank: An Open Access Resource for Identifying the Causes of Disease. PLoS Med. 2015（队列描述）",
+    "建议同步查阅官网 Publications 页按年份检索最新成果"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=UK+Biobank",
+   "ackEn": "This research has been conducted using the UK Biobank Resource under Application Number [XXXXX].",
+   "ackCn": "本研究使用英国生物样本库（UK Biobank）资源开展，批准申请编号为 [XXXXX]。"
+  },
+  {
+   "name": "CKB 中国慢性病前瞻性研究",
+   "en": "China Kadoorie Biobank",
+   "cat": "biobank",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.ckbiobank.org"
+    }
+   ],
+   "region": "中国 10 地区",
+   "scale": "约 51 万",
+   "timeSpan": "2004-2008 基线",
+   "host": "牛津大学临床试验服务部、中国医学科学院、北京大学",
+   "content": "5 城市 5 农村，每约 5 年重复调查；与疾控监测/医保理赔/死因登记链接，随访完整度国内顶尖；基因分型约 10 万，另有测序/代谢/蛋白子集。",
+   "intro": "分层开放：Open Access 层汇总数据与部分个体数据较快获取；深度数据需正式申请，常需与 CKB 团队合作署名。中国人群、样本量与 UKB 同量级且有医保理赔随访，做中国人高血压至心肾结局前瞻性证据最硬。",
+   "usage": "分层开放：① 先在 Open Access 层获取汇总数据与部分个体数据（较快）；② 深度数据需在线提交研究申请、说明科学问题与所需变量；③ 经 CKB 科学委员会与伦理审批，通常需与 CKB 团队合作并共同署名；④ 获批后在受控环境分析。周期 1-6 个月。",
+   "notes": "深度层门槛高，优先考虑 Open Access 与团队合",
+   "tags": [
+    "中国",
+    "一般人群",
+    "心血管",
+    "肾脏",
+    "高血压",
+    "队列",
+    "前瞻性",
+    "随访",
+    "医保",
+    "基因",
+    "真实世界"
+   ],
+   "paradigm": "中国人群心肾结局：Open Access 先验证→深度数据走合作申请；利用医保/死因链接做结局确认。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "基因分型约 10 万人，另含测序、代谢组、蛋白组子集；结局经疾病监测点、医保理赔、死因登记链接",
+   "papers": [
+    "Chen Z, et al. China Kadoorie Biobank of 0.5 million people: survey methods, baseline characteristics and long-term follow-up. Int J Epidemiol. 2011",
+    "CKB 官网 Publications 页有完整成果列表"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Kadoorie+Biobank",
+   "ackEn": "This research used data from the China Kadoorie Biobank (CKB) under approved project / collaboration number [XXXXX].",
+   "ackCn": "本研究使用了中国慢性病前瞻性研究（CKB）数据，批准项目/合作编号 [XXXXX]。"
+  },
+  {
+   "name": "MCPS 墨西哥城前瞻性研究",
+   "en": "Mexico City Prospective Study",
+   "cat": "biobank",
+   "access": 5,
+   "urls": [
+    {
+     "label": "牛津 CTSU（入口待核）",
+     "url": "https://www.ctsu.ox.ac.uk"
+    }
+   ],
+   "region": "墨西哥",
+   "scale": "约 15 万",
+   "timeSpan": "长期随访",
+   "host": "牛津大学临床试验服务部（与 CKB 同方法学谱系）",
+   "content": "规模大、随访长、有基因组数据。",
+   "intro": "做墨西哥人群生物标志物与死亡结局比 MHAS 更合适；申请入口待核，建议从牛津 CTSU 官网查。",
+   "usage": "研究申请入口以牛津大学临床试验服务部（CTSU）官方发布为准（本条入口待核）：一般需提交研究方案、经数据持有方与伦理审批，并与团队合作；具体流程与费用请以官网/CTSU 说明为准。",
+   "notes": "入口待核",
+   "tags": [
+    "墨西哥",
+    "一般人群",
+    "基因",
+    "队列",
+    "前瞻性",
+    "随访",
+    "死亡登记"
+   ],
+   "paradigm": "拉美人群队列：生物标志物→死亡/慢病结局；入口从牛津 CTSU 查找。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "基线问卷、体格测量、血液生化、基因组/多组学，以及与登记或医保链接的结局变量（详见官网 Showcase / codebook）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Mexico+City+Prospective+Study",
+   "ackEn": "This research used data from Mexico City Prospective Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 MCPS 墨西哥城前瞻性研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "KoGES 韩国基因组流行病学研究",
+   "en": "Korean Genome Epidemiology Study",
+   "cat": "biobank",
+   "access": 4,
+   "urls": [
+    {
+     "label": "韩国国立保健研究院（入口待核）",
+     "url": "https://www.kdca.go.kr"
+    }
+   ],
+   "region": "韩国",
+   "scale": "20 余万",
+   "timeSpan": "2001 至今",
+   "host": "韩国国立保健研究院",
+   "content": "城市/农村/Ansan-Ansung 等多个子队列，有基因组与长期随访。",
+   "intro": "韩国国立保健研究院主导的基因组流行病学研究，含城市、农村、Ansan-Ansung 等多个子队列，合计 20 余万人，有基因组与长期随访。做慢病遗传与基因-环境交互用 KoGES；做社会经济与老龄化用 KLoSA；做卫生服务与药物流行病学用 NHIS。",
+   "usage": "向韩国国立保健研究院（KDCA）提交研究申请，说明研究目的与所需子队列/变量，经审批后获取；英文入口与具体流程以官网为准（本条待核），通常需韩方合作。",
+   "notes": "入口待核",
+   "tags": [
+    "韩国",
+    "一般人群",
+    "基因",
+    "队列",
+    "前瞻性",
+    "慢病",
+    "体检"
+   ],
+   "paradigm": "韩国慢病遗传学：基因-环境交互；入口从韩国国立保健研究院进入。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "基因型、体检与生化（血糖、血脂、血压、肝肾功能）、生活方式问卷、随访结局",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Korean+Genome+Epidemiology+Study",
+   "ackEn": "This research used data from Korean Genome Epidemiology Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 KoGES 韩国基因组流行病学研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "All of Us 美国全民健康研究",
+   "en": "All of Us Research Program",
+   "cat": "biobank",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://allofus.nih.gov"
+    }
+   ],
+   "region": "美国",
+   "scale": "目标百万",
+   "timeSpan": "进行中",
+   "host": "美国 NIH",
+   "content": "强调少数族裔代表性，含电子病历与可穿戴数据。",
+   "intro": "美国 NIH 的全民健康研究计划，目标招募百万人，强调少数族裔与 underrepresented 人群代表性。数据类型包括电子病历、问卷、可穿戴设备、体检与生物样本（基因组、代谢组）。研究者通过 Researcher Workbench 云端环境在受控层级下分析，无需下载原始数据。",
+   "usage": "注册研究者账号（需机构邮箱与身份核验）→ 完成研究用途声明与数据使用协议 → 在 Researcher Workbench 云端分析。分层数据（Public/Registered/Controlled）权限不同，Controlled 层需额外审批。免费。",
+   "notes": "",
+   "tags": [
+    "美国",
+    "一般人群",
+    "基因",
+    "多组学",
+    "电子病历",
+    "可穿戴",
+    "真实世界",
+    "队列"
+   ],
+   "paradigm": "多族裔健康公平：利用少数族裔代表性样本做精准医学与差异研究。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "电子病历（诊断/用药/检验）、问卷（健康、生活方式、社会决定因素）、可穿戴（活动/心率）、基因组与代谢组、体检",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=All+of+Us+Research+Program",
+   "ackEn": "This research used data from All of Us Research Program. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 All of Us 美国全民健康研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "FinnGen 芬兰基因组计划",
+   "en": "FinnGen",
+   "cat": "biobank",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.finngen.fi"
+    }
+   ],
+   "region": "芬兰",
+   "scale": "50 万以上",
+   "timeSpan": "进行中",
+   "host": "芬兰（基因+全国登记链接）",
+   "content": "基因加全国登记链接，GWAS 汇总统计公开。",
+   "intro": "芬兰国家級基因组计划，约 50 万人，将基因型与全国健康登记（住院、处方、死亡等）链接，形成高质量的表型-基因关联资源。GWAS 汇总统计在官网公开，可直接下载用于荟萃分析；个体级数据需向 FinnGen/THL 申请。",
+   "usage": "GWAS 汇总统计在官网公开下载；个体级数据需提交研究申请并经 FinnGen/THL 审批，部分需在芬兰安全环境分析。",
+   "notes": "",
+   "tags": [
+    "芬兰",
+    "基因",
+    "GWAS",
+    "登记",
+    "队列",
+    "真实世界"
+   ],
+   "paradigm": "遗传流行病学：公开 GWAS 汇总统计做荟萃；个体数据走申请。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "基因型/全基因组、全国登记表型（诊断、处方、住院、死亡）、GWAS 汇总统计（含 AF、beta、SE、P）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=FinnGen",
+   "ackEn": "This research used data from FinnGen. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 FinnGen 芬兰基因组计划 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "BioBank Japan 日本生物样本库",
+   "en": "BioBank Japan",
+   "cat": "biobank",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://biobankjp.org"
+    }
+   ],
+   "region": "日本",
+   "scale": "约 27 万",
+   "timeSpan": "进行中",
+   "host": "日本",
+   "content": "东亚人群 GWAS 的重要来源。",
+   "intro": "日本大型生物样本库（约 27 万人，涵盖 12 类疾病），是东亚人群 GWAS 与疾病遗传学的重要来源，与欧美队列联合可做跨族裔比较。以 DNA 与临床信息为主。",
+   "usage": "通过 BioBank Japan / 理化学研究所（RIKEN）提交研究申请，说明研究目的与所需数据，经审批后获取（多为合作或受控方式）。",
+   "notes": "",
+   "tags": [
+    "日本",
+    "东亚",
+    "基因",
+    "GWAS",
+    "队列"
+   ],
+   "paradigm": "东亚遗传：与东亚其他队列联合做 GWAS 与疾病关联。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "DNA/基因型、疾病诊断（12 类疾病）、临床基本信息；GWAS 汇总统计",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=BioBank+Japan",
+   "ackEn": "This research used data from BioBank Japan. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 BioBank Japan 日本生物样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "Million Veteran Program 百万退伍军人计划",
+   "en": "Million Veteran Program",
+   "cat": "biobank",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.research.va.gov/mvp"
+    }
+   ],
+   "region": "美国",
+   "scale": "百万级",
+   "timeSpan": "进行中",
+   "host": "美国退伍军人事务部（男性为主）",
+   "content": "退伍军人队列，含基因与电子病历。",
+   "intro": "美国退伍军人事务部（VA）的百万级队列，以男性为主，整合基因组、电子病历与问卷，是研究男性健康、药物基因组学与创伤后应激等的重要资源。数据在 VA 受控环境中分析。",
+   "usage": "需通过 VA 研究审批（ORD）与数据使用协议，在 VA 安全环境内分析；一般需美方合作者。",
+   "notes": "男性为主，性别外推差。",
+   "tags": [
+    "美国",
+    "男性",
+    "退伍军人",
+    "基因",
+    "电子病历",
+    "队列",
+    "真实世界"
+   ],
+   "paradigm": "男性/退伍军人健康：基因-电子病历关联；注意男性偏倚。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "基因组、电子病历（诊断/用药/检验）、问卷（暴露、心理健康、生活方式）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Million+Veteran+Program",
+   "ackEn": "This research used data from Million Veteran Program. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 Million Veteran Program 百万退伍军人计划 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "Estonian Biobank 爱沙尼亚生物样本库",
+   "en": "Estonian Biobank",
+   "cat": "biobank",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://genomics.ut.ee/en/biobank"
+    }
+   ],
+   "region": "爱沙尼亚",
+   "scale": "约 20 万",
+   "timeSpan": "进行中",
+   "host": "爱沙尼亚（覆盖全国约 20% 成人）",
+   "content": "全国代表性遗传队列。",
+   "intro": "爱沙尼亚全国性生物样本库，约 20 万人（覆盖全国约 20% 成年人口），基因型与全国电子健康记录链接，是国家级精准医学与药物基因组学的代表性资源。",
+   "usage": "向爱沙尼亚塔尔图大学生物样本库提交研究申请，经伦理与数据审批后在受控环境分析；部分数据需合作。",
+   "notes": "",
+   "tags": [
+    "爱沙尼亚",
+    "欧洲",
+    "基因",
+    "队列",
+    "真实世界"
+   ],
+   "paradigm": "国家级遗传队列：高覆盖率样本做精准医学。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "基因型/全基因组、电子健康记录（诊断、处方、检验）、问卷与体检",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Estonian+Biobank",
+   "ackEn": "This research used data from Estonian Biobank. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 Estonian Biobank 爱沙尼亚生物样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "开滦队列",
+   "en": "Kailuan Study",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "团队论文方法学",
+     "url": "https://www.kailuanhospital.com"
+    }
+   ],
+   "region": "河北唐山",
+   "scale": "101,510",
+   "timeSpan": "2006 至今",
+   "host": "开滦总医院及开滦集团 11 家医院（吴寿岭团队）",
+   "content": "在职与离退休职工；每 2 年统一体检（血压/身高体重腰围/空腹血糖/血脂/肌酐/尿酸/hsCRP/肝肾/血尿常规/心电图），亚组含颈动脉超声、baPWV/ABI、脑核磁、认知、睡眠、眼底；结局经医保+死因+主动随访三重确认，终点委员会裁定。已在中国临床试验注册中心注册。",
+   "intro": "方法学上极值钱：因每 2 年全套复测，可做累积暴露（血压/血糖/炎症负荷）、访视间变异性（SD/CV/独立于均值变异）、轨迹分析（潜类别增长模型）、时依协变量 Cox。与 24h 动态血压（短期变异）、累积负荷（暴露总量）是不同构念，讲清三层本身就是有分量的讨论。",
+   "usage": "不公开下载。合作制，联系开滦总医院团队，常含共同署名；国内心血管会议是建立联系的渠道。",
+   "notes": "男性约八成，性别外推差；单一企业/地域，社会经济同质；健康工人效应；早期轮次部分指标方法变更需校准。",
+   "tags": [
+    "中国",
+    "职业",
+    "职工",
+    "心血管",
+    "肾脏",
+    "CKD",
+    "血压",
+    "累积暴露",
+    "轨迹",
+    "队列",
+    "前瞻性",
+    "体检",
+    "生化",
+    "随访",
+    "合作"
+   ],
+   "paradigm": "重复测量队列：累积暴露/访视间变异性/轨迹/LT-Cox；结局用医保+死因三重确认。男性职工偏倚需说明。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "标准化血压、身高体重腰围、空腹血糖、血脂四项、血肌酐、尿酸、超敏CRP、肝肾功能、血常规、尿常规、心电图；亚组含颈动脉超声、baPWV/ABI、脑核磁、认知",
+   "papers": [
+    "开滦研究团队在心血管与肾病方向的系列论文（建议 PubMed 检索 “Kailuan Study” 核对）",
+    "团队论文方法学部分含队列注册号"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Kailuan+Study",
+   "ackEn": "This research used data from Kailuan Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 开滦队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "同济东风队列",
+   "en": "Dongfeng-Tongji Cohort (DFTJ)",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "华中科大公卫学院",
+     "url": "https://en.tjmu.edu.cn"
+    }
+   ],
+   "region": "湖北十堰",
+   "scale": "27,009→约 3.8 万",
+   "timeSpan": "2008 至今",
+   "host": "华中科技大学同济医学院公卫学院与东风汽车公司（邬堂春团队）",
+   "content": "东风汽车退休职工；详尽职业暴露史（粉尘/噪声/金属/化学品）、生活方式、疾病用药；血压/人体测量/心电图，亚组颈动脉超声/肺功能；空腹血与 DNA 库，已有基因分型；与东风职工医保链接+死因登记。",
+   "intro": "职业暴露+基因组+医保结局三合一，做基因-环境交互、职业暴露与心血管代谢结局国内几乎无对手。对同济系统内研究者门槛最低、契合度最高；人群为退休职工，年龄偏大、高血压患病率高，适合与院内电子病历队列对照。",
+   "usage": "校内与机构间合作制：① 联系华中科技大学同济医学院公共卫生学院相关团队；② 提交研究方案与所需变量；③ 签署合作协议并办理伦理审批；④ 在合作框架内分析，通常涉及共同署名。本院系引荐通常只需几次沟通。",
+   "notes": "单一企业/城市、退休为主，年轻与非职业人群缺失。",
+   "tags": [
+    "中国",
+    "职业",
+    "暴露",
+    "基因",
+    "心血管",
+    "代谢",
+    "医保",
+    "队列",
+    "前瞻性",
+    "合作",
+    "环境"
+   ],
+   "paradigm": "职业-基因交互：职业暴露史+基因分型+医保结局；适合院内跨机构合作。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "职业暴露史（工种/粉尘/噪声/金属/化学品）、血压、人体测量、心电图、颈动脉超声、肺功能；空腹血与 DNA 及基因分型；医保与死因链接结局",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Dongfeng-Tongji+Cohort+(DFTJ)",
+   "ackEn": "This research used data from Dongfeng-Tongji Cohort (DFTJ). Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 同济东风队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "PBICR 中国居民心理与行为调查",
+   "en": "Psychology and Behavior Investigation of Chinese Residents",
+   "cat": "china_cohort",
+   "access": 4,
+   "urls": [
+    {
+     "label": "CNSDA 中国国家调查数据库（检索 PBICR）",
+     "url": "http://www.cnsda.org"
+    },
+    {
+     "label": "PubMed 检索 PBICR 相关研究",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/?term=PBICR"
+    }
+   ],
+   "region": "中国 31 省",
+   "scale": "单轮 2-3 万",
+   "timeSpan": "2021 至今",
+   "host": "国内多高校与研究机构联合（具体牵头待核）",
+   "content": "全国性重复横断面，量表密度极高：PHQ-9、GAD-7、PSS、UCLA 孤独、PSQI、HPLP-II、FHS-SF、健康素养/eHEALS、EQ-5D、社会支持/资本/医患信任、就医行为。",
+   "intro": "PBICR（Psychology and Behavior Investigation of Chinese Residents）中国居民心理与行为调查，全国性重复横断面调查，2021 年起开展，以第七次全国人口普查为基础的配额抽样结合多阶段分层，覆盖 31 个省级行政区。它真正的卖点是量表密度极高，是国内变量最丰富的心理行为类调查之一；一个数据集可支撑几十个不同选题，出稿速度快。",
+   "usage": "通过项目组申请：① 取得项目组联系方式（见近期 PBICR 论文的数据可用性声明/致谢）；② 提交研究方案与所需量表/变量；③ 经审核后按合作署名模式获取数据。具体流程与周期以项目组说明为准（待核）。",
+   "notes": "横断面为主、因果推断能力弱；全自报，无客观体检与生化指标，做慢病结局完全不行；同源方差与共同方法偏倚突出；配额抽样属非概率抽样，勿直接声称全国代表性；产出同质化、撞题概率大。",
+   "tags": [
+    "中国",
+    "心理",
+    "抑郁",
+    "焦虑",
+    "睡眠",
+    "行为",
+    "健康素养",
+    "横断面",
+    "量表",
+    "合作",
+    "社会"
+   ],
+   "paradigm": "健康心理/行为：高密度量表做关联+中介调节；强调横断面局限与同源方差，勿做因果。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "PHQ-9、GAD-7、PSS 感知压力、UCLA 孤独、PSQI 睡眠、HPLP-II 健康促进生活方式、FHS-SF 家庭健康、健康素养与 eHEALS、EQ-5D、社会支持/社会资本/医患信任、就医行为",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Psychology+and+Behavior+Investigation+of+Chinese+Residents",
+   "ackEn": "This research used data from Psychology and Behavior Investigation of Chinese Residents. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 PBICR 中国居民心理与行为调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "China-PAR 中国动脉粥样硬化性心血管病风险预测",
+   "en": "China Atherosclerotic Cardiovascular Disease Prediction",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "在线计算器",
+     "url": "https://www.cvdrisk.com.cn"
+    }
+   ],
+   "region": "中国多队列",
+   "scale": "约 12.7 万",
+   "timeSpan": "随访十余年",
+   "host": "中国医学科学院阜外医院（顾东风团队）",
+   "content": "整合 China-MUCA、InterASIA、CIMIC 等多队列；产出 China-PAR 10 年及终生 ASCVD 风险模型，已写入指南。",
+   "intro": "原始数据不公开，但模型方程与在线计算器公开。做预测模型必须研究其建模策略（少而易获取变量）、报告规范（校准曲线/决策曲线/NRI/IDI）、转化路径（论文→指南）。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "心血管",
+    "ASCVD",
+    "预测模型",
+    "风险",
+    "队列",
+    "合作"
+   ],
+   "paradigm": "预测模型范式：少变量建模→校准/决策曲线/NRI/IDI→转化入指南；原始数据走合作。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "China-PAR 10 年及终生 ASCVD 风险模型变量（年龄、血压、血脂、吸烟、糖尿病等易获取指标）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Atherosclerotic+Cardiovascular+Disease+Prediction",
+   "ackEn": "This research used data from China Atherosclerotic Cardiovascular Disease Prediction. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 China-PAR 中国动脉粥样硬化性心血管病风险预测 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "China PEACE / 百万人群项目",
+   "en": "China PEACE & Million Population Project",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "阜外医院",
+     "url": "https://www.fuwai.com"
+    }
+   ],
+   "region": "中国 31 省",
+   "scale": "百万人群项目；住院病历抽样全国代表",
+   "timeSpan": "进行中",
+   "host": "中国医学科学院阜外医院（蒋立新团队）",
+   "content": "百万人群：35-75 岁社区心血管高危筛查干预；回顾性：全国代表性住院病历两阶段随机抽样（急性心梗/心衰等）。",
+   "intro": "中国极少数有严格抽样框架的全国性医疗质量评价研究，做医疗质量、区域差异、指南依从性的设计逻辑是国内标杆。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "心血管",
+    "医疗质量",
+    "卫生服务",
+    "抽样",
+    "合作"
+   ],
+   "paradigm": "医疗质量评价：严格抽样框架的病历抽样→区域差异/指南依从性分析。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "体检与生化、生活方式与职业暴露、基因/生物样本，及医保或死因链接的结局（详见团队论文方法学与数据说明）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+PEACE+&+Million+Population+Project",
+   "ackEn": "This research used data from China PEACE & Million Population Project. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 China PEACE / 百万人群项目 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CMEC 中国西南多民族队列",
+   "en": "China Multi-Ethnic Cohort",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "四川大学华西公卫",
+     "url": "https://wcsph.scu.edu.cn"
+    }
+   ],
+   "region": "云贵川渝藏",
+   "scale": "近 10 万",
+   "timeSpan": "2018 前后至今",
+   "host": "四川大学华西公共卫生学院",
+   "content": "覆盖藏、彝、苗、白、侗等民族，做民族健康差异与高原环境健康的唯一大型资源。",
+   "intro": "四川大学华西公共卫生学院牵头的大型多民族队列（云贵川渝藏，近 10 万人，2018 年前后起），覆盖藏、彝、苗、白、侗等民族，是研究民族健康差异与高原环境健康的唯一大型资源。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "民族",
+    "高原",
+    "队列",
+    "合作",
+    "环境"
+   ],
+   "paradigm": "民族/高原健康：多民族队列做健康差异与环境暴露。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "民族与人口学、生活方式、体检与生化、高原环境暴露；生物样本",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Multi-Ethnic+Cohort",
+   "ackEn": "This research used data from China Multi-Ethnic Cohort. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CMEC 中国西南多民族队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "泰州队列",
+   "en": "Taizhou Cohort",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "复旦大学",
+     "url": "https://sph.fudan.edu.cn"
+    }
+   ],
+   "region": "江苏泰州",
+   "scale": "十万量级（待核）",
+   "timeSpan": "进行中",
+   "host": "复旦大学",
+   "content": "生物样本库完善，肿瘤与代谢方向。",
+   "intro": "复旦大学在江苏泰州建立的区域人群队列，生物样本库较完善，主要面向肿瘤与代谢方向研究。具体基线年份与样本量以团队公开论文为准（本页标注十万量级，待核）。",
+   "usage": "合作制：① 联系复旦大学公共卫生学院相关团队；② 提交研究方案与变量需求；③ 经伦理与团队审批后，在合作框架内使用生物样本与数据，通常涉及共同署名。具体流程以团队说明为准。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "肿瘤",
+    "代谢",
+    "生物样本",
+    "队列",
+    "合作"
+   ],
+   "paradigm": "肿瘤/代谢队列：完善样本库支撑生物标志物发现。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "问卷与生活方式、体检与生化、生物样本；肿瘤与代谢相关指标（以团队数据说明为准）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Taizhou+Cohort",
+   "ackEn": "This research used data from Taizhou Cohort. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 泰州队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "上海女性/男性健康研究 SWHS/SMHS",
+   "en": "Shanghai Women's/Men's Health Studies",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "范德堡大学",
+     "url": "https://www.vanderbilt.edu"
+    }
+   ],
+   "region": "上海",
+   "scale": "女 74,942 / 男 61,480",
+   "timeSpan": "长期随访",
+   "host": "上海市疾控与范德堡大学",
+   "content": "膳食与肿瘤，随访极长；男女配对设计。",
+   "intro": "上海市疾控与范德堡大学合作的上海女性健康研究（74,942 名 40-70 岁女性）与上海男性健康研究（61,480 名 40-74 岁男性），采用配对设计，随访极长，是膳食与肿瘤研究的经典东亚队列。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "女性",
+    "男性",
+    "膳食",
+    "肿瘤",
+    "队列",
+    "合作"
+   ],
+   "paradigm": "膳食-肿瘤：长随访配对队列做营养与肿瘤关联。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "膳食问卷（食物频率）、生活方式、生殖与激素因素、体格测量；肿瘤发病与死亡随访",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Shanghai+Women's/Men's+Health+Studies",
+   "ackEn": "This research used data from Shanghai Women's/Men's Health Studies. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 上海女性/男性健康研究 SWHS/SMHS 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CNSR 中国国家卒中登记",
+   "en": "China National Stroke Registry",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "北京天坛医院",
+     "url": "https://www.tr hospital.com"
+    }
+   ],
+   "region": "中国",
+   "scale": "I 期约 2.2 万 / III 期约 1.5 万",
+   "timeSpan": "进行中",
+   "host": "北京天坛医院王拥军团队",
+   "content": "III 期含生物标志物与影像，卒中方向国内最强。",
+   "intro": "北京天坛医院王拥军团队牵头中国国家卒中登记（CNSR），I 期约 2.2 万、III 期约 1.5 万例，III 期含生物标志物与影像，是卒中方向国内最强、可用于预后与医疗质量评价的登记数据。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "卒中",
+    "神经",
+    "影像",
+    "生物标志物",
+    "登记",
+    "合作"
+   ],
+   "paradigm": "卒中结局：登记数据+影像/生物标志物做预后与质量改进。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "卒中类型与严重度（NIHSS）、影像、生物标志物、治疗与转归（mRS）、院内结局",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+National+Stroke+Registry",
+   "ackEn": "This research used data from China National Stroke Registry. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CNSR 中国国家卒中登记 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "C-STRIDE 中国慢性肾脏病队列",
+   "en": "China Chronic Kidney Disease Cohort",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "北大一院",
+     "url": "https://www.pkufh.com"
+    }
+   ],
+   "region": "中国",
+   "scale": "数千例 CKD 患者",
+   "timeSpan": "前瞻性",
+   "host": "北京大学第一医院",
+   "content": "中国最重要的 CKD 进展前瞻队列。",
+   "intro": "北京大学第一医院牵头的中国慢性肾脏病（CKD）前瞻队列，纳入数千例 CKD 患者，密集随访 eGFR、蛋白尿与肾脏终点，是中国最重要的 CKD 进展研究资源。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "肾脏",
+    "CKD",
+    "进展",
+    "队列",
+    "合作"
+   ],
+   "paradigm": "CKD 进展：eGFR 斜率/蛋白尿结局的前瞻随访。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "eGFR 与 eGFR 斜率、蛋白尿（UACR/24h）、血压、CKD 进展与 ESRD、心血管事件与死亡",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Chronic+Kidney+Disease+Cohort",
+   "ackEn": "This research used data from China Chronic Kidney Disease Cohort. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 C-STRIDE 中国慢性肾脏病队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CK-NET 中国肾脏疾病网络",
+   "en": "China Kidney Disease Network",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "北大一院",
+     "url": "https://www.pkufh.com"
+    }
+   ],
+   "region": "中国",
+   "scale": "全国医保与住院数据",
+   "timeSpan": "年度",
+   "host": "北京大学第一医院",
+   "content": "全国医保与住院数据，年度报告可直接作为论文中国背景引用源。",
+   "intro": "北京大学第一医院牵头、基于全国医保与住院数据的肾脏疾病网络，发布年度《中国肾脏疾病年度科学报告》，是论文中国背景、疾病负担与医疗利用的权威引用源。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "肾脏",
+    "医保",
+    "住院",
+    "卫生服务",
+    "合作"
+   ],
+   "paradigm": "肾脏疾病负担：全国医保/住院数据做利用与质量分析，年度报告可引用。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "CKD/ESRD 患病与治疗（透析、移植）、住院与费用、地区差异；年度报告指标",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Kidney+Disease+Network",
+   "ackEn": "This research used data from China Kidney Disease Network. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CK-NET 中国肾脏疾病网络 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "中国高血压调查 CHS",
+   "en": "China Hypertension Survey",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "阜外医院",
+     "url": "https://www.fuwai.com"
+    }
+   ],
+   "region": "中国",
+   "scale": "大规模筛查",
+   "timeSpan": "进行中",
+   "host": "中国医学科学院阜外医院",
+   "content": "中国高血压患病率、知晓率、治疗率、控制率的权威来源。",
+   "intro": "中国医学科学院阜外医院开展的大规模高血压流行病学调查，是中国高血压患病率、知晓率、治疗率、控制率的权威来源，常用于论文背景与政策论证。",
+   "usage": "以官方报告与团队合作为主：① 引用已发布的患病率/知晓率/治疗率/控制率报告；② 需要个体级数据时联系阜外医院团队，提交研究方案并走合作与伦理流程。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "高血压",
+    "流行病学",
+    "筛查",
+    "合作"
+   ],
+   "paradigm": "高血压流行病学：患病率/知晓/治疗/控制率的描述与趋势。",
+   "qr": "biobank",
+   "lite": false,
+   "indicators": "血压测量、患病率、知晓率、治疗率、控制率；地区与人群分层",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Hypertension+Survey",
+   "ackEn": "This research used data from China Hypertension Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 中国高血压调查 CHS 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "NHANES 美国国家健康与营养检查调查",
+   "en": "National Health and Nutrition Examination Survey",
+   "cat": "monitor",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://wwwn.cdc.gov/nchs/nhanes/"
+    },
+    {
+     "label": "死亡链接文件",
+     "url": "https://www.cdc.gov/nchs/data-linkage/mortality-public.htm"
+    }
+   ],
+   "region": "美国",
+   "scale": "每年约 5 千",
+   "timeSpan": "1999 至今",
+   "host": "美国 CDC 国家卫生统计中心",
+   "content": "连续调查每 2 年一周期，复杂多阶段抽样提供权重；问卷+体检+实验室三位一体，与国家死亡索引链接的公开死亡随访免费。",
+   "intro": "科研入门第一库：质控极严。肾脏方向可用标准化血肌酐、部分周期胱抑素 C、尿白蛋白肌酐比、多次标准化血压、降压药处方。横断面数据可经死亡链接变前瞻性队列。",
+   "usage": "完全公开，零申请零费用直接下载；高度受限变量需赴 NCHS 研究数据中心现场使用。",
+   "notes": "2017-2020 因疫情中断，官方发布合并文件必须用专门疫情前权重，不能沿用旧合并算法；真正的瓶颈是选题新颖性。",
+   "tags": [
+    "美国",
+    "一般人群",
+    "体检",
+    "生化",
+    "肌酐",
+    "eGFR",
+    "血压",
+    "营养",
+    "死亡登记",
+    "横断面",
+    "随访",
+    "公开"
+   ],
+   "paradigm": "横断面→前瞻：用权重做复杂抽样估计；链接死亡文件把横断面转队列；注意周期权重。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "标准化血肌酐、部分周期胱抑素C、尿白蛋白肌酐比(UACR)、多次标准化血压测量、处方药文件中的降压药使用；国家死亡索引链接随访",
+   "papers": [
+    "CDC/NCHS 官方《NHANES 分析指南与权重说明》为必读方法学文件",
+    "PubMed 检索 “NHANES” 可查海量已发表研究"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Health+and+Nutrition+Examination+Survey",
+   "ackEn": "Data from the National Health and Nutrition Examination Survey (NHANES), US Centers for Disease Control and Prevention / National Center for Health Statistics, were used in this study. NCHS does not endorse or assume responsibility for the analyses or interpretations presented here.",
+   "ackCn": "本研究使用了美国疾控中心国家卫生统计中心（CDC/NCHS）的 NHANES 数据；NCHS 不对本研究的分析与解读背书或担责。"
+  },
+  {
+   "name": "KNHANES 韩国国民健康营养调查",
+   "en": "Korea National Health and Nutrition Examination Survey",
+   "cat": "monitor",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网（待核）",
+     "url": "https://knhanes.kdca.go.kr"
+    }
+   ],
+   "region": "韩国",
+   "scale": "全国样本",
+   "timeSpan": "进行中",
+   "host": "韩国 CDC",
+   "content": "韩国版 NHANES，设计对标，公开下载，界面以韩文为主。",
+   "intro": "韩国疾病管理厅（KDCA）的全国健康与营养调查，设计对标美国 NHANES，自 1998 年起每年开展约万人规模，含问卷、体检与实验室检查，可公开下载（韩文界面为主），适合与 NHANES 做跨国比较。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "入口待核；韩文界面。",
+   "tags": [
+    "韩国",
+    "一般人群",
+    "体检",
+    "营养",
+    "生化",
+    "横断面",
+    "公开"
+   ],
+   "paradigm": "韩国健康营养：对标 NHANES 做跨国比较与趋势。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "血压、身高体重腰围、空腹血糖、血脂、肝肾功能、血常规；膳食与健康行为问卷",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Korea+National+Health+and+Nutrition+Examination+Survey",
+   "ackEn": "This research used data from Korea National Health and Nutrition Examination Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 KNHANES 韩国国民健康营养调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "BRFSS 行为危险因素监测系统",
+   "en": "Behavioral Risk Factor Surveillance System",
+   "cat": "monitor",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.cdc.gov/brfss"
+    }
+   ],
+   "region": "美国",
+   "scale": "每年数十万",
+   "timeSpan": "1984 至今",
+   "host": "美国 CDC",
+   "content": "全球最大电话健康调查，具州级代表性。",
+   "intro": "美国 CDC 的年度电话健康调查，全球规模最大的行为危险因素监测，每年数十万人、具州级代表性，适合健康行为、慢病筛查与健康公平的州际比较。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "",
+   "tags": [
+    "美国",
+    "行为",
+    "健康公平",
+    "横断面",
+    "公开",
+    "问卷"
+   ],
+   "paradigm": "健康行为州际比较：州代表样本做行为危险因素与政策评估。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "吸烟/饮酒、体力活动、饮食、体重、慢病自报、健康筛查利用、自评健康",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Behavioral+Risk+Factor+Surveillance+System",
+   "ackEn": "This research used data from Behavioral Risk Factor Surveillance System. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 BRFSS 行为危险因素监测系统 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "NHIS 美国国民健康访问调查",
+   "en": "National Health Interview Survey",
+   "cat": "monitor",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.cdc.gov/nchs/nhis/"
+    }
+   ],
+   "region": "美国",
+   "scale": "大样本",
+   "timeSpan": "进行中",
+   "host": "美国 CDC",
+   "content": "与 NHANES 互补，无体检但样本量大得多。",
+   "intro": "美国 CDC/NCHS 的全国健康访谈调查，样本量大、无体检，与 NHANES 互补，适合医疗服务利用、保险覆盖与健康可及性研究。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "",
+   "tags": [
+    "美国",
+    "服务利用",
+    "保险",
+    "横断面",
+    "公开",
+    "问卷"
+   ],
+   "paradigm": "服务利用/保险：大样本访谈做医疗利用与覆盖分析。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "自报健康状况与慢病、医疗服务利用、保险类型与覆盖、就医障碍、健康行为",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Health+Interview+Survey",
+   "ackEn": "This research used data from National Health Interview Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 NHIS 美国国民健康访问调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "中国慢性病及危险因素监测",
+   "en": "China Chronic Disease and Risk Factor Surveillance",
+   "cat": "monitor",
+   "access": 5,
+   "urls": [
+    {
+     "label": "中国疾控慢病中心",
+     "url": "https://www.chinacdc.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "代表性最好",
+   "timeSpan": "进行中",
+   "host": "中国疾控中心慢病中心",
+   "content": "中国代表性最好的慢病监测数据。",
+   "intro": "中国疾控中心慢病中心主办的全国慢性病与危险因素监测，是中国代表性最好的慢病监测数据，含吸烟、饮酒、膳食、体力活动、血压血糖等，但不公开下载，需合作获取。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "不公开。",
+   "tags": [
+    "中国",
+    "慢病",
+    "危险因素",
+    "监测",
+    "合作"
+   ],
+   "paradigm": "中国慢病监测：代表性抽样做患病率与危险因素；需合作获取。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "吸烟/饮酒/膳食/体力活动、血压、血糖、血脂、身高体重腰围、慢病患病自报",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Chronic+Disease+and+Risk+Factor+Surveillance",
+   "ackEn": "This research used data from China Chronic Disease and Risk Factor Surveillance. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 中国慢性病及危险因素监测 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "香港医管局 CDARS",
+   "en": "Clinical Data Analysis and Reporting System",
+   "cat": "rwd",
+   "access": 5,
+   "urls": [
+    {
+     "label": "数据实验室（待核）",
+     "url": "https://www3.ha.org.hk/data/"
+    },
+    {
+     "label": "公开汇总 data.gov.hk",
+     "url": "https://data.gov.hk"
+    }
+   ],
+   "region": "中国香港",
+   "scale": "约 750 万",
+   "timeSpan": "1990 年代至今",
+   "host": "香港医院管理局（HA）",
+   "content": "40 余公立医院+百余门诊；唯一匿名编码跨机构跨年随访；住院 ICD-9-CM、门诊 ICPC-2、处方配药、检验（肌酐序列）、影像手术、急诊住院、死亡链接；回溯 20 年以上。",
+   "intro": "香港无「医保局」，公立医疗由税收筹资、医管局统一运营。典型设计：自身对照病例系列、新使用者设计、目标试验模拟、疫苗安全性主动监测。数据不可下载，在安全环境分析、结果审核后带出。",
+   "usage": "经医管局数据实验室申请，需研究计划书+伦理批件+本地机构 PI，按项目收费；结果审核后带出。",
+   "notes": "别混淆：医健通 eHRSS 是公私病历互通平台，与 CDARS 不是一回事；「香港理工大学数据库」无可靠对应，理大健康数据多走 HA 数据实验室或各院系自建队列。",
+   "tags": [
+    "香港",
+    "真实世界",
+    "电子病历",
+    "医保",
+    "处方",
+    "检验",
+    "死亡登记",
+    "队列",
+    "随访",
+    "合作",
+    "目标试验"
+   ],
+   "paradigm": "真实世界(港): 新使用者设计/目标试验模拟/自身对照病例系列；安全环境分析、不可下载。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "住院诊断 ICD-9-CM、基层门诊 ICPC-2、处方与配药记录、实验室检验值（含肌酐序列）、影像与手术操作、急诊与住院、死亡链接",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Clinical+Data+Analysis+and+Reporting+System",
+   "ackEn": "This research used data from Clinical Data Analysis and Reporting System. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 香港医管局 CDARS 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "韩国 NHIS 国民健康保险",
+   "en": "National Health Insurance Service",
+   "cat": "rwd",
+   "access": 5,
+   "urls": [
+    {
+     "label": "NHIS 数据共享",
+     "url": "https://nhiss.nhis.or.kr"
+    }
+   ],
+   "region": "韩国",
+   "scale": "全国参保人",
+   "timeSpan": "2002 至今",
+   "host": "韩国国民健康保险公团",
+   "content": "全民单一支付方，覆盖近全部人口；NHIS-NSC 全国代表性抽样队列（随访十余年）+ 健康检查数据库（法定定期体检含血压/空腹血糖/肌酐/尿蛋白等客观指标，与理赔一体化）。",
+   "intro": "全世界少数「全民覆盖+客观体检+处方记录+长随访」四合一数据源。做降压药类别与肾脏结局的目标试验模拟证据等级极高。",
+   "usage": "需韩国本地合作者+伦理审查+按项目付费，在指定分析中心操作，数据不可带出；基本必须合作。",
+   "notes": "",
+   "tags": [
+    "韩国",
+    "真实世界",
+    "医保",
+    "理赔",
+    "体检",
+    "处方",
+    "队列",
+    "随访",
+    "合作",
+    "目标试验",
+    "肾脏"
+   ],
+   "paradigm": "真实世界(韩): 四合一数据做目标试验模拟/新使用者设计；须本地合作、分析中心内操作。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "法定定期国民健康体检（血压、空腹血糖、血肌酐、尿蛋白定性）+ 理赔与处方记录；NHIS-NSC 全国代表性抽样队列",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Health+Insurance+Service",
+   "ackEn": "This research used data from National Health Insurance Service. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 韩国 NHIS 国民健康保险 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "韩国 HIRA 健康保险审查评价院",
+   "en": "Health Insurance Review & Assessment",
+   "cat": "rwd",
+   "access": 5,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.hira.or.kr"
+    }
+   ],
+   "region": "韩国",
+   "scale": "全国理赔",
+   "timeSpan": "进行中",
+   "host": "韩国健康保险审查评价院",
+   "content": "全国理赔审核数据，处方级别粒度。",
+   "intro": "韩国健康保险审查评价院（HIRA）掌握全国理赔审核数据，处方级粒度，与 NHIS 互补，适合药物流行病学、用药模式与医疗利用研究。需本地合作，在指定分析中心操作。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "韩国",
+    "真实世界",
+    "医保",
+    "理赔",
+    "处方",
+    "合作",
+    "药物流行病学"
+   ],
+   "paradigm": "药物流行病学(韩): 理赔处方级数据做用药模式与安全监测；须合作。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "诊断编码、处方与配药（药品名/剂量/天数）、门诊与住院、医疗费用",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Health+Insurance+Review+&+Assessment",
+   "ackEn": "This research used data from Health Insurance Review & Assessment. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 韩国 HIRA 健康保险审查评价院 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CPRD 英国基层医疗数据库",
+   "en": "Clinical Practice Research Datalink",
+   "cat": "rwd",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://cprd.com"
+    }
+   ],
+   "region": "英国",
+   "scale": "累计逾 6000 万患者",
+   "timeSpan": "1987 至今",
+   "host": "英国（GOLD 与 Aurum 两库）",
+   "content": "基层医疗记录，可链接 HES 住院、ONS 死亡与癌症登记。",
+   "intro": "英国临床实践研究数据链（CPRD），含 GOLD 与 Aurum 两个库，累计逾 6000 万患者，可链接 HES 住院、ONS 死亡与癌症登记，是药物流行病学的国际金标准。",
+   "usage": "提交研究计划/数据申请并签署协议，部分需付费、机构审批与数据保管方（custodian）批准，周期约 1-6 个月。按获批的变量字段范围提供数据；受控数据还需 DAC/伦理评审。",
+   "notes": "",
+   "tags": [
+    "英国",
+    "真实世界",
+    "电子病历",
+    "基层",
+    "处方",
+    "药物流行病学",
+    "队列",
+    "随访",
+    "死亡登记"
+   ],
+   "paradigm": "药物流行病学(英): 基层处方+住院/死亡链接做药物安全与疗效。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "基层就诊与诊断（Read code）、处方、检验值、转诊；链接住院(HES)、死亡(ONS)、癌症登记",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Clinical+Practice+Research+Datalink",
+   "ackEn": "This research used data from Clinical Practice Research Datalink. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CPRD 英国基层医疗数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "OpenSAFELY 英国全民健康记录分析平台",
+   "en": "OpenSAFELY",
+   "cat": "rwd",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.opensafely.org"
+    }
+   ],
+   "region": "英国",
+   "scale": "全英 NHS 记录",
+   "timeSpan": "进行中",
+   "host": "英国（代码在安全环境运行）",
+   "content": "代码在安全环境内运行，全流程开源，透明度行业标杆。",
+   "intro": "OpenSAFELY 是英国 NHS 的可信分析平台，研究者的分析代码在安全环境中运行、全流程开源，透明度是行业标杆，适合大规模观察性研究与快速政策评估。",
+   "usage": "提交分析代码与研究申请，经审批后在 OpenSAFELY 安全环境运行；代码与结果可复现、公开。",
+   "notes": "",
+   "tags": [
+    "英国",
+    "真实世界",
+    "电子病历",
+    "NHS",
+    "透明",
+    "合作"
+   ],
+   "paradigm": "可信分析: 在 OpenSAFELY 安全环境提交分析代码，全流程开源可复现。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "NHS 电子病历（诊断、处方、检验、就诊）、死亡登记；通过可复现代码提取",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=OpenSAFELY",
+   "ackEn": "This research used data from OpenSAFELY. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 OpenSAFELY 英国全民健康记录分析平台 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "QResearch 英国基层医疗数据库",
+   "en": "QResearch",
+   "cat": "rwd",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.qresearch.org"
+    }
+   ],
+   "region": "英国",
+   "scale": "基层医疗大样本",
+   "timeSpan": "进行中",
+   "host": "牛津托管（QRISK 来源）",
+   "content": "QRISK 等风险模型的数据来源。",
+   "intro": "QResearch 是英国大型基层医疗数据库（牛津托管），是 QRISK 系列心血管风险模型的数据来源，适合风险预测模型的开发与外部验证。",
+   "usage": "提交研究计划/数据申请并签署协议，部分需付费、机构审批与数据保管方（custodian）批准，周期约 1-6 个月。按获批的变量字段范围提供数据；受控数据还需 DAC/伦理评审。",
+   "notes": "",
+   "tags": [
+    "英国",
+    "真实世界",
+    "电子病历",
+    "基层",
+    "预测模型",
+    "合作"
+   ],
+   "paradigm": "风险模型(英): 基层数据开发与验证风险预测模型。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "基层诊断与处方、检验（血压、血脂、血糖、肌酐）、BMI、吸烟；结局与死亡链接",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=QResearch",
+   "ackEn": "This research used data from QResearch. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 QResearch 英国基层医疗数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "北欧登记体系",
+   "en": "Nordic Registries (Denmark/Sweden/Norway/Finland)",
+   "cat": "rwd",
+   "access": 5,
+   "urls": [
+    {
+     "label": "各国登记官网",
+     "url": "https://www.norden.org"
+    }
+   ],
+   "region": "丹麦/瑞典/挪威/芬兰",
+   "scale": "全民",
+   "timeSpan": "出生到死亡",
+   "host": "北欧各国",
+   "content": "唯一编号贯穿出生到死亡，随访完整度全球第一。",
+   "intro": "丹麦、瑞典、挪威、芬兰的全民登记体系，用唯一个人编号贯穿出生到死亡，随访完整度全球第一，是因果推断与药物安全的天然实验场。通常需本地 PI 与合作。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "北欧",
+    "真实世界",
+    "登记",
+    "随访",
+    "队列",
+    "合作",
+    "药物流行病学"
+   ],
+   "paradigm": "北欧登记: 唯一编号全周期随访做因果/药物安全；须本地 PI。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "诊断（ICD）、处方、住院、死亡、出生与移民；可与生物样本库和队列链接",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Nordic+Registries+(Denmark/Sweden/Norway/Finland)",
+   "ackEn": "This research used data from Nordic Registries (Denmark/Sweden/Norway/Finland). Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 北欧登记体系 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "台湾 NHIRD 全民健康保险研究数据库",
+   "en": "Taiwan National Health Insurance Research Database",
+   "cat": "rwd",
+   "access": 5,
+   "urls": [
+    {
+     "label": "资料科学中心",
+     "url": "https://dep.mohw.gov.tw/dos/"
+    }
+   ],
+   "region": "中国台湾",
+   "scale": "全民健保",
+   "timeSpan": "1995 至今",
+   "host": "台湾卫生福利部资料科学中心",
+   "content": "全民健保数据，现由资料科学中心管理，需现场分析。",
+   "intro": "台湾全民健康保险研究数据库（NHIRD），覆盖全民、1995 年起，现由卫生福利部资料科学中心管理。曾在真实世界研究中产出极多，近年需现场分析、门槛提高。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "台湾",
+    "真实世界",
+    "医保",
+    "理赔",
+    "合作",
+    "现场分析"
+   ],
+   "paradigm": "台湾健保: 现场分析做真实世界研究；门槛已提高。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "诊断（ICD-9/10）、处方与用药、住院与门诊、手术操作、费用",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Taiwan+National+Health+Insurance+Research+Database",
+   "ackEn": "This research used data from Taiwan National Health Insurance Research Database. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 台湾 NHIRD 全民健康保险研究数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "日本 NDB / JMDC",
+   "en": "Japan NDB / JMDC",
+   "cat": "rwd",
+   "access": 5,
+   "urls": [
+    {
+     "label": "NDB 官网",
+     "url": "https://www.mhlw.go.jp"
+    }
+   ],
+   "region": "日本",
+   "scale": "全国理赔/商保",
+   "timeSpan": "进行中",
+   "host": "日本（NDB 全国理赔；JMDC 含体检）",
+   "content": "全国理赔数据，JMDC 含体检数据。",
+   "intro": "日本 NDB 为全国医保理赔数据（覆盖广、粒度细），JMDC 为商业保险理赔数据并含体检信息。两者互补，适合药物流行病学与卫生服务研究，需日方合作。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "",
+   "tags": [
+    "日本",
+    "真实世界",
+    "医保",
+    "理赔",
+    "体检",
+    "合作"
+   ],
+   "paradigm": "日本真实世界: 理赔/商保数据做药物与卫生服务研究；须合作。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "诊断、处方、诊疗行为、住院；JMDC 另含体检（血压、血糖、血脂、BMI）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Japan+NDB+/+JMDC",
+   "ackEn": "This research used data from Japan NDB / JMDC. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 日本 NDB / JMDC 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "TriNetX 全球联邦式研究网络",
+   "en": "TriNetX",
+   "cat": "rwd",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://trinetx.com"
+    }
+   ],
+   "region": "全球联邦式",
+   "scale": "数百家医疗机构",
+   "timeSpan": "进行中",
+   "host": "商业联邦网络",
+   "content": "机构订阅制，几分钟出队列计数与倾向性评分匹配；看不到原始病历，数据质量取决于各院映射。",
+   "intro": "TriNetX 是连接数百家医疗机构的联邦式研究网络，可在几分钟内产出队列计数与倾向性评分匹配结果，适合快速筛选研究问题与可行性评估。局限是看不到原始病历，数据质量取决于各机构映射。",
+   "usage": "机构订阅制：由所属机构开通账号后，在平台内在线查询与做倾向性评分匹配；不提供原始病历下载。",
+   "notes": "看不到原始病历，数据质量依赖映射。",
+   "tags": [
+    "全球",
+    "真实世界",
+    "联邦",
+    "队列",
+    "订阅",
+    "可行性"
+   ],
+   "paradigm": "可行性筛选: 联邦网络快速出队列计数与 PSM，用于研究问题可行性。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "诊断、用药、检验、手术、就诊；以标准化术语映射后的计数与分布为主",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=TriNetX",
+   "ackEn": "This research used data from TriNetX. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 TriNetX 全球联邦式研究网络 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "MarketScan / Optum / IQVIA 美国商保数据",
+   "en": "Commercial Claims Data",
+   "cat": "rwd",
+   "access": 4,
+   "urls": [
+    {
+     "label": "IBM MarketScan",
+     "url": "https://www.ibm.com/products/marketscan"
+    },
+    {
+     "label": "Optum",
+     "url": "https://www.optum.com"
+    }
+   ],
+   "region": "美国",
+   "scale": "千万至亿级",
+   "timeSpan": "进行中",
+   "host": "商业授权（药企/咨询常用）",
+   "content": "商业保险理赔数据，昂贵。",
+   "intro": "美国商业保险理赔数据（MarketScan、Optum、IQVIA 等），规模千万至亿级，是真实世界证据（RWE）、药物利用与卫生经济评价的常用商业数据源，价格昂贵，药企与咨询公司常用。",
+   "usage": "商业授权：按项目或年度订阅购买，签署数据使用协议后在指定环境分析，费用较高。",
+   "notes": "",
+   "tags": [
+    "美国",
+    "真实世界",
+    "医保",
+    "理赔",
+    "商业",
+    "昂贵"
+   ],
+   "paradigm": "商保 RWE: 理赔数据做药物利用与真实世界证据；商业授权。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "诊断与操作编码、处方与配药、住院与门诊、费用与支付方；部分含实验室结果",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Commercial+Claims+Data",
+   "ackEn": "This research used data from Commercial Claims Data. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 MarketScan / Optum / IQVIA 美国商保数据 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CMS Medicare/Medicaid (ResDAC)",
+   "en": "US CMS Medicare/Medicaid",
+   "cat": "rwd",
+   "access": 4,
+   "urls": [
+    {
+     "label": "ResDAC",
+     "url": "https://www.resdac.org"
+    }
+   ],
+   "region": "美国",
+   "scale": "全国老年与低收入人群",
+   "timeSpan": "进行中",
+   "host": "美国 CMS（经 ResDAC 申请）",
+   "content": "全国老年与低收入人群医保；与 SEER 链接即 SEER-Medicare。",
+   "intro": "美国 CMS 的 Medicare（老年/残障）与 Medicaid（低收入）全国医保数据，经 ResDAC 申请并付费获取；与 SEER 链接后即为 SEER-Medicare，是老年肿瘤与卫生服务研究的权威数据源。",
+   "usage": "经 ResDAC 提交申请、签署数据使用协议并付费，审批数周；数据在受控环境使用。",
+   "notes": "",
+   "tags": [
+    "美国",
+    "真实世界",
+    "医保",
+    "老年",
+    "肿瘤",
+    "合作"
+   ],
+   "paradigm": "老年真实世界: Medicare 数据做老年医疗利用；链接 SEER 做肿瘤。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "诊断与操作（ICD）、处方(Part D)、住院与门诊、费用与支付、机构特征；链接 SEER 可得肿瘤分期与治疗",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=US+CMS+Medicare/Medicaid",
+   "ackEn": "This research used data from US CMS Medicare/Medicaid. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CMS Medicare/Medicaid (ResDAC) 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "MIMIC-IV 重症监护数据库",
+   "en": "Medical Information Mart for Intensive Care IV",
+   "cat": "icu",
+   "access": 3,
+   "urls": [
+    {
+     "label": "PhysioNet 数据集",
+     "url": "https://physionet.org/content/mimiciv/"
+    },
+    {
+     "label": "平台",
+     "url": "https://physionet.org"
+    }
+   ],
+   "region": "美国单中心",
+   "scale": "30 万+ 住院",
+   "timeSpan": "2008 至今",
+   "host": "Beth Israel Deaconess 医学中心 / MIT 实验计算生理学实验室",
+   "content": "hosp（住院：实验室/处方/诊断/微生物）、icu（ICU：生命体征/给药/出入量/评分）、MIMIC-IV-ED（急诊）、MIMIC-IV-Note（去标识文本，NLP/大模型核心）、MIMIC-IV-ECG（波形心电）、MIMIC-CXR（胸片+报告）。",
+   "intro": "免费。获取流程：①注册 PhysioNet 账号；②完成 CITI「Data or Specimens Only Research」培训取证书；③提交 credentialing 申请（上传证书+导师/主管推荐人），审核数天至数周（推荐人不回邮件是最常见失败原因）；④签 DUA 后下载。建议 BigQuery 或本地 PostgreSQL，纯 CSV 很痛苦。",
+   "usage": "免费；培训+DUA，周期 2-6 周。",
+   "notes": "单中心、美国、ICU 人群，外推有限；时间戳随机偏移，不能做真实历法季节分析；同一患者多次入院注意聚类；AKI 需自行按 KDIGO 从肌酐序列构建。",
+   "tags": [
+    "美国",
+    "ICU",
+    "重症",
+    "电子病历",
+    "重症",
+    "AKI",
+    "KDIGO",
+    "文本",
+    "影像",
+    "心电",
+    "NLP",
+    "队列",
+    "公开-协议"
+   ],
+   "paradigm": "ICU 预测/预后：hosp+icu 模块构建暴露结局→ML/统计模型；AKI 按 KDIGO 自肌酐序列构建；注意单中心偏倚与时间偏移。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "hosp 模块（实验室、处方、ICD-9/10 诊断、微生物学）、icu 模块（生命体征、给药事件、出入量、评分）、MIMIC-IV-ED、MIMIC-IV-Note 临床文本、MIMIC-IV-ECG 波形、MIMIC-CXR 影像",
+   "papers": [
+    "Johnson A, et al. MIMIC-IV, a freely accessible electronic health record dataset. Sci Data. 2023",
+    "PhysioNet 官网提供完整的 MIMIC 相关文献列表"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Medical+Information+Mart+for+Intensive+Care+IV",
+   "ackEn": "This research used the MIMIC-IV database (version [X.X]), maintained by the MIT Laboratory for Computational Physiology and hosted on PhysioNet, accessed under approved credentialed access (certification number [XXXXX]).",
+   "ackCn": "本研究使用 MIMIC-IV 数据库（版本 [X.X]，由 MIT 实验计算生理学实验室维护、PhysioNet 托管），经凭证化访问批准后使用（证书编号 [XXXXX]）。"
+  },
+  {
+   "name": "eICU-CRD 重症数据库",
+   "en": "eICU Collaborative Research Database",
+   "cat": "icu",
+   "access": 3,
+   "urls": [
+    {
+     "label": "PhysioNet",
+     "url": "https://physionet.org/content/eicu-crd/"
+    }
+   ],
+   "region": "美国多中心",
+   "scale": "200 余家医院",
+   "timeSpan": "进行中",
+   "host": "PhysioNet（多中心）",
+   "content": "弥补 MIMIC 单中心缺陷，多中心 ICU 数据。",
+   "intro": "美国多中心重症监护数据库（200 余家医院），弥补 MIMIC 单中心缺陷。做多中心外部验证时，MIMIC-IV 训练 + eICU 外部验证是目前审稿接受度最高的搭配。",
+   "usage": "免费；同 MIMIC 的 CITI+DUA 流程。",
+   "notes": "",
+   "tags": [
+    "美国",
+    "ICU",
+    "重症",
+    "多中心",
+    "电子病历",
+    "外部验证",
+    "公开-协议"
+   ],
+   "paradigm": "多中心外部验证: MIMIC 训练 → eICU 验证，提升泛化证据。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "生命体征、实验室、用药与输液、APACHE IV 评分、诊断与转归；多中心异质性可用于外部验证",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=eICU+Collaborative+Research+Database",
+   "ackEn": "This research used data from eICU Collaborative Research Database. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 eICU-CRD 重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "AmsterdamUMCdb 重症数据库",
+   "en": "Amsterdam University Medical Centers DB",
+   "cat": "icu",
+   "access": 3,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://ami-cardio biomarkers.org"
+    }
+   ],
+   "region": "荷兰",
+   "scale": "欧洲首个大型开放 ICU",
+   "timeSpan": "进行中",
+   "host": "阿姆斯特丹大学医学中心",
+   "content": "欧洲首个大型开放 ICU 库。",
+   "intro": "欧洲首个大型开放 ICU 数据库（荷兰阿姆斯特丹大学医学中心），可作欧洲人群的外部验证集，弥补 MIMIC/eICU 以美国人群为主的局限。",
+   "usage": "完成指定培训（如 CITI「Data or Specimens Only Research」）取得证书，签署数据使用协议（DUA/SDUA）后获取。审批通常数天至数周，免费；数据多在安全环境或授权账号内分析。",
+   "notes": "",
+   "tags": [
+    "欧洲",
+    "荷兰",
+    "ICU",
+    "重症",
+    "电子病历",
+    "外部验证",
+    "公开-协议"
+   ],
+   "paradigm": "欧洲 ICU 验证: 跨大陆外部验证提升模型泛化。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "生命体征、实验室、用药、通气与评分；欧洲人群表型",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Amsterdam+University+Medical+Centers+DB",
+   "ackEn": "This research used data from Amsterdam University Medical Centers DB. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 AmsterdamUMCdb 重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "HiRID 高分辨率重症数据库",
+   "en": "High Time Resolution ICU Dataset",
+   "cat": "icu",
+   "access": 3,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://hirid.intensivecare.ai"
+    }
+   ],
+   "region": "瑞士",
+   "scale": "高时间分辨率",
+   "timeSpan": "进行中",
+   "host": "瑞士",
+   "content": "高时间分辨率（可达 2 分钟级）生理数据。",
+   "intro": "瑞士伯尔尼的高时间分辨率 ICU 数据库（部分变量可达 2 分钟级），适合生理信号处理、早期预警模型与高分辨率时序分析。",
+   "usage": "完成指定培训（如 CITI「Data or Specimens Only Research」）取得证书，签署数据使用协议（DUA/SDUA）后获取。审批通常数天至数周，免费；数据多在安全环境或授权账号内分析。",
+   "notes": "",
+   "tags": [
+    "瑞士",
+    "ICU",
+    "重症",
+    "高分辨率",
+    "生理信号",
+    "公开-协议"
+   ],
+   "paradigm": "高分辨率生理: 2 分钟级信号做早期预警与生理建模。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "高频生命体征与血流动力学、实验室、用药；2 分钟级时间序列",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=High+Time+Resolution+ICU+Dataset",
+   "ackEn": "This research used data from High Time Resolution ICU Dataset. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 HiRID 高分辨率重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "SICdb 萨尔茨堡重症数据库",
+   "en": "Salzburg Intensive Care Database",
+   "cat": "icu",
+   "access": 3,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://github.com/CRF-UMIT/SICdb"
+    }
+   ],
+   "region": "奥地利",
+   "scale": "较新开放 ICU",
+   "timeSpan": "进行中",
+   "host": "奥地利萨尔茨堡",
+   "content": "较新的开放 ICU 数据集。",
+   "intro": "奥地利萨尔茨堡较新的开放 ICU 数据集，可作为额外的欧洲外部验证集，补充 MIMIC/eICU/AmsterdamUMCdb 的人群与机构多样性。",
+   "usage": "完成指定培训（如 CITI「Data or Specimens Only Research」）取得证书，签署数据使用协议（DUA/SDUA）后获取。审批通常数天至数周，免费；数据多在安全环境或授权账号内分析。",
+   "notes": "",
+   "tags": [
+    "奥地利",
+    "ICU",
+    "重症",
+    "电子病历",
+    "公开-协议"
+   ],
+   "paradigm": "ICU 验证: 作为额外外部验证集。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "生命体征、实验室、用药、评分与转归",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Salzburg+Intensive+Care+Database",
+   "ackEn": "This research used data from Salzburg Intensive Care Database. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 SICdb 萨尔茨堡重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "INSPIRE 韩国围手术期数据库",
+   "en": "INTensive care Precision and REsearch",
+   "cat": "icu",
+   "access": 3,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://inspire.re.kr"
+    }
+   ],
+   "region": "韩国",
+   "scale": "围手术期为主",
+   "timeSpan": "进行中",
+   "host": "韩国",
+   "content": "围手术期为主，亚洲人群。",
+   "intro": "韩国围手术期重症数据库，以亚洲人群为主，适合围手术期结局、术后并发症与预测模型研究，是亚洲 ICU 外部验证的补充资源。",
+   "usage": "完成指定培训（如 CITI「Data or Specimens Only Research」）取得证书，签署数据使用协议（DUA/SDUA）后获取。审批通常数天至数周，免费；数据多在安全环境或授权账号内分析。",
+   "notes": "",
+   "tags": [
+    "韩国",
+    "ICU",
+    "重症",
+    "围手术期",
+    "亚洲",
+    "公开-协议"
+   ],
+   "paradigm": "围手术期 ICU: 亚洲人群围术期结局与预测。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "围手术期生命体征、麻醉与用药、实验室、术后并发症与转归",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=INTensive+care+Precision+and+REsearch",
+   "ackEn": "This research used data from INTensive care Precision and REsearch. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 INSPIRE 韩国围手术期数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "PIC 浙江大学附属儿童医院重症数据库",
+   "en": "Pediatric Intensive Care Database",
+   "cat": "icu",
+   "access": 3,
+   "urls": [
+    {
+     "label": "浙大儿院",
+     "url": "https://www.zjuch.com"
+    }
+   ],
+   "region": "中国",
+   "scale": "儿科重症",
+   "timeSpan": "进行中",
+   "host": "浙江大学医学院附属儿童医院",
+   "content": "儿科重症，中国唯一同类开放库。",
+   "intro": "浙江大学医学院附属儿童医院的儿科重症数据库，是中国唯一同类开放库，适合儿童重症预测模型、儿科 AKI/ARDS 等研究及外部验证。",
+   "usage": "完成指定培训（如 CITI「Data or Specimens Only Research」）取得证书，签署数据使用协议（DUA/SDUA）后获取。审批通常数天至数周，免费；数据多在安全环境或授权账号内分析。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "儿科",
+    "儿童",
+    "ICU",
+    "重症",
+    "电子病历",
+    "公开-协议"
+   ],
+   "paradigm": "儿科 ICU: 中国唯一开放儿科重症库，做儿童重症预测。",
+   "qr": "monitor",
+   "lite": false,
+   "indicators": "儿童生命体征、实验室、用药与通气、评分、转归；儿科特异表型",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Pediatric+Intensive+Care+Database",
+   "ackEn": "This research used data from Pediatric Intensive Care Database. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 PIC 浙江大学附属儿童医院重症数据库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "BioLINCC 美国心肺血研究所数据仓库",
+   "en": "Biologic Specimen and Data Repository",
+   "cat": "trial",
+   "access": 3,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://biolincc.nhlbi.nih.gov"
+    }
+   ],
+   "region": "美国",
+   "scale": "SPRINT/ALLHAT/AASK/ARIC/MESA/CARDIA 等",
+   "timeSpan": "经典试验与队列",
+   "host": "美国国立心肺血液研究所 (NHLBI)",
+   "content": "个体水平数据免费公开申请：SPRINT（强化降压 120 vs 140，含肾脏结局与 eGFR 序列）、ALLHAT（四类降压药头对头，4 万余人含 ESRD）、AASK（非裔高血压性肾硬化）、ACCORD（糖尿病强化控制）、ARIC（社区队列随访 30 余年）、MESA（多种族影像）、CARDIA（青年血压轨迹）、Framingham、CHS、Jackson Heart Study、LookAHEAD。",
+   "intro": "本文件信息差最严重、性价比最高的一档：审批周期数周、零费用。注册账号→在线提交研究计划（篇幅不长）→伦理批件或豁免证明→签 DUA→数周获批下载。数据已去标识化并部分粗化；发表需注明来源并附免责声明。",
+   "usage": "免费；注册+计划+伦理+DUA，周期 2-6 周。",
+   "notes": "NHLBI 不为分析结论背书；数据部分粗化。",
+   "tags": [
+    "美国",
+    "RCT",
+    "二次利用",
+    "心血管",
+    "肾脏",
+    "高血压",
+    "降压",
+    "CKD",
+    "ESRD",
+    "队列",
+    "IPD",
+    "公开-协议"
+   ],
+   "paradigm": "RCT 二次利用: 选 SPRINT/ALLHAT/AASK 等做降压/肾保护分析；提交计划+伦理+DUA，零费用数周获批。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "SPRINT/ALLHAT/AASK/ACCORD 等试验的血压、eGFR 序列、ESRD 与心血管结局；ARIC、MESA、CARDIA、Framingham、CHS、JHS 队列变量",
+   "papers": [
+    "SPRINT 强化降压试验（NEJM 2015，收缩压目标 120 vs 140，含完整肾脏结局与 eGFR 序列）",
+    "ALLHAT 四类降压药头对头试验（JAMA 2002，4 万余人，含终末期肾病结局）",
+    "AASK 非裔高血压性肾硬化试验（JAMA 2002）"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Biologic+Specimen+and+Data+Repository",
+   "ackEn": "This research used data from Biologic Specimen and Data Repository. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 BioLINCC 美国心肺血研究所数据仓库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "NIDDK-CR 美国糖尿病消化肾病研究所中央数据仓库",
+   "en": "NIDDK Central Repository",
+   "cat": "trial",
+   "access": 3,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://repository.niddk.nih.gov"
+    }
+   ],
+   "region": "美国",
+   "scale": "CRIC/CKiD/DCCT-EDIC/LookAHEAD/DPP",
+   "timeSpan": "长期随访",
+   "host": "美国国立糖尿病消化肾病研究所 (NIDDK)",
+   "content": "CRIC 慢性肾功能不全队列（CKD3-4 期，密集随访 eGFR 斜率/蛋白尿/ESRD/心血管/死亡，全球最重要 CKD 进展前瞻队列）；CKiD 儿童 CKD；DCCT/EDIC 1 型糖尿病里程碑；LookAHEAD、DPP。",
+   "intro": "流程与 BioLINCC 类似，免费。CKD 进展预测模型要发国际期刊，在 CRIC 上做一次外部验证说服力远超再加一个中国中心。",
+   "usage": "完成指定培训（如 CITI「Data or Specimens Only Research」）取得证书，签署数据使用协议（DUA/SDUA）后获取。审批通常数天至数周，免费；数据多在安全环境或授权账号内分析。",
+   "notes": "",
+   "tags": [
+    "美国",
+    "RCT",
+    "二次利用",
+    "肾脏",
+    "CKD",
+    "糖尿病",
+    "eGFR",
+    "IPD",
+    "公开-协议"
+   ],
+   "paradigm": "CKD 进展: CRIC 做 eGFR 斜率/ESRD 分析；国际期刊外部验证首选。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "CRIC：eGFR 斜率、蛋白尿、终末期肾病、心血管结局与死亡；CKiD 儿童 CKD；DCCT/EDIC 1 型糖尿病",
+   "papers": [
+    "CRIC 研究（慢性肾功能不全队列）系列论文，为 CKD 进展预测模型的国际验证基准"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=NIDDK+Central+Repository",
+   "ackEn": "This research used data from NIDDK Central Repository. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 NIDDK-CR 美国糖尿病消化肾病研究所中央数据仓库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "NIA AgingResearchBiobank 美国老龄研究样本库",
+   "en": "NIA Aging Research Biobank",
+   "cat": "trial",
+   "access": 3,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://agingresearchbiobank.nia.nih.gov"
+    }
+   ],
+   "region": "美国",
+   "scale": "Health ABC/MrOS/SOF/InCHIANTI/LIFE 等",
+   "timeSpan": "经典老年队列",
+   "host": "美国国立老龄研究所 (NIA)",
+   "content": "集中托管再分发已完成 NIA 资助研究的样本与数据：Health ABC、MrOS、SOF、InCHIANTI、LIFE、LookAHEAD、巴尔的摩老龄化纵向研究等。",
+   "intro": "表型极精细（步速、肌少症、骨密度、炎症因子系列），单独找原团队极难，此处可统一申请。数据申请友好（计划+协议）；生物样本门槛高得多。注意与第十章中国 Aging Biobank 完全不同。",
+   "usage": "免费；数据申请友好（计划+协议）；样本门槛高。",
+   "notes": "勿与中国的 Aging Biobank (ABB) 混淆，名称相近但主办方/内容/流程完全不同。",
+   "tags": [
+    "美国",
+    "老龄",
+    "衰弱",
+    "肌少症",
+    "队列",
+    "二次利用",
+    "公开-协议"
+   ],
+   "paradigm": "老年综合征: 精细表型队列（肌少/衰弱）统一申请；区分中美两个 Aging Biobank。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "步速、肌少症、骨密度、炎症因子系列等精细老年表型",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=NIA+Aging+Research+Biobank",
+   "ackEn": "This research used data from NIA Aging Research Biobank. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 NIA AgingResearchBiobank 美国老龄研究样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "Vivli / YODA / CSDR 临床试验个体数据共享平台",
+   "en": "Clinical Trial Data Sharing Platforms",
+   "cat": "trial",
+   "access": 3,
+   "urls": [
+    {
+     "label": "Vivli",
+     "url": "https://vivli.org"
+    },
+    {
+     "label": "YODA",
+     "url": "https://yoda.yale.edu"
+    },
+    {
+     "label": "CSDR",
+     "url": "https://www.clinicalstudydatarequest.com"
+    }
+   ],
+   "region": "全球",
+   "scale": "多方汇集 RCT 个体数据",
+   "timeSpan": "进行中",
+   "host": "Vivli（多方）/ YODA（耶鲁，强生等）/ CSDR（GSK 等）",
+   "content": "个体患者数据 (IPD) 荟萃分析与二次研究的核心入口。",
+   "intro": "临床试验个体水平数据（IPD）共享平台：Vivli 汇集多方试验（做 IPD meta 分析首选）、YODA 由耶鲁托管强生等企业试验、CSDR 汇集 GSK 等药企数据（参与企业近年有变动）。适合个体数据荟萃、亚组与异质性分析。",
+   "usage": "免费/审批；提交研究计划与 DUA。",
+   "notes": "CSDR 参与企业名单有变动（待核）。",
+   "tags": [
+    "全球",
+    "RCT",
+    "IPD",
+    "meta",
+    "二次利用",
+    "公开-协议"
+   ],
+   "paradigm": "IPD meta: 跨试验个体数据合并做荟萃与异质性分析。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "试验个体数据：随机分组、暴露与剂量、主要/次要结局、协变量、随访时间",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Clinical+Trial+Data+Sharing+Platforms",
+   "ackEn": "This research used data from Clinical Trial Data Sharing Platforms. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 Vivli / YODA / CSDR 临床试验个体数据共享平台 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "dbGaP 基因型与表型数据库",
+   "en": "Database of Genotypes and Phenotypes",
+   "cat": "trial",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.ncbi.nlm.nih.gov/gap"
+    }
+   ],
+   "region": "美国",
+   "scale": "受控访问",
+   "timeSpan": "进行中",
+   "host": "美国 NIH",
+   "content": "受控访问的人类基因型与表型数据（含 TCGA 受控层、多队列遗传数据）。",
+   "intro": "受控访问：需 NIH eRA Commons 账户、在线申请、签署 Data Use Certification、机构签署官员(ISO)审批、DAC 评审、签 DUA 后开通 GDC 下载。",
+   "usage": "受控访问；机构审批+DUA，周期数周至数月。",
+   "notes": "仅限批准用途；禁止再识别；强制安全培训。",
+   "tags": [
+    "美国",
+    "基因",
+    "表型",
+    "受控",
+    "伦理",
+    "DUA",
+    "合作"
+   ],
+   "paradigm": "受控遗传数据: eRA Commons+机构 ISO+DAC 评审+DUA；严禁再识别。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "受控访问的基因型与表型数据（需机构签署与 DAC 评审）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Database+of+Genotypes+and+Phenotypes",
+   "ackEn": "Data used in this study were obtained from the database of Genotypes and Phenotypes (dbGaP) under accession [phsXXXXXX], with approved project number [XXXXX].",
+   "ackCn": "本研究数据来源于 dbGaP（基因型与表型数据库），数据集编号 [phsXXXXXX]，批准项目编号 [XXXXX]。"
+  },
+  {
+   "name": "Aging Biobank (ABB) 中国衰老生物样本库",
+   "en": "Aging Biobank",
+   "cat": "omics",
+   "access": 5,
+   "urls": [
+    {
+     "label": "官方入口（待核）",
+     "url": "https://cbb.cncb.ac.cn/abb/"
+    }
+   ],
+   "region": "中国",
+   "scale": "待核",
+   "timeSpan": "进行中",
+   "host": "国家生物信息中心 / 国家基因组科学数据中心体系",
+   "content": "面向衰老研究的生物样本与配套数据资源平台，服务衰老机制、标志物与老年疾病。同源含 AgingAtlas 等多组学资源。",
+   "intro": "具体样本规模、队列构成、数据类型与申请流程编制时无法核实，请以官网说明与联系方式为准（标记为待核）。命名易与美国 NIA AgingResearchBiobank 冲突，致谢与数据可用性声明务必写全称与网址。",
+   "usage": "不公开下载，走合作制：需联系数据持有团队、提交研究方案、签署合作协议，通常涉及共同署名；周期半年起。个体级数据须在合作框架与伦理批件下获取。",
+   "notes": "与美国 NIA AgingResearchBiobank 完全不同，检索/写作务必区分。",
+   "tags": [
+    "中国",
+    "衰老",
+    "多组学",
+    "生物样本",
+    "合作",
+    "待核"
+   ],
+   "paradigm": "中国衰老资源: 先 NGDC DatabaseCommons 检索该体系全部衰老资源，再定向进入具体平台。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "原始数据、表达/变异矩阵与元数据、临床表型注释（详见数据集说明）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Aging+Biobank",
+   "ackEn": "This research used data from Aging Biobank. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 Aging Biobank (ABB) 中国衰老生物样本库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "GEO 基因表达综合数据库",
+   "en": "Gene Expression Omnibus",
+   "cat": "omics",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.ncbi.nlm.nih.gov/geo/"
+    }
+   ],
+   "region": "全球",
+   "scale": "海量 GSE 系列",
+   "timeSpan": "进行中",
+   "host": "美国 NCBI",
+   "content": "芯片/RNA-seq/单细胞/甲基化/ChIP-seq 等功能基因组数据，GSE(研究)/GSM(样本)/GPL(平台)，多数附临床表型。",
+   "intro": "完全公开无需申请。用 GEO2R 快速探路，正式分析下原始矩阵自行处理；R 包 GEOquery 是标准入口。元数据质量参差，选数据集先看元数据完整度再看样本量；整合分析必须处理批次效应。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "characteristics 字段临床注释常残缺；跨数据集批次效应必须处理。",
+   "tags": [
+    "全球",
+    "基因",
+    "转录组",
+    "单细胞",
+    "甲基化",
+    "组学",
+    "公开",
+    "仓储"
+   ],
+   "paradigm": "功能基因组: GEOquery 取数→差异分析→批次效应校正；先看元数据完整度。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "芯片、RNA-seq、单细胞、甲基化、ChIP-seq 表达矩阵与临床表型（GSE/GSM/GPL 三级结构）",
+   "papers": [
+    "以各 GSE 数据集对应的原始发表论文为准（每条 GSE 记录均附 PubMed 链接）"
+   ],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Gene+Expression+Omnibus",
+   "ackEn": "Publicly available datasets (GSE accession number [GSEXXXXX]) were obtained from the NCBI Gene Expression Omnibus (GEO).",
+   "ackCn": "本研究数据来源于 NCBI GEO 公共数据集（GSE 编号 [GSEXXXXX]）。"
+  },
+  {
+   "name": "Dryad 通用数据仓储",
+   "en": "Dryad",
+   "cat": "omics",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://datadryad.org"
+    }
+   ],
+   "region": "全球",
+   "scale": "论文原始数据",
+   "timeSpan": "进行中",
+   "host": "通用仓储（CC0）",
+   "content": "托管论文背后的原始数据，CC0 协议。",
+   "intro": "很多期刊要求数据存缴，这里能找到已发表研究的个体水平数据，做二次分析与再验证很有用；下载免费，存缴由作者付费。学术惯例仍应引用原文。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "应引用原始论文。",
+   "tags": [
+    "全球",
+    "通用",
+    "仓储",
+    "原始数据",
+    "公开",
+    "二次利用"
+   ],
+   "paradigm": "数据再验证: 检索已发表研究原始数据做二次分析/方法学验证。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "原始数据、表达/变异矩阵与元数据、临床表型注释（详见数据集说明）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Dryad",
+   "ackEn": "This research used data from Dryad. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 Dryad 通用数据仓储 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "SRA 序列读取归档",
+   "en": "Sequence Read Archive",
+   "cat": "omics",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.ncbi.nlm.nih.gov/sra"
+    }
+   ],
+   "region": "全球",
+   "scale": "高通量测序原始数据",
+   "timeSpan": "进行中",
+   "host": "美国 NCBI",
+   "content": "高通量测序原始数据归档。",
+   "intro": "NCBI 的 Sequence Read Archive（SRA），归档高通量测序原始数据（fastq），常与 GEO/GDC 配合使用；可公开下载并重新比对分析。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "",
+   "tags": [
+    "全球",
+    "基因",
+    "测序",
+    "转录组",
+    "公开",
+    "仓储"
+   ],
+   "paradigm": "测序原始数据: 从 SRA 拉取 fastq 做重分析。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "测序原始 reads、样本元数据、平台与文库信息",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Sequence+Read+Archive",
+   "ackEn": "This research used data from Sequence Read Archive. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 SRA 序列读取归档 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "ArrayExpress / BioStudies",
+   "en": "EMBL-EBI",
+   "cat": "omics",
+   "access": 1,
+   "urls": [
+    {
+     "label": "EBI 官网",
+     "url": "https://www.ebi.ac.uk/arrayexpress/"
+    }
+   ],
+   "region": "欧洲",
+   "scale": "功能基因组仓储",
+   "timeSpan": "进行中",
+   "host": "EMBL-EBI",
+   "content": "欧洲版功能基因组仓储。",
+   "intro": "EMBL-EBI 的功能基因组数据仓储（ArrayExpress 及后续 BioStudies），是欧洲版的功能基因组资源，与 NCBI GEO 互为补充。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "",
+   "tags": [
+    "欧洲",
+    "基因",
+    "组学",
+    "公开",
+    "仓储"
+   ],
+   "paradigm": "欧洲组学: 与 GEO 互补的功能基因组数据。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "表达矩阵、样本与平台注释、实验设计元数据",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=EMBL-EBI",
+   "ackEn": "This research used data from EMBL-EBI. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 ArrayExpress / BioStudies 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "GDC / TCGA / cBioPortal 癌症多组学",
+   "en": "Genomic Data Commons",
+   "cat": "omics",
+   "access": 1,
+   "urls": [
+    {
+     "label": "GDC 门户",
+     "url": "https://portal.gdc.cancer.gov"
+    },
+    {
+     "label": "cBioPortal",
+     "url": "https://www.cbioportal.org"
+    }
+   ],
+   "region": "全球",
+   "scale": "泛癌种",
+   "timeSpan": "进行中",
+   "host": "美国 NCI / GDC；cBioPortal 可视化前端",
+   "content": "癌症多组学（突变/表达/甲基化/临床），开放数据免审批；部分受控数据需 dbGaP 授权。",
+   "intro": "GDC 下载+R 包 TCGAbiolinks 取数；cBioPortal 是探索期最快的可视化查询前端。",
+   "usage": "开放数据直接下载；受控数据走 dbGaP。",
+   "notes": "受控层需 dbGaP 授权。",
+   "tags": [
+    "全球",
+    "肿瘤",
+    "癌症",
+    "多组学",
+    "基因组",
+    "公开",
+    "受控",
+    "仓储"
+   ],
+   "paradigm": "癌症多组学: TCGAbiolinks 取数→差异/突变分析；cBioPortal 探索；受控层走 dbGaP。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "突变、基因表达、甲基化、拷贝数及配套临床信息",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Genomic+Data+Commons",
+   "ackEn": "This research used data from Genomic Data Commons. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 GDC / TCGA / cBioPortal 癌症多组学 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "Zenodo / figshare / Mendeley Data",
+   "en": "General Repositories",
+   "cat": "omics",
+   "access": 1,
+   "urls": [
+    {
+     "label": "Zenodo",
+     "url": "https://zenodo.org"
+    },
+    {
+     "label": "figshare",
+     "url": "https://figshare.com"
+    },
+    {
+     "label": "Mendeley Data",
+     "url": "https://data.mendeley.com"
+    }
+   ],
+   "region": "全球",
+   "scale": "通用代码与数据",
+   "timeSpan": "进行中",
+   "host": "通用仓储",
+   "content": "代码与数据均可存缴/获取；Mendeley Data 为 Elsevier 系期刊常用。",
+   "intro": "通用数据与代码仓储：Zenodo（CERN）、figshare、Mendeley Data（Elsevier 系期刊常用），论文附带的代码、数据集与补充材料常存放于此，可直接下载复用。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "",
+   "tags": [
+    "全球",
+    "通用",
+    "仓储",
+    "代码",
+    "公开"
+   ],
+   "paradigm": "补充数据/代码: 检索论文附带的代码与数据集。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "论文配套数据集、分析代码、补充材料与元数据",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=General+Repositories",
+   "ackEn": "This research used data from General Repositories. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 Zenodo / figshare / Mendeley Data 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "ICPSR / IPUMS 调查与微观数据仓储",
+   "en": "Survey & Microdata Repositories",
+   "cat": "omics",
+   "access": 1,
+   "urls": [
+    {
+     "label": "ICPSR",
+     "url": "https://www.icpsr.umich.edu"
+    },
+    {
+     "label": "IPUMS",
+     "url": "https://www.ipums.org"
+    }
+   ],
+   "region": "全球",
+   "scale": "社会/普查微观数据",
+   "timeSpan": "进行中",
+   "host": "密歇根大学 (ICPSR) / 明尼苏达 (IPUMS)",
+   "content": "ICPSR 是社会科学数据总仓库，很多老龄调查在此二次分发；IPUMS 提供全球普查与调查微观数据的调和版本（含 IPUMS Health Surveys）。",
+   "intro": "ICPSR 是密歇根大学的社会科学数据总仓库，很多老龄与社会调查在此二次分发；IPUMS 提供全球普查与调查微观数据的调和版本（含 IPUMS Health Surveys），便于跨国与跨年比较。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "",
+   "tags": [
+    "全球",
+    "社会",
+    "调查",
+    "微观数据",
+    "公开",
+    "仓储",
+    "调和"
+   ],
+   "paradigm": "微观数据: 在 ICPSR/IPUMS 找调查原始微观数据做调和分析。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "调查微观数据（人口、健康、经济、家庭）、普查样本；IPUMS 提供统一编码的调和变量",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Survey+&+Microdata+Repositories",
+   "ackEn": "This research used data from Survey & Microdata Repositories. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 ICPSR / IPUMS 调查与微观数据仓储 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "国家自然科学基金基础研究知识库",
+   "en": "NSFC Open Repository",
+   "cat": "cn_platform",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "http://ir.nsfc.gov.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "基金资助论文",
+   "timeSpan": "进行中",
+   "host": "国家自然科学基金委员会",
+   "content": "论文全文知识库（非数据库），收录基金资助产出，作者按规定存缴。",
+   "intro": "国家自然科学基金资助论文的全文知识库（非数据集），作者按规定存缴。可用于免费获取部分付费墙后的中英文全文，也能反向检索某学者、某基金号的全部产出，写标书、判断方向资助密度很好用。",
+   "usage": "公开访问：在官网按作者、机构、基金号或关键词检索，直接下载可获取的全文。",
+   "notes": "是知识库不是数据集。",
+   "tags": [
+    "中国",
+    "论文",
+    "知识库",
+    "基金",
+    "公开",
+    "文献"
+   ],
+   "paradigm": "文献/标书调研: 检索基金号产出与同行，定位研究方向。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "论文全文与元数据（作者、机构、基金号、期刊、年份）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=NSFC+Open+Repository",
+   "ackEn": "This research used data from NSFC Open Repository. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 国家自然科学基金基础研究知识库 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "NCMI 国家人口健康科学数据中心",
+   "en": "National Population Health Data Center",
+   "cat": "cn_platform",
+   "access": 5,
+   "urls": [
+    {
+     "label": "官网（域名待核）",
+     "url": "https://www.ncmi.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "多领域科学数据",
+   "timeSpan": "进行中",
+   "host": "中国医学科学院医学信息研究所",
+   "content": "国家科技资源共享服务平台，汇交基础/临床/公卫/中医药/药学等多领域科学数据。",
+   "intro": "资源以汇交项目数据集为主，质量与开放差异大，有些只给元数据需联系提供方，能直接下载的个体级数据比预期少。建议先当数据资源目录检索，了解国内有哪些团队汇交过什么，再定向联系合作。",
+   "usage": "先目录检索→定向联系合作；域名待核。",
+   "notes": "直接可下载的个体级数据偏少，多需联系。",
+   "tags": [
+    "中国",
+    "国家级",
+    "科学数据",
+    "目录",
+    "合作",
+    "平台"
+   ],
+   "paradigm": "中国数据目录: 当资源目录检索→定向联系汇交团队合作。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "平台汇交的数据与指标、元数据描述（详见平台数据说明）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Population+Health+Data+Center",
+   "ackEn": "This research used data from National Population Health Data Center. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 NCMI 国家人口健康科学数据中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "NGDC 国家基因组科学数据中心",
+   "en": "National Genomics Data Center",
+   "cat": "cn_platform",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://ngdc.cncb.ac.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "GSA/OMIX 等",
+   "timeSpan": "进行中",
+   "host": "国家生物信息中心 (CNCB)",
+   "content": "GSA 测序数据归档、OMIX 组学数据，可理解为中国版 GEO 与 SRA。",
+   "intro": "国家基因组科学数据中心（CNCB-NGDC），下设 GSA（测序数据归档，中国版 SRA）与 OMIX（组学数据），以及 Aging Atlas 等专题资源。建议先在 Database Commons 检索该体系下的资源，再定向进入具体平台。",
+   "usage": "在官网注册免费账号并说明研究用途后即可下载。建议先下载官方 codebook / Data Dictionary 核对变量名与年份；部分受限变量或链接数据需另签协议。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "基因",
+    "组学",
+    "测序",
+    "国家级",
+    "公开",
+    "仓储"
+   ],
+   "paradigm": "中国组学: GSA/OMIX 归档与检索；DatabaseCommons 发现资源。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "测序原始数据、组学矩阵、样本与实验元数据；专题资源（如衰老多组学）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Genomics+Data+Center",
+   "ackEn": "This research used data from National Genomics Data Center. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 NGDC 国家基因组科学数据中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "ScienceDB 科学数据银行",
+   "en": "Science Data Bank",
+   "cat": "cn_platform",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.scidb.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "通用数据仓储",
+   "timeSpan": "进行中",
+   "host": "中国科学院",
+   "content": "通用数据仓储，中国版 Dryad。",
+   "intro": "中国科学院主办的通用数据仓储（中国版 Dryad），支持论文数据存缴与共享，可公开检索与下载，适合获取已发表研究配套的数据与代码。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "通用",
+    "仓储",
+    "公开",
+    "平台"
+   ],
+   "paradigm": "中国数据仓储: 论文配套数据存缴与获取。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "论文配套数据集、代码与元数据",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Science+Data+Bank",
+   "ackEn": "This research used data from Science Data Bank. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 ScienceDB 科学数据银行 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "NMDC 国家微生物科学数据中心",
+   "en": "National Microbiology Data Center",
+   "cat": "cn_platform",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://nmdc.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "微生物/微生物组",
+   "timeSpan": "进行中",
+   "host": "中国科学院",
+   "content": "微生物与微生物组学数据。",
+   "intro": "国家微生物科学数据中心，汇聚微生物与微生物组学数据，是微生物组、病原与感染研究的国家级资源。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "微生物",
+    "组学",
+    "国家级",
+    "公开",
+    "平台"
+   ],
+   "paradigm": "微生物组: 国家微生物数据中心检索与下载。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "微生物基因组、微生物组测序、样本元数据",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=National+Microbiology+Data+Center",
+   "ackEn": "This research used data from National Microbiology Data Center. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 NMDC 国家微生物科学数据中心 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "国家/卫生健康统计年鉴",
+   "en": "China Health Statistics Yearbook",
+   "cat": "cn_platform",
+   "access": 1,
+   "urls": [
+    {
+     "label": "国家统计局",
+     "url": "https://www.stats.gov.cn"
+    },
+    {
+     "label": "国家卫健委",
+     "url": "https://www.nhc.gov.cn"
+    }
+   ],
+   "region": "中国",
+   "scale": "宏观指标",
+   "timeSpan": "年度",
+   "host": "国家统计局 / 国家卫健委",
+   "content": "宏观卫生资源与服务量指标，用于生态学分析与政策背景。",
+   "intro": "国家统计局与国家卫健委发布的年度统计年鉴，提供卫生资源、服务量、费用等宏观指标，常用于论文背景、生态学分析与政策论证。",
+   "usage": "官方出版物/官网公开：直接查阅或下载年鉴表格；按年度与地区口径引用。",
+   "notes": "",
+   "tags": [
+    "中国",
+    "宏观",
+    "卫生资源",
+    "年鉴",
+    "公开",
+    "政策"
+   ],
+   "paradigm": "宏观背景: 年鉴指标做生态学分析与政策背景。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "卫生机构与床位、卫生人员、诊疗人次、住院与费用、卫生总费用、期望寿命等宏观指标",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=China+Health+Statistics+Yearbook",
+   "ackEn": "This research used data from China Health Statistics Yearbook. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 国家/卫生健康统计年鉴 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "HCUP 美国医疗成本与利用项目",
+   "en": "Healthcare Cost and Utilization Project",
+   "cat": "healthecon",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://hcup-us.ahrq.gov"
+    }
+   ],
+   "region": "美国",
+   "scale": "NIS 每年约 700 万出院",
+   "timeSpan": "1988 至今",
+   "host": "美国医疗保健研究与质量局 (AHRQ)",
+   "content": "NIS 全国住院样本（加权代表约 3500 万次住院）、NRD 再入院库、KID 儿科住院、SID/SEDD/SASD 州级住院/急诊/日间手术；含诊断操作编码、住院日、总费用、付费方、转归、医院特征。",
+   "intro": "卫生管理方向核心：住院费用、住院日、再入院率、医院/区域差异是卫生事业管理议题，NIS 是全球最成熟的数据源。完成在线数据使用协议培训后购买，每个库每年数百美元量级。",
+   "usage": "提交研究计划/数据申请并签署协议，部分需付费、机构审批与数据保管方（custodian）批准，周期约 1-6 个月。按获批的变量字段范围提供数据；受控数据还需 DAC/伦理评审。",
+   "notes": "需购买。",
+   "tags": [
+    "美国",
+    "卫生经济",
+    "卫生服务",
+    "住院",
+    "再入院",
+    "费用",
+    "医院",
+    "购买"
+   ],
+   "paradigm": "卫生服务研究: NIS/NRD 做住院费用/再入院/区域差异；培训后购买。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "诊断与操作编码、住院日、住院总费用、付费方、转归、医院特征（教学属性、床位规模、地区、所有制）；NRD 再入院数据库",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Healthcare+Cost+and+Utilization+Project",
+   "ackEn": "This research used data from Healthcare Cost and Utilization Project. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 HCUP 美国医疗成本与利用项目 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "MEPS 美国医疗支出面板调查",
+   "en": "Medical Expenditure Panel Survey",
+   "cat": "healthecon",
+   "access": 1,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://meps.ahrq.gov"
+    }
+   ],
+   "region": "美国",
+   "scale": "家庭面板",
+   "timeSpan": "1996 至今",
+   "host": "美国 AHRQ",
+   "content": "两年期面板，免费公开；家庭医疗服务使用、支出、支付来源、保险状态，并与机构/雇主问卷交叉验证。",
+   "intro": "美国医疗支出面板调查（MEPS），两年期面板设计、免费公开，记录家庭医疗服务使用、支出、支付来源与保险状态，并与医疗机构与雇主问卷交叉验证。适合灾难性卫生支出、自付比例与保险效应研究。",
+   "usage": "无需申请：在官网直接检索/下载（部分需注册免费账号）。使用时遵守数据许可（如 CC0 / CC-BY），论文中须引用数据来源；高度受限变量需另行申请。",
+   "notes": "",
+   "tags": [
+    "美国",
+    "卫生经济",
+    "支出",
+    "保险",
+    "面板",
+    "公开",
+    "问卷"
+   ],
+   "paradigm": "卫生经济: 面板数据做灾难性支出/自付比例/保险效应。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "医疗服务使用、总支出与自付、支付来源、保险状态、健康与功能、收入",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Medical+Expenditure+Panel+Survey",
+   "ackEn": "This research used data from Medical Expenditure Panel Survey. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 MEPS 美国医疗支出面板调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "GBD / GHDx 全球疾病负担",
+   "en": "Global Burden of Disease",
+   "cat": "healthecon",
+   "access": 1,
+   "urls": [
+    {
+     "label": "GHDx",
+     "url": "https://ghdx.healthdata.org"
+    }
+   ],
+   "region": "全球",
+   "scale": "国家/省/年龄/性别/年份",
+   "timeSpan": "年度更新",
+   "host": "IHME（华盛顿大学）",
+   "content": "DALY、YLL、YLD，可按国家/省份/年龄/性别/年份查询。",
+   "intro": "全球疾病负担研究（GBD，IHME），提供按国家、省份、年龄、性别、年份的 DALY、YLL、YLD 等指标，是论文背景与政策论证的必备引用源。",
+   "usage": "完全公开：在 GHDx 网站按指标/地区/年份查询并下载结果表。",
+   "notes": "",
+   "tags": [
+    "全球",
+    "疾病负担",
+    "DALY",
+    "宏观",
+    "公开",
+    "政策"
+   ],
+   "paradigm": "疾病负担: GBD 指标做背景论证与跨国比较。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "DALY、YLL、YLD、患病率、发病率、死亡率、危险因素归因负担",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Global+Burden+of+Disease",
+   "ackEn": "This research used data from Global Burden of Disease. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 GBD / GHDx 全球疾病负担 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "WHO 全球卫生观察站 / 卫生支出 / OECD / 世界银行",
+   "en": "Global Health Indicators",
+   "cat": "healthecon",
+   "access": 1,
+   "urls": [
+    {
+     "label": "WHO GHO",
+     "url": "https://www.who.int/data/gho"
+    },
+    {
+     "label": "世界银行",
+     "url": "https://data.worldbank.org"
+    },
+    {
+     "label": "CDC WONDER",
+     "url": "https://wonder.cdc.gov"
+    }
+   ],
+   "region": "全球",
+   "scale": "宏观指标",
+   "timeSpan": "年度",
+   "host": "WHO / OECD / 世界银行 / CDC",
+   "content": "WHO 官方指标库；各国卫生总费用构成（筹资比较）；OECD 发达国家卫生系统比较；世界银行宏观社会经济与卫生指标；CDC WONDER 美国死亡与出生在线查询。",
+   "intro": "全球宏观卫生指标集合：WHO 全球卫生观察站（GHO）官方指标库、WHO 全球卫生支出数据库（各国卫生总费用构成）、OECD Health Statistics（发达国家卫生系统比较）、世界银行开放数据（宏观社会经济与卫生）、CDC WONDER（美国死亡与出生）。适合卫生系统与筹资的跨国比较。",
+   "usage": "完全公开：在各自官网按指标查询/下载；注意各平台口径与年份差异。",
+   "notes": "OECD/WHO 卫生支出入口网站改版过，请现查。",
+   "tags": [
+    "全球",
+    "宏观",
+    "卫生系统",
+    "筹资",
+    "卫生支出",
+    "公开",
+    "政策"
+   ],
+   "paradigm": "卫生系统比较: 宏观指标做跨国筹资与系统比较。",
+   "qr": "trial",
+   "lite": false,
+   "indicators": "卫生总费用与构成、期望寿命、死亡率、疾病负担、卫生资源、社会经济指标",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Global+Health+Indicators",
+   "ackEn": "This research used data from Global Health Indicators. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 WHO 全球卫生观察站 / 卫生支出 / OECD / 世界银行 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "45 and Up Study 澳大利亚 45 岁以上人群队列",
+   "en": "The 45 and Up Study",
+   "cat": "oceania",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://45andup.org.au/"
+    },
+    {
+     "label": "Sax Institute 申请页",
+     "url": "https://www.saxinstitute.org.au/solutions/45-and-up-study/use-the-45-and-up-study/cupl/"
+    },
+    {
+     "label": "邮件咨询",
+     "url": "mailto:45andUp.Research@saxinstitute.org.au"
+    }
+   ],
+   "region": "澳大利亚（新南威尔士州）",
+   "scale": "逾 25 万（招募逾 26.7 万）",
+   "timeSpan": "2005 至今",
+   "host": "Sax Institute（与 Cancer Council NSW、NSW Ministry of Health 合作）",
+   "content": "45 岁及以上人群纵向调查，覆盖健康行为、生活经历、家庭与人口学、照护责任、心理困扰、生命质量与慢病；可链接 MBS（医保诊疗）、PBS（药品）、住院、癌症登记等行政与登记数据；含生物样本与地理空间数据。",
+   "intro": "澳大利亚规模最大的健康与老龄化持续研究（Sax Institute 管理），2005-2009 年在新南威尔士州招募逾 26.7 万名 45 岁及以上人群，应答率约 19%。参与者均同意将调查数据与 MBS（医保诊疗）、PBS（药品）、住院、癌症登记等行政数据链接；含生物样本与地理空间数据，并可开发子研究。数据经 SURE 安全环境访问。",
+   "usage": "研究者向 Sax Institute 提交申请：需科学合理可行的研究方案、伦理批件、数据保管方(custodian)批准，并承担 45 and Up 许可费与 SURE 使用费。任何 bona fide 研究者均可申请。",
+   "notes": "队列基于 NSW 州，全国代表性有限；80 岁以上与农村偏远地区人群过采样；应答率约 19%。",
+   "tags": [
+    "澳大利亚",
+    "大洋洲",
+    "队列",
+    "前瞻性",
+    "老龄",
+    "慢病",
+    "真实世界",
+    "医保",
+    "MBS",
+    "PBS",
+    "链接",
+    "癌症登记",
+    "生物样本"
+   ],
+   "paradigm": "澳洲老龄与慢病：以 45 and Up 调查+MBS/PBS/住院链接做慢病发生与结局；需 SURE 安全环境分析。",
+   "qr": null,
+   "lite": false,
+   "indicators": "问卷（健康行为、慢病、心理困扰、生命质量、家庭与照护）；链接 MBS/PBS/住院/癌症/死亡登记；体格与生物样本；地理空间",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=The+45+and+Up+Study",
+   "ackEn": "This research used data from The 45 and Up Study. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 45 and Up Study 澳大利亚 45 岁以上人群队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "CUPL 慢性疾病伞式数据链接项目",
+   "en": "Chronic Conditions Umbrella Program Linkage",
+   "cat": "oceania",
+   "access": 4,
+   "urls": [
+    {
+     "label": "CUPL 官方页",
+     "url": "https://www.saxinstitute.org.au/solutions/45-and-up-study/use-the-45-and-up-study/cupl/"
+    }
+   ],
+   "region": "澳大利亚",
+   "scale": "45 and Up + 10 个行政数据集",
+   "timeSpan": "持续更新（年更或更频）",
+   "host": "Sax Institute（经 PHSREC 与各数据保管方批准）",
+   "content": "一次审批即可获取 45 and Up 调查 + 10 个数据集：MBS（含 DVA）、PBS（含 RPBS）、NSW 住院(APDC)、出生死亡婚姻登记(RBDM-Death)、死因单元记录(COD-URF)、急诊(EDDC)、癌症登记(NSW CCR)、精神健康数据(CHAMB)、传染病报告(NCIMS，含 COVID)。",
+   "intro": "CUPL 让研究者用一次审批同时获得 45 and Up 调查数据与 10 类行政健康数据（MBS、PBS、NSW 住院、出生死亡婚姻登记、死因、急诊、癌症登记、精神健康、传染病报告含 COVID），相比逐个保管方申请可将等待时间缩短至多 80%（一年以上→约 2-3 个月）。数据经 SURE 安全环境提供。",
+   "usage": "经 Sax Institute 申请，聚焦慢性疾病的研究方案；需伦理与数据保管方批准；数据在 SURE 内分析。",
+   "notes": "仅适用于慢性疾病相关研究（含多病共存、慢病急性加重、长期传染病等）。",
+   "tags": [
+    "澳大利亚",
+    "慢病",
+    "多病共存",
+    "医保",
+    "MBS",
+    "PBS",
+    "住院",
+    "急诊",
+    "癌症登记",
+    "死亡登记",
+    "真实世界",
+    "链接"
+   ],
+   "paradigm": "澳洲慢病真实世界：一次审批打通调查+10类行政数据，在 SURE 内做慢病发生率、多病共存与结局研究。",
+   "qr": null,
+   "lite": false,
+   "indicators": "调查变量 + MBS 诊疗、PBS 药品、住院(APDC)、急诊(EDDC)、癌症登记(CCR)、死亡登记、精神健康(CHAMB)、传染病(NCIMS)",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Chronic+Conditions+Umbrella+Program+Linkage",
+   "ackEn": "This research used data from Chronic Conditions Umbrella Program Linkage. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 CUPL 慢性疾病伞式数据链接项目 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "PLIDA 澳大利亚个人级整合数据资产（ABS DataLab）",
+   "en": "Person Level Integrated Data Asset",
+   "cat": "oceania",
+   "access": 4,
+   "urls": [
+    {
+     "label": "ABS 官网（检索 PLIDA / DataLab）",
+     "url": "https://www.abs.gov.au/"
+    },
+    {
+     "label": "咨询邮箱",
+     "url": "mailto:mydataportal@abs.gov.au"
+    }
+   ],
+   "region": "澳大利亚",
+   "scale": "全国人口级纵向资产",
+   "timeSpan": "纵向（跨年份）",
+   "host": "澳大利亚统计局 ABS（Accredited Data Service Provider）",
+   "content": "以 Person Linkage Spine 链接的纵向数据资产，涵盖健康、教育、政府支付、收入与税收、就业、人口普查等。核心模块：残障、教育、家庭与住户、健康、收入与税收、移民、社会支持；含 MBS 模块。",
+   "intro": "澳大利亚统计局（ABS）的个人级整合数据资产（前身 MADIP），用 Person Linkage Spine 链接健康、教育、政府支付、收入与税收、就业与人口普查等数据，覆盖全国人口、跨年份纵向。获批研究者通过 PLIDA Modular Product 在 ABS DataLab 内按需逐模块申请并分析，数据不可带出。",
+   "usage": "澳大利亚政府机构或学术机构所属研究者可申请；通过 ABS DataLab 项目提案申请，需各数据保管方批准；在 DataLab 内用统计软件分析，数据不可带出。",
+   "notes": "模块需单独申请与批准；仅限获批项目所需模块。",
+   "tags": [
+    "澳大利亚",
+    "全国",
+    "真实世界",
+    "医保",
+    "MBS",
+    "税收",
+    "教育",
+    "普查",
+    "DataLab",
+    "微观数据",
+    "纵向"
+   ],
+   "paradigm": "澳洲政策评估：在 ABS DataLab 用 PLIDA 模块做健康-收入-教育-税收的跨部门政策评估与纵向分析。",
+   "qr": null,
+   "lite": false,
+   "indicators": "健康模块、MBS 模块、收入与税收、教育、家庭与住户、残障、移民、社会支持、人口普查",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Person+Level+Integrated+Data+Asset",
+   "ackEn": "This research used data from Person Level Integrated Data Asset. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 PLIDA 澳大利亚个人级整合数据资产（ABS DataLab） 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "MBS / PBS 澳大利亚医保诊疗与药品报销数据",
+   "en": "Medicare Benefits Schedule / Pharmaceutical Benefits Scheme",
+   "cat": "oceania",
+   "access": 4,
+   "urls": [
+    {
+     "label": "Services Australia",
+     "url": "https://www.servicesaustralia.gov.au/"
+    }
+   ],
+   "region": "澳大利亚",
+   "scale": "全国参保人诊疗与药品报销记录",
+   "timeSpan": "持续",
+   "host": "Services Australia（经数据保管方批准后链接获取）",
+   "content": "MBS 为医保诊疗服务项目记录，PBS 为药品报销（含 RPBS 退役军人药品）记录；处方与服务级别粒度，可链接住院、癌症登记、死亡登记等。",
+   "intro": "MBS（Medicare Benefits Schedule）记录医保诊疗服务项目，PBS（Pharmaceutical Benefits Scheme，含 RPBS 退役军人药品）记录药品报销，均为处方/服务级粒度，是澳洲卫生服务利用与药物流行病学的核心。一般不直接开放下载，须经 PLIDA（ABS DataLab）或 CUPL（SURE）等受控链接途径在安全环境内使用。",
+   "usage": "须经数据保管方批准，通过 PLIDA / CUPL 等受控链接途径在安全环境内分析；需伦理审批与项目付费。",
+   "notes": "不可直接下载；须走链接与审批路径。",
+   "tags": [
+    "澳大利亚",
+    "医保",
+    "MBS",
+    "PBS",
+    "处方",
+    "理赔",
+    "药物流行病学",
+    "真实世界",
+    "卫生服务",
+    "受控"
+   ],
+   "paradigm": "澳洲药物流行病学：经 PLIDA/CUPL 链接 MBS/PBS，在安全环境做用药模式、依从性与结局的目标试验模拟。",
+   "qr": null,
+   "lite": false,
+   "indicators": "MBS：服务项目、就诊日期、提供者类型、费用与报销；PBS：药品、剂量、数量、日期、费用；可链接住院/癌症/死亡",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Medicare+Benefits+Schedule+/+Pharmaceutical+Benefits+Scheme",
+   "ackEn": "This research used data from Medicare Benefits Schedule / Pharmaceutical Benefits Scheme. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 MBS / PBS 澳大利亚医保诊疗与药品报销数据 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "AIHW 澳大利亚健康与福利研究院",
+   "en": "Australian Institute of Health and Welfare",
+   "cat": "oceania",
+   "access": 2,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://www.aihw.gov.au/"
+    }
+   ],
+   "region": "澳大利亚",
+   "scale": "全国健康与福利统计",
+   "timeSpan": "持续",
+   "host": "澳大利亚健康与福利研究院（AIHW）",
+   "content": "全国卫生与福利统计：疾病负担、医院服务、癌症、心理健康、老龄化、原住民健康、卫生支出等公开报告与数据集。",
+   "intro": "澳大利亚健康与福利研究院（AIHW）是官方卫生统计权威机构，发布疾病负担、医院服务、癌症、心理健康、老龄化、原住民健康与卫生支出等报告与数据集，多数可在官网免费查看/下载，适合背景论证、国际比较与生态学分析；个体级数据需另行申请。",
+   "usage": "公开报告与数据集免费；细粒度数据需申请/合作。",
+   "notes": "公开层面以汇总统计为主；个体级数据需另走审批。",
+   "tags": [
+    "澳大利亚",
+    "官方统计",
+    "疾病负担",
+    "卫生服务",
+    "老龄化",
+    "心理健康",
+    "公开",
+    "宏观"
+   ],
+   "paradigm": "澳洲背景与比较：用 AIHW 官方统计做疾病负担、卫生服务与支出的背景论证与跨国比较。",
+   "qr": null,
+   "lite": false,
+   "indicators": "疾病负担、住院与服务量、癌症发病率与生存、心理健康、老龄化、卫生支出、原住民健康等汇总指标",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Australian+Institute+of+Health+and+Welfare",
+   "ackEn": "This research used data from Australian Institute of Health and Welfare. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 AIHW 澳大利亚健康与福利研究院 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "HILDA 澳大利亚家庭收入与劳动力动态调查",
+   "en": "Household, Income and Labour Dynamics in Australia",
+   "cat": "oceania",
+   "access": 2,
+   "urls": [
+    {
+     "label": "墨尔本研究院",
+     "url": "https://melbourneinstitute.unimelb.edu.au/hilda"
+    }
+   ],
+   "region": "澳大利亚",
+   "scale": "全国住户面板",
+   "timeSpan": "2001 至今",
+   "host": "墨尔本大学墨尔本研究院",
+   "content": "全国代表性住户面板：收入、就业、家庭结构、健康与福祉、生活满意度等年度随访。",
+   "intro": "墨尔本大学墨尔本研究院的全国住户面板（2001 年起），年度随访收入、就业、家庭结构、健康与福祉、生活满意度，是澳洲版的社会经济面板，适合健康的社会决定因素、卫生服务公平与政策评估。",
+   "usage": "注册并申请数据许可后下载（通常免费/学术用途）。",
+   "notes": "健康变量以自报为主，客观体检指标有限。",
+   "tags": [
+    "澳大利亚",
+    "面板",
+    "家庭",
+    "收入",
+    "就业",
+    "健康",
+    "公平",
+    "问卷",
+    "队列"
+   ],
+   "paradigm": "澳洲健康公平：住户面板做收入/就业与健康的关系及政策评估。",
+   "qr": null,
+   "lite": false,
+   "indicators": "收入与财富、就业与工时、家庭结构与照料、健康与自评健康、心理健康(SF-36/MCS)、生活满意度",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Household,+Income+and+Labour+Dynamics+in+Australia",
+   "ackEn": "This research used data from Household, Income and Labour Dynamics in Australia. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 HILDA 澳大利亚家庭收入与劳动力动态调查 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "ALSWH 澳大利亚女性健康纵向研究",
+   "en": "Australian Longitudinal Study on Women's Health",
+   "cat": "oceania",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://alswh.org.au/"
+    }
+   ],
+   "region": "澳大利亚",
+   "scale": "多出生队列女性",
+   "timeSpan": "1996 至今",
+   "host": "澳大利亚（联邦卫生署支持）",
+   "content": "按出生年份划分的女性队列（青年、中年、老年），长期随访健康、生活方式、医疗服务利用、心理健康与生命质量。",
+   "intro": "澳大利亚女性健康纵向研究（ALSWH），按出生年份分为青年、中年、老年多个队列，1996 年起长期随访健康、生活方式、医疗服务利用、心理健康与生命质量，可申请链接 MBS/PBS/住院等行政数据。",
+   "usage": "需提交研究方案申请并获批；可申请链接行政数据。",
+   "notes": "仅限女性人群。",
+   "tags": [
+    "澳大利亚",
+    "女性",
+    "队列",
+    "纵向",
+    "健康",
+    "生活行为",
+    "心理健康",
+    "链接"
+   ],
+   "paradigm": "澳洲女性健康：多出生队列做生命历程健康、生殖与慢病轨迹研究。",
+   "qr": null,
+   "lite": false,
+   "indicators": "健康与慢病、生殖与激素、生活方式、心理健康、医疗服务利用、生命质量；可链接行政数据",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Australian+Longitudinal+Study+on+Women's+Health",
+   "ackEn": "This research used data from Australian Longitudinal Study on Women's Health. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 ALSWH 澳大利亚女性健康纵向研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "Ten to Men 澳大利亚男性健康纵向研究",
+   "en": "Australian Longitudinal Study on Male Health",
+   "cat": "oceania",
+   "access": 4,
+   "urls": [
+    {
+     "label": "官网",
+     "url": "https://tentomen.org.au/"
+    }
+   ],
+   "region": "澳大利亚",
+   "scale": "全国男性样本",
+   "timeSpan": "2013 前后至今",
+   "host": "澳大利亚（男性健康纵向研究）",
+   "content": "10 岁及以上男性队列，涵盖健康行为、心理健康、伤害、医疗服务利用、社会决定因素。",
+   "intro": "澳大利亚男性健康纵向研究（Ten to Men），覆盖 10 岁及以上男性，随访健康行为、心理健康、伤害、医疗服务利用与社会决定因素，弥补男性健康证据缺口。",
+   "usage": "提交研究计划/数据申请并签署协议，部分需付费、机构审批与数据保管方（custodian）批准，周期约 1-6 个月。按获批的变量字段范围提供数据；受控数据还需 DAC/伦理评审。",
+   "notes": "仅限男性人群。",
+   "tags": [
+    "澳大利亚",
+    "男性",
+    "队列",
+    "纵向",
+    "健康",
+    "心理健康",
+    "伤害",
+    "行为"
+   ],
+   "paradigm": "澳洲男性健康：男性队列做健康行为、伤害与心理健康研究。",
+   "qr": null,
+   "lite": false,
+   "indicators": "健康行为、心理健康、伤害与暴力、医疗服务利用、社会决定因素、就业与教育",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Australian+Longitudinal+Study+on+Male+Health",
+   "ackEn": "This research used data from Australian Longitudinal Study on Male Health. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 Ten to Men 澳大利亚男性健康纵向研究 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  },
+  {
+   "name": "北方生活方式队列",
+   "en": "Northern China Lifestyle Cohort",
+   "cat": "china_cohort",
+   "access": 5,
+   "urls": [
+    {
+     "label": "以团队官方发布为准（待核）",
+     "url": "https://www.cnsda.org"
+    }
+   ],
+   "region": "中国北方",
+   "scale": "规模待核",
+   "timeSpan": "待核",
+   "host": "苗玉东教授团队（具体依托单位与联系方式待核）",
+   "content": "以生活方式为核心暴露的人群队列（膳食、运动、吸烟饮酒、体重与代谢等），用于慢病与生活方式关联研究。",
+   "intro": "由苗玉东教授牵头的生活方式队列。具体依托单位、基线年份、样本量、随访周期、变量清单与申请流程本文件未能核实，请以团队官方发布与近期论文的方法学部分为准（本条标记为待核）。",
+   "usage": "预计为合作制（参照中国本土队列通行做法：联系团队、提交研究方案、通常涉及共同署名）；具体流程待核。",
+   "notes": "本条由用户补充，细节待核实；引用前务必核对团队官方信息。",
+   "tags": [
+    "中国",
+    "生活方式",
+    "膳食",
+    "运动",
+    "慢病",
+    "队列",
+    "合作",
+    "待核",
+    "北方"
+   ],
+   "paradigm": "生活方式-慢病：以膳食/运动/吸烟饮酒等生活方式暴露为核心，做慢病风险与交互分析；需联系团队获取。",
+   "qr": null,
+   "lite": false,
+   "indicators": "体检与生化、生活方式与职业暴露、基因/生物样本，及医保或死因链接的结局（详见团队论文方法学与数据说明）",
+   "papers": [],
+   "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term=Northern+China+Lifestyle+Cohort",
+   "ackEn": "This research used data from Northern China Lifestyle Cohort. Data access was granted under approved application / project number [XXXXX] (or through a collaboration agreement with the data custodian).",
+   "ackCn": "本研究使用了 北方生活方式队列 的数据；数据获取经申请批准，批准/项目编号为 [XXXXX]（或通过与数据持有方的合作协议获得）。"
+  }
+ ]
+}
