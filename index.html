@@ -105,6 +105,16 @@ h2.sec .num{background:linear-gradient(135deg,var(--primary),var(--accent));colo
 .ind b{color:var(--primary-d)}
 .detail-btn{border:none;border-radius:8px;background:#eef4fd;color:var(--primary-d);font-size:12.5px;font-weight:700;
   padding:6px 12px;cursor:pointer;border:1px solid var(--line)}
+/* 配套工具卡片 */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:4px}
+.tool-card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:16px 18px;box-shadow:var(--shadow);transition:.15s;color:inherit}
+.tool-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.tool-tag{display:inline-block;background:#eef4fd;color:var(--primary-d);border:1px solid var(--line);
+  border-radius:999px;font-size:12px;font-weight:700;padding:2px 10px;margin-bottom:8px}
+.tool-card h3{margin:0 0 6px;font-size:17px;color:var(--primary-d)}
+.tool-card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
+.tool-go{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;color:var(--primary)}
 
 /* 查询器（科技感墨蓝） */
 #query{background:linear-gradient(135deg,#08213c,#123f78 60%,#0e7490);color:#e6f0fb}
@@ -342,6 +352,7 @@ footer .wrap a{color:#7fd1ff}
       <a href="#links">官方入口</a>
       <a href="#varsearch">变量查询</a>
       <a href="#apply">申请材料</a>
+      <a href="#tools">配套工具</a>
     </nav>
     <input class="search-box" id="globalSearch" placeholder="搜索数据库 / 主办 / 关键词…">
   </div>
@@ -533,6 +544,31 @@ footer .wrap a{color:#7fd1ff}
       </div>
     </div>
     <div id="apOut" class="ap-out"></div>
+  </div>
+</section>
+
+<!-- 配套工具 -->
+<section id="tools">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">T</span>配套工具（学术润色与检测）</h2>
+    <p class="sec-sub">找完库、拿完数据，下一步是写。下面两个是本平台同作者的自研工具，免费开源、文本只在本机处理，点开即用。</p>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://naturedu.github.io/tracehonest/" target="_blank" rel="noopener">
+        <div class="tool-tag">学术润色 · 中英双语</div>
+        <h3>普贤（Puxian）· AI 学术检查助手</h3>
+        <p>以 <b>中文 / English 检测</b>为主线：6 项指标加权打分，每一项都列出「你的值 / 参考区间 / 得分」，可复核；同时做简洁化润色（标点规范、去冗余、破折号统一、长句提示）。检测是概率性提示、不是结论，也不提供规避检测的功能。</p>
+        <span class="tool-go">打开普贤 →</span>
+      </a>
+      <a class="tool-card" href="https://naturedu.github.io/tracehonest/papers.html" target="_blank" rel="noopener">
+        <div class="tool-tag">语料 · 中英对照 100 篇</div>
+        <h3>CSSCI 论文语料库</h3>
+        <p>《中国社会科学》《管理世界》《社会科学》2026 年最新三期共 100 篇，中文摘要与英文题名逐条对照，可按「中英对照 / 中文 / English」浏览检索，一键送入润色与检测工作台。</p>
+        <span class="tool-go">打开语料库 →</span>
+      </a>
+    </div>
+    <div class="hint" style="margin-top:10px">
+      引用：杜思娴. 普贤（Puxian）：AI 学术检查助手 [EB/OL]. (2026). https://naturedu.github.io/tracehonest/.
+    </div>
   </div>
 </section>
 
